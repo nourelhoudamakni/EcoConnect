@@ -64,3 +64,7 @@ Route::get('/menu', function () {
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
+Route::get('/Mes-Actes-Volontaires', function () {
+    return view('frontOffice/mesActesVolontaires');
+});
+
