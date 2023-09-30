@@ -50,3 +50,17 @@ Route::get('/Market-Place', function () {
 Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
 });
+Route::get('/Acte-Volontaire', function () {
+    return view('frontOffice/acteVolontaire');
+});
+
+Route::get('/Produit-Details', function () {
+    return view('frontOffice/produitDetails');
+});
+
+Route::get('/menu', function () {
+    return view('frontOffice/menu');
+});
+Route::get('/Account-information', function () {
+    return view('frontOffice/accountInformation');
+});
