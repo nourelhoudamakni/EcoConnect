@@ -289,6 +289,7 @@
         @yield('produitDetails')
         @yield('profileUser')
         @yield('accountInformation')
+        @yield('mesActeVolontaire')
         <!-- main content -->
 
 
