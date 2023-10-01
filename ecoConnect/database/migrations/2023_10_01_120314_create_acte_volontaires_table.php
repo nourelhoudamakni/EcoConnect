@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('acte_volontaires', function (Blueprint $table) {
             $table->id();
-
-            $table->string('categorie')->default('reforestation');
+            $table->string('categorie');
             $table->string('titre');
-            $table->string('description');
-            $table->date('date');
-            $table->time('heure');
+            $table->longtext('description');
+            $table->json('images');
             $table->string('lieu');
 
             $table->timestamps();

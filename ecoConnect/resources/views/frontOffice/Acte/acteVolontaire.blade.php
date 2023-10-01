@@ -14,7 +14,6 @@
                                                 <h2 class="fw-700 display2-size display2-md-size lh-2  mt-5 " style="color: white;font-family: Montserrat,sans-serif;">Actes Volontaires</h2>
 
                                             </div>
-
                                 </div>
                             </div>
                             <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs mt-1">
