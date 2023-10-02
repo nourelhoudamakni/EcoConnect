@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,7 +45,13 @@ Route::get('/Groupes', function () {
     return view('frontOffice/groupes');
 });
 Route::get('/Market-Place', function () {
-    return view('frontOffice/marketPlace');
+    return view('frontOffice/MarketPlace/marketPlace');
+});
+Route::get('/My-Market-Place', function () {
+    return view('frontOffice/MarketPlace/MyMarketPlace');
+});
+Route::get('/AddProduct', function () {
+    return view('frontOffice/MarketPlace/AddNewProduct');
 });
 Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
@@ -67,4 +73,8 @@ Route::get('/Account-information', function () {
 Route::get('/Mes-Actes-Volontaires', function () {
     return view('frontOffice/mesActesVolontaires');
 });
+
+
+Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
+Route::post('/newProduit',[ProductController::class,'AddProduct'])->name('Produit.store');
 

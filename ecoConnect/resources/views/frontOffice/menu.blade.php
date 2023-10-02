@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/emoji.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/lightbox.css') }}">
+    
 
 </head>
 
@@ -288,6 +289,7 @@
         @yield('marketPlace')
         @yield('produitDetails')
         @yield('profileUser')
+        @yield('AddProduit')
         @yield('accountInformation')
         @yield('mesActeVolontaire')
         <!-- main content -->
