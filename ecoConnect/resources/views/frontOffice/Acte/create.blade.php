@@ -82,21 +82,21 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="row">
+                                <div class="row">
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
                                         <label class="mont-font fw-600 font-xsss">date</label>
-                                        <input type="date" class="form-control">
+                                        <input type="text" name="date" value="{{ date("d-m-Y", old('date') ) }}" />
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
                                         <label class="mont-font fw-600 font-xsss">Heure</label>
-                                        <input type="time" class="form-control">
+                                        <input name="heure" type="time" class="form-control">
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
 
 
                                 <div class="d-flex justify-content-end">

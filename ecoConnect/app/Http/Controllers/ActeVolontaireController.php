@@ -26,6 +26,8 @@ class ActeVolontaireController extends Controller
         'titre' => 'required|string',
         'categorie' => 'required',
         'description' => 'required|string|max:255',
+        'date' => 'required|date_format:d-m-Y',
+        'heure' => 'required',
         'images' => 'required|array',
         'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Make sure 'images' is an array
         'lieu' => 'required|string',
@@ -42,6 +44,9 @@ class ActeVolontaireController extends Controller
         'categorie.required' => 'Categorie est obligatoire'
     ]);
 
+    $date = \DateTime::createFromFormat('d-m-Y', $request->input('date'));
+    $formattedDate = $date->format('Y-m-d');
+
     $data = $request->all(); // Get all form data
 
     $images = [];
@@ -54,7 +59,7 @@ class ActeVolontaireController extends Controller
     }
 
     $data['images'] = json_encode($images);
-
+    $data['date'] = $formattedDate;
     // Create the model with all the data
     $newActe = ActeVolontaire::create($data);
 

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('categorie');
             $table->string('titre');
             $table->longtext('description');
+            $table->dateTime('date')->nullable();
+            $table->time('heure');
             $table->json('images');
             $table->string('lieu');
 
