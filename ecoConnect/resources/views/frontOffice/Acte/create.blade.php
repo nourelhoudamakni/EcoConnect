@@ -67,14 +67,15 @@
                                 <div class="row">
                                     <div class="col-lg-12 mb-3">
                                         <div class="form-group">
-                                            <label class="mont-font fw-600 font-xsss">Images</label>
-                                            <input type="file" name="images[]" id="image" multiple
-                                                class="form-control @error('images') is-invalid @enderror">
-                                                <div id="image-error" class="text-danger"></div>
-                                                @if ($errors->has('images'))
-                                                <span class="text-danger">{{ $errors->first('images') }}</span>
+                                            <label class="mont-font fw-600 font-xsss">Image de la couverture</label>
+                                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" placeholder="image" id="image" accept="image/jpeg, image/png, image/jpg, image/gif, image/svg+xml">
+                                             <div id="image-error" class="text-danger"></div>
+                                            @if ($errors->has('image'))
+                                            <span
+                                                class="text-danger">{{ $errors->first('image') }}</span>
                                             @endif
                                         </div>
+
                                     </div>
                                 </div>
 

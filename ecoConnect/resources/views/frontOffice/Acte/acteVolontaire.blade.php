@@ -24,7 +24,7 @@
                                             href="#navtabs1" data-toggle="tab">Liste des actes</a></li>
                                     <li class="list-inline-item me-5"><a
                                             class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block"
-                                            href="#navtabs2" data-toggle="tab">Mes actes</a></li>
+                                            href="/Actes-show" data-toggle="tab">Mes actes</a></li>
 
                                 </ul>
                             </div>

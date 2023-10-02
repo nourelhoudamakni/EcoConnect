@@ -28,8 +28,7 @@ class ActeVolontaireController extends Controller
         'description' => 'required|string|max:255',
         'date' => 'required|date_format:d-m-Y',
         'heure' => 'required',
-        'images' => 'required|array',
-        'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Make sure 'images' is an array
+        'image' => 'required',
         'lieu' => 'required|string',
     ]
     ,[
@@ -39,7 +38,7 @@ class ActeVolontaireController extends Controller
 
         'lieu.required' => 'Lieu est obligatoires',
 
-        'images.required' => 'Image est obligatoire',
+        'image.required' => 'Image est obligatoire',
 
         'categorie.required' => 'Categorie est obligatoire'
     ]);
@@ -49,16 +48,24 @@ class ActeVolontaireController extends Controller
 
     $data = $request->all(); // Get all form data
 
-    $images = [];
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
-            $imageName = time() . rand(1, 99) . '.' . $image->extension();
-            $image->move(public_path('images'), $imageName);
-            $images[] = $imageName;
-        }
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+
+        // Define the storage path (you can customize this as needed)
+        $storagePath = 'public/images';
+
+        // Generate a unique filename for the uploaded image
+        $imageName = time() . rand(1, 99) . '.' . $image->getClientOriginalExtension();
+
+        // Move the uploaded image to the specified storage path with the unique filename
+        $image->move($storagePath, $imageName);
+
+        // Save the image's filename (or full path, depending on your needs) in your data array
+        $data['image'] = $imageName;
+    } else {
+        // Handle the case where no file was uploaded
     }
 
-    $data['images'] = json_encode($images);
     $data['date'] = $formattedDate;
     // Create the model with all the data
     $newActe = ActeVolontaire::create($data);
@@ -66,11 +73,11 @@ class ActeVolontaireController extends Controller
     return back()->with('success', 'Ajout avec succès');
 }
 
-public function show(ActeVolontaire $acteVolontaire)
-{
-    return view('frontOffice.Acte.show', compact('acteVolontaire'));
-}
-
+public function show()
+    {
+        $actes = ActeVolontaire::all();
+        return view('frontOffice/Acte/show', ['actes' => $actes]);
+    }
 public function edit(ActeVolontaire $acteVolontaire)
 {
     return view('frontOffice.Acte.edit', compact('acteVolontaire'));
@@ -97,14 +104,22 @@ public function update(Request $request, ActeVolontaire $acteVolontaire)
 
     $data = $request->all();
 
-    if ($request->hasFile('images')) {
-        $images = [];
-        foreach ($request->file('images') as $image) {
-            $imageName = time() . rand(1, 99) . '.' . $image->extension();
-            $image->move(public_path('images'), $imageName);
-            $images[] = $imageName;
-        }
-        $data['images'] = json_encode($images);
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+
+        // Define the storage path (you can customize this as needed)
+        $storagePath = 'public/images';
+
+        // Generate a unique filename for the uploaded image
+        $imageName = time() . rand(1, 99) . '.' . $image->getClientOriginalExtension();
+
+        // Move the uploaded image to the specified storage path with the unique filename
+        $image->move($storagePath, $imageName);
+
+        // Save the image's filename (or full path, depending on your needs) in your data array
+        $data['image'] = $imageName;
+    } else {
+        // Handle the case where no file was uploaded
     }
 
     $data['date'] = $formattedDate;

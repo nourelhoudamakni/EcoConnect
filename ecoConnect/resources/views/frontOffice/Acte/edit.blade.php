@@ -7,7 +7,7 @@
                 <div class="middle-wrap">
                     <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
                         <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
-                            <i  class="ti-arrow-left font-sm text-white"></i>
+                            <i class="ti-arrow-left font-sm text-white"></i>
                             <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Edit Acte Volontaire</h4>
                         </div>
                         <div class="card-body p-lg-5 p-4 w-100 border-0 ">
@@ -32,8 +32,9 @@
                                             <select name="categorie" class="form-select form-control"
                                                 style="line-height:20px;">
                                                 @foreach (App\Enums\CategorieActeEnum::valuesCategories() as $key => $value)
-                                                    <option value="{{ $key }}" {{ $key == $acteVolontaire->categorie ? 'selected' : '' }}>
-                                                        {{ $acteVolontaire->categorie    }}</option>
+                                                    <option value="{{ $key }}"
+                                                        {{ $key == $acteVolontaire->categorie ? 'selected' : '' }}>
+                                                        {{ $acteVolontaire->categorie }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('categorie'))
@@ -55,8 +56,7 @@
                                     <div class="col-lg-12 mb-3">
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Description</label>
-                                            <textarea name="description" type="textarea"
-                                                class="form-control">{{ $acteVolontaire->description }}</textarea>
+                                            <textarea name="description" type="textarea" class="form-control">{{ $acteVolontaire->description }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -64,14 +64,17 @@
                                 <div class="row">
                                     <div class="col-lg-12 mb-3">
                                         <div class="form-group">
-                                            <label class="mont-font fw-600 font-xsss">Images</label>
-                                            <input type="file" name="images[]" id="image" multiple
-                                                class="form-control @error('images') is-invalid @enderror">
+                                            <label class="mont-font fw-600 font-xsss">Image de la couverture</label>
+                                            <input type="file" name="image"
+                                                class="form-control @error('image') is-invalid @enderror"
+                                                placeholder="image" id="image"
+                                                accept="image/jpeg, image/png, image/jpg, image/gif, image/svg+xml">
                                             <div id="image-error" class="text-danger"></div>
-                                            @if ($errors->has('images'))
-                                                <span class="text-danger">{{ $errors->first('images') }}</span>
+                                            @if ($errors->has('image'))
+                                                <span class="text-danger">{{ $errors->first('image') }}</span>
                                             @endif
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -90,7 +93,7 @@
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Date</label>
                                             <input type="text" name="date"
-                                                value="{{ date("d-m-Y", strtotime($acteVolontaire->date)) }}" />
+                                                value="{{ date('d-m-Y', strtotime($acteVolontaire->date)) }}" />
                                         </div>
                                     </div>
 
@@ -106,11 +109,11 @@
                                 <div class="d-flex justify-content-end">
                                     <div class="mx-2">
 
-                                    <div class="">
-                                        <button type="submit"
-                                            class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Enregistrer</button>
+                                        <div class="">
+                                            <button type="submit"
+                                                class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Enregistrer</button>
+                                        </div>
                                     </div>
-                                </div>
 
                             </form>
                         </div>
@@ -130,7 +133,8 @@
                 // Vérification du format de l'image
                 const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif", "image/svg+xml"];
                 if (file && !allowedTypes.includes(file.type)) {
-                    imageError.textContent = "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
+                    imageError.textContent =
+                        "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
                     imageInput.value = ""; // Effacer le champ de fichier
                     return;
                 }
@@ -147,6 +151,5 @@
                 imageError.textContent = "";
             });
         });
-        </script>
+    </script>
 @endsection
-

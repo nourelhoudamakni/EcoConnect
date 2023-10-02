@@ -66,10 +66,15 @@ Route::get('/menu', function () {
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
+Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
 Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
+
+
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
 Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
-Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('acteVolontaire.destroy');
+
+
+Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
 
 Route::resource('acte-volontaires', ActeVolontaireController::class);

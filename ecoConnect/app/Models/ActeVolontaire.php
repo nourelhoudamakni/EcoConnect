@@ -9,7 +9,7 @@ use App\Enums\CategorieActeEnum;
 class ActeVolontaire extends Model
 {
     use HasFactory;
-    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure', 'images', 'lieu'];
+    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure', 'image', 'lieu'];
     protected $casts = [
 
         'categorie' => CategorieActeEnum::class

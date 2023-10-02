@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longtext('description');
             $table->dateTime('date')->nullable();
             $table->time('heure');
-            $table->json('images');
+            $table->string('image');
             $table->string('lieu');
 
             $table->timestamps();
