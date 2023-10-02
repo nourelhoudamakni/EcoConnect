@@ -68,7 +68,8 @@ Route::get('/Account-information', function () {
 });
 Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
 Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
-
-
+Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
+Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
+Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('acteVolontaire.destroy');
 
 Route::resource('acte-volontaires', ActeVolontaireController::class);

@@ -13,7 +13,6 @@
                         </div>
                         <div class="card-body p-lg-5 p-4 w-100 border-0 ">
                             <div class="row justify-content-center">
-
                             </div>
                             @if (Session::has('success'))
                             <div class="alert alert-success">
@@ -46,6 +45,9 @@
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Titre</label>
                                             <input name="titre" type="text" class="form-control">
+                                            @if ($errors->has('titre'))
+                                            <span class="text-danger">{{ $errors->first('titre') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -55,6 +57,9 @@
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Description</label>
                                             <textarea name="description" type="textarea" class="form-control"></textarea>
+                                            @if ($errors->has('description'))
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -78,6 +83,9 @@
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Lieu</label>
                                             <input name="lieu" type="text" class="form-control">
+                                            @if ($errors->has('lieu'))
+                                            <span class="text-danger">{{ $errors->first('lieu') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +93,7 @@
                                 <div class="row">
                                 <div class="col-lg-6 mb-3">
                                     <div class="form-group">
-                                        <label class="mont-font fw-600 font-xsss">date</label>
+                                        <label class="mont-font fw-600 font-xsss">Date</label>
                                         <input type="text" name="date" value="{{ date("d-m-Y", old('date') ) }}" />
                                     </div>
                                 </div>
@@ -94,6 +102,9 @@
                                     <div class="form-group">
                                         <label class="mont-font fw-600 font-xsss">Heure</label>
                                         <input name="heure" type="time" class="form-control">
+                                        @if ($errors->has('heure'))
+                                            <span class="text-danger">{{ $errors->first('heure') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +112,7 @@
 
                                 <div class="d-flex justify-content-end">
                                     <div class="mx-2">
-                                        <a href="#"
+                                        <a href=""
                                             class="bg-secondary text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Annuler</a>
                                     </div>
                                     <div class="">
