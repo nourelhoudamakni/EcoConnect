@@ -9,13 +9,13 @@
                         <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
                             <a href="default-settings.html" class="d-inline-block mt-2"><i
                                     class="ti-arrow-left font-sm text-white"></i></a>
-                            <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Create a New Post</h4>
+                            <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Créer une nouvelle publication</h4>
                         </div>
                         <div class="card-body p-lg-5 p-4 w-100 border-0 ">
                             <div class="row justify-content-center">
 
                             </div>
-                        
+
                             <form method="POST" action="{{ route('Posts.store') }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('post')
@@ -26,8 +26,8 @@
                                             <label class="mont-font fw-600 font-xsss">Titre</label>
                                             <input name="titre" type="text" class="form-control">
                                             @if ($errors->has('titre'))
-                                            <span class="text-danger">{{ $errors->first('titre') }}</span>
-                                        @endif
+                                                <span class="text-danger">{{ $errors->first('titre') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -38,13 +38,13 @@
                                             <label class="mont-font fw-600 font-xsss">Description</label>
                                             <textarea name="description" type="textarea" class="form-control"></textarea>
                                             @if ($errors->has('description'))
-                                            <span class="text-danger">{{ $errors->first('description') }}</span>
-                                             @endif
+                                                <span class="text-danger">{{ $errors->first('description') }}</span>
+                                            @endif
                                         </div>
                                     </div>
-                             </div>
+                                </div>
 
-            
+
 
                                 <div class="row">
                                     <div class="col-lg-12 mb-3">
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="">
                                         <button type="submit"
-                                            class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Enregistrer</button>
+                                            class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Publier</button>
                                     </div>
                                 </div>
 

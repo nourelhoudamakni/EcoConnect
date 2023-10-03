@@ -11,7 +11,9 @@ class PostController extends Controller
     
 
     public function index() {
-        $listPosts = Posts::all();
+        //On récupère tous les Post
+       //$posts = Post::latest()->get();
+        $listPosts = Posts::latest()->get();
          return view('frontOffice.profileUser',['listPosts' => $listPosts]);
                
     }
