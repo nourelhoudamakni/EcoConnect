@@ -224,7 +224,8 @@
                                 <a href="default-badge.html" class="nav-content-bttn open-font"><i
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
-                            <li><a href="default-group.html" class="nav-content-bttn open-font"><i
+                            <li>
+                                <a href="{{ route('projetEnv') }}" class="nav-content-bttn open-font"><i
                                         class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
                             </li>
                             <li>

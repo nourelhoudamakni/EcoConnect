@@ -19,7 +19,9 @@ return new class extends Migration
             $table->text('description');
             $table->text('objectif');
             $table->text('ressources');
-            $table->string('etat')->default('planifie');
+            $table->string('etat');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 

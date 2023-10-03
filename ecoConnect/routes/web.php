@@ -1,7 +1,6 @@
 <?php
-
+use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,12 +46,24 @@ Route::get('/Groupes', function () {
 Route::get('/Market-Place', function () {
     return view('frontOffice/marketPlace');
 });
-Route::get('/Projets-Environnementales', function () {
-    return view('frontOffice/projetsEnv');
-});
+
 Route::get('/Acte-Volontaire', function () {
     return view('frontOffice/acteVolontaire');
 });
+
+Route::post('/addProjetsEnvironnementales', [ProjetEnvController::class, 'store'])->name('projets.store');
+
+Route::get('/Projets-Environnementales',  [ProjetEnvController::class, 'showProjects'])->name('projetEnv');
+
+Route::get('/Projets-Environnementales/AddProjetEnvironnementales', function () {
+    return view('frontOffice/projetEnv/formAddProject');
+})->name('addProjetEnv');
+
+Route::get('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'modifierProjet'])->name('modifierProjetEnv');
+
+Route::Delete('/projets-environnementaux/{id}', [ProjetEnvController::class, 'supprimerProjet'])->name('supprimerProjet');
+
+
 
 Route::get('/Produit-Details', function () {
     return view('frontOffice/produitDetails');
@@ -61,6 +72,9 @@ Route::get('/Produit-Details', function () {
 Route::get('/menu', function () {
     return view('frontOffice/menu');
 });
+
+Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'sauvegarderModificationProjet'])->name('sauvegarderModificationProjet');
+
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
