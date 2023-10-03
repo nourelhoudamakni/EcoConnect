@@ -7,7 +7,7 @@
                 <div class="middle-wrap">
                     <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
                         <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
-                            <i class="ti-arrow-left font-sm text-white"></i>
+                            <a href="/Acte-Volontaire" class="d-inline-block mt-2"><i class="ti-arrow-left font-sm text-white"></i></a>
                             <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Edit Acte Volontaire</h4>
                         </div>
                         <div class="card-body p-lg-5 p-4 w-100 border-0 ">
@@ -29,14 +29,14 @@
                                     <div class="col-lg-6 mb-3">
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Categorie</label>
-                                            <select name="categorie" class="form-select form-control"
-                                                style="line-height:20px;">
+                                            <select name="categorie" class="form-select form-control" style="line-height: 20px;">
                                                 @foreach (App\Enums\CategorieActeEnum::valuesCategories() as $key => $value)
-                                                    <option value="{{ $key }}"
-                                                        {{ $key == $acteVolontaire->categorie ? 'selected' : '' }}>
-                                                        {{ $acteVolontaire->categorie }}</option>
+                                                    <option value="{{ $key }}" {{ $key == $acteVolontaire->categorie ? 'selected' : '' }}>
+                                                        {{ $key }}
+                                                    </option>
                                                 @endforeach
                                             </select>
+
                                             @if ($errors->has('categorie'))
                                                 <span class="text-danger">{{ $errors->first('categorie') }}</span>
                                             @endif
@@ -48,6 +48,9 @@
                                             <label class="mont-font fw-600 font-xsss">Titre</label>
                                             <input name="titre" type="text" class="form-control"
                                                 value="{{ $acteVolontaire->titre }}">
+                                                @if ($errors->has('titre'))
+                                            <span class="text-danger">{{ $errors->first('titre') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -57,6 +60,9 @@
                                         <div class="form-group">
                                             <label class="mont-font fw-600 font-xsss">Description</label>
                                             <textarea name="description" type="textarea" class="form-control">{{ $acteVolontaire->description }}</textarea>
+                                            @if ($errors->has('description'))
+                                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -84,6 +90,9 @@
                                             <label class="mont-font fw-600 font-xsss">Lieu</label>
                                             <input name="lieu" type="text" class="form-control"
                                                 value="{{ $acteVolontaire->lieu }}">
+                                                @if ($errors->has('lieu'))
+                                            <span class="text-danger">{{ $errors->first('lieu') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
@@ -94,6 +103,9 @@
                                             <label class="mont-font fw-600 font-xsss">Date</label>
                                             <input type="text" name="date"
                                                 value="{{ date('d-m-Y', strtotime($acteVolontaire->date)) }}" />
+                                                @if ($errors->has('date'))
+                                            <span class="text-danger">{{ $errors->first('date') }}</span>
+                                        @endif
                                         </div>
                                     </div>
 
@@ -102,6 +114,9 @@
                                             <label class="mont-font fw-600 font-xsss">Heure</label>
                                             <input name="heure" type="time" class="form-control"
                                                 value="{{ $acteVolontaire->heure }}">
+                                                @if ($errors->has('heure'))
+                                            <span class="text-danger">{{ $errors->first('heure') }}</span>
+                                        @endif
                                         </div>
                                     </div>
                                 </div>
