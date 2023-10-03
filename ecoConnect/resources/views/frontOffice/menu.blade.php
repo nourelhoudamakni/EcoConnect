@@ -290,6 +290,7 @@
         @yield('produitDetails')
         @yield('profileUser')
         @yield('AddProduit')
+        @yield('UpdateProduit')
         @yield('accountInformation')
         @yield('mesActeVolontaire')
         <!-- main content -->

@@ -78,3 +78,12 @@ Route::get('/Mes-Actes-Volontaires', function () {
 Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
 Route::post('/newProduit',[ProductController::class,'AddProduct'])->name('Produit.store');
 
+Route::get('/Produit-update/{Product}/edit',[ProductController::class,'edit'])->name('Produit.edit');
+Route::put('/UpdateProduit/{Product}',[ProductController::class,'update'])->name('products.update');
+
+Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
+
+Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
+
+
+

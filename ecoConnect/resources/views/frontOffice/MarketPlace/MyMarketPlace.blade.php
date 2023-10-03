@@ -45,7 +45,7 @@
                                         id="pills-tab" role="tablist">
                                         <li class=" list-inline-item me-5"><a
                                                 class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block "
-                                                href="/Market-Place" data-toggle="tab">Liste des produits</a></li>
+                                                href="/Produits" data-toggle="tab">Liste des produits</a></li>
                                         <li class="active list-inline-item me-5"><a
                                                 class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active"
                                                 href="/My-Market-Place" data-toggle="tab">Mes produits</a></li>
