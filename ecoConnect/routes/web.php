@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,13 @@ Route::get('/Groupes', function () {
     return view('frontOffice/groupes');
 });
 Route::get('/Market-Place', function () {
-    return view('frontOffice/marketPlace');
+    return view('frontOffice/MarketPlace/marketPlace');
+});
+Route::get('/My-Market-Place', function () {
+    return view('frontOffice/MarketPlace/MyMarketPlace');
+});
+Route::get('/AddProduct', function () {
+    return view('frontOffice/MarketPlace/AddNewProduct');
 });
 Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
@@ -69,6 +76,18 @@ Route::get('/Account-information', function () {
 Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
 Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
+
+
+Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
+Route::post('/newProduit',[ProductController::class,'AddProduct'])->name('Produit.store');
+
+Route::get('/Produit-update/{Product}/edit',[ProductController::class,'edit'])->name('Produit.edit');
+Route::put('/UpdateProduit/{Product}',[ProductController::class,'update'])->name('products.update');
+
+Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
+
+Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
+
 
 
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
