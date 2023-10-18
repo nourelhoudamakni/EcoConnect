@@ -61,7 +61,7 @@
                                             <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
                                             <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4">{{ $product->titre }}</h4>
                                             <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-                                                <span class="text-grey-900 font-xssss">Objectif : </span> {{ $product->prix }}
+                                                <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
                                             </h5>
                                             <h5 class="font-xssss mb-2 text-grey-500 fw-600">
                                                 <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
