@@ -21,9 +21,9 @@ return new class extends Migration
             $table->datetime('date de creation');
             $table->datetime('date de fin');
             $table->string('status');
-            $table->unsignedBigInteger('user_id'); // Foreign key
+           
             $table->timestamps();
-            
+
             $table->foreignIdFor(\App\Models\ActeVolontaire::class)->nullable()->constrainted()->cascadeOnDelete();
         });
 
