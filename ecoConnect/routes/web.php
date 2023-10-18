@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ActeVolontaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,9 +58,11 @@ Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
 });
 Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/acteVolontaire');
+    return view('frontOffice/Acte/acteVolontaire');
 });
-
+Route::get('/Mes-Actes-Volontaires', function () {
+    return view('frontOffice/Acte/mesActesVolontaires');
+});
 Route::get('/Produit-Details', function () {
     return view('frontOffice/produitDetails');
 });
@@ -70,9 +73,9 @@ Route::get('/menu', function () {
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
-Route::get('/Mes-Actes-Volontaires', function () {
-    return view('frontOffice/mesActesVolontaires');
-});
+Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
+Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
+Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
 
 
 Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
@@ -87,3 +90,10 @@ Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy']
 
 
 
+Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
+Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
+
+
+Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
+
+Route::resource('acte-volontaires', ActeVolontaireController::class);
