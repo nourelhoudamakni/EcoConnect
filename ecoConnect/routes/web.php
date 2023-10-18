@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ActeVolontaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,11 +46,20 @@ Route::get('/Groupes', function () {
     return view('frontOffice/groupes');
 });
 Route::get('/Market-Place', function () {
-    return view('frontOffice/marketPlace');
+    return view('frontOffice/MarketPlace/marketPlace');
+});
+Route::get('/My-Market-Place', function () {
+    return view('frontOffice/MarketPlace/MyMarketPlace');
+});
+Route::get('/AddProduct', function () {
+    return view('frontOffice/MarketPlace/AddNewProduct');
 });
 
 Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/acteVolontaire');
+    return view('frontOffice/Acte/acteVolontaire');
+});
+Route::get('/Mes-Actes-Volontaires', function () {
+    return view('frontOffice/Acte/mesActesVolontaires');
 });
 
 Route::post('/addProjetsEnvironnementales', [ProjetEnvController::class, 'store'])->name('projets.store');
@@ -78,7 +89,27 @@ Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::cla
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
-Route::get('/Mes-Actes-Volontaires', function () {
-    return view('frontOffice/mesActesVolontaires');
-});
+Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
+Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
+Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
 
+
+Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
+Route::post('/newProduit',[ProductController::class,'AddProduct'])->name('Produit.store');
+
+Route::get('/Produit-update/{Product}/edit',[ProductController::class,'edit'])->name('Produit.edit');
+Route::put('/UpdateProduit/{Product}',[ProductController::class,'update'])->name('products.update');
+
+Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
+
+Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
+
+
+
+Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
+Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
+
+
+Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
+
+Route::resource('acte-volontaires', ActeVolontaireController::class);

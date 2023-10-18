@@ -17,7 +17,7 @@
                                                             <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
                                                             <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
                                                             <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="#" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Shop Now</a>
+                                                            <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-22.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
@@ -30,7 +30,7 @@
                                                             <h4 class="font-xssss text-white ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
                                                             <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
                                                             <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="#" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Shop Now</a>
+                                                            <a href="" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-23.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
@@ -43,12 +43,12 @@
                                 <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs mt-1">
                                     <ul class="nav nav-tabs h55 d-flex product-info-tab border-0 ps-4"
                                         id="pills-tab" role="tablist">
+                                        <li class=" list-inline-item me-5"><a
+                                                class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block "
+                                                href="/Produits" data-toggle="tab">Liste des produits</a></li>
                                         <li class="active list-inline-item me-5"><a
                                                 class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active"
-                                                href="#navtabs1" data-toggle="tab">Liste des produits</a></li>
-                                        <li class="list-inline-item me-5"><a
-                                                class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block"
-                                                href="#navtabs2" data-toggle="tab">Mes produits</a></li>
+                                                href="/My-Market-Place" data-toggle="tab">Mes produits</a></li>
 
                                     </ul>
                                 </div>
@@ -278,7 +278,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 mt-3 mb-5 text-center"><a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">Load More</a></div>
+                                <div class="col-lg-12 mt-3 mb-5 text-center"><a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">Go back to top</a></div>
                             </div>
                         </div>
                     </div>
