@@ -16,6 +16,7 @@
 
 
 
+
 </head>
 
 <body class="color-theme-blue mont-font">
@@ -226,9 +227,9 @@
                                 <a href="default-badge.html" class="nav-content-bttn open-font"><i
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
-                            <li><a href="default-group.html" class="nav-content-bttn open-font"><i
-                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets
-                                    </span></a>
+                            <li>
+                                <a href="{{ route('projetEnv') }}" class="nav-content-bttn open-font"><i
+                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
                             </li>
                             <li>
                                 <a href="user-page.html" class="nav-content-bttn open-font"><i
@@ -299,6 +300,14 @@
         @yield('formContenuEducative')
         @yield('contenuDetails')
         @yield('meslistApprentissages')
+        {{-- //////////////////// --}}
+        @yield('Post')
+        @yield('Edit')
+        @yield('index')
+        @yield('AddProduit')
+        @yield('UpdateProduit')
+        @yield('accountInformation')
+        @yield('mesActeVolontaire')
         <!-- main content -->
 
 

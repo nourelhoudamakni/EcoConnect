@@ -13,16 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('acte_volontaires', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
-
-            $table->string('categorie')->default('reforestation');
             $table->string('titre');
-            $table->string('description');
-            $table->date('date');
-            $table->time('heure');
-            $table->string('lieu');
-
+            $table->longtext('description');
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('acte_volontaires');
+        Schema::dropIfExists('posts');
     }
 };

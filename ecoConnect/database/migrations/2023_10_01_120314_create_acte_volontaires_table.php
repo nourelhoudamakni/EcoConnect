@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('acte_volontaires', function (Blueprint $table) {
             $table->id();
+            $table->string('categorie');
             $table->string('titre');
-            $table->text('description');
-            $table->date('date_de_publication');
-            $table->integer('nbLike');
-            $table->integer('nbPartage');
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
+            $table->longtext('description');
+            $table->dateTime('date')->nullable();
+            $table->time('heure');
+            $table->string('image');
+            $table->string('lieu');
+
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('acte_volontaires');
     }
 };
