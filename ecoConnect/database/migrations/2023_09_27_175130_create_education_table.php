@@ -17,12 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('categorie');
             $table->string('titre');
-            $table->text('Description');
-            $table->date('date_de_creation');
+            $table->longText('description');
             $table->string('image');
-            $table->string('video');
-            $table->json('motCles');
-            $table->boolean('validation')->default(false);
             $table->timestamps();
         });
     }

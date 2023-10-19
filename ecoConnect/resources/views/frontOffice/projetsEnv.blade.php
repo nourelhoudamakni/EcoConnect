@@ -29,7 +29,7 @@
                                     </ul>
                                 </div>
 
-                               
+
                                 <div class="col-lg-12 mt-3">
                                     <a href="{{ route('addProjetEnv') }}" class="btn btn-primary text-white">Ajouter Projet</a>
                                 </div>
@@ -41,7 +41,7 @@
                                             @endphp
                                         </div>
                                     @endif
-                        
+
                                 @foreach($projets as $projet)
                                     <div class="col-lg-4 col-md-6 mt-3">
                                         <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4" style="padding-left: 120px !important;">
@@ -59,7 +59,7 @@
                                             <h5 class="font-xssss text-grey-500 fw-600 mb-3">
                                                 <span class="text-grey-900 font-xssss">Etat : </span> {{ $projet->etat }}
                                             </h5>
-                                          
+
                                             <div class="flex flex-row">
                                             <a href="{{ route('modifierProjetEnv', ['id' => $projet->id]) }}" class="btn btn-primary btn-icon"><i class="feather-edit-2 font-md text-white"></i></a>
                                                 <form action="{{ route('supprimerProjet', ['id' => $projet->id]) }}" method="POST" class="d-inline-block">
