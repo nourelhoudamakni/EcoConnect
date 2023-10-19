@@ -16,12 +16,8 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
-            $table->text('description');
-            $table->date('date_de_publication');
-            $table->integer('nbLike');
-            $table->integer('nbPartage');
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
+            $table->longtext('description');
+            $table->string('image');
             $table->timestamps();
         });
     }

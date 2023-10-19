@@ -290,6 +290,12 @@
         @yield('marketPlace')
         @yield('produitDetails')
         @yield('profileUser')
+        @yield('accountInformation')
+        @yield('mesActeVolontaire')
+        {{-- //////////////////// --}}
+        @yield('Post')
+        @yield('Edit')
+        @yield('index')
         @yield('AddProduit')
         @yield('UpdateProduit')
         @yield('accountInformation')

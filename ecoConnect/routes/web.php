@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
 /*
@@ -46,8 +47,15 @@ Route::get('/Groupes', function () {
     return view('frontOffice/groupes');
 });
 Route::get('/Market-Place', function () {
-    return view('frontOffice/MarketPlace/marketPlace');
+    return view('frontOffice/marketPlace');
 });
+Route::get('/Projets-Environnementales', function () {
+    return view('frontOffice/projetsEnv');
+});
+Route::get('/Acte-Volontaire', function () {
+    return view('frontOffice/acteVolontaire');
+});
+
 Route::get('/My-Market-Place', function () {
     return view('frontOffice/MarketPlace/MyMarketPlace');
 });
@@ -83,6 +91,20 @@ Route::get('/Produit-Details', function () {
 Route::get('/menu', function () {
     return view('frontOffice/menu');
 });
+Route::get('/Account-information', function () {
+    return view('frontOffice/accountInformation');
+});
+Route::get('/Mes-Actes-Volontaires', function () {
+    return view('frontOffice/mesActesVolontaires');
+});
+
+// Route::get('/userprofile', [PostController::class,'showProfile']);
+Route::get('/ListDesPosts', [PostController::class, 'index'])->name('Posts.index');
+Route::get('/PostCreate',[PostController::class,'create'])->name('Posts.create');
+Route::post('/newPost', [PostController::class, 'store'])->name('Posts.store');
+Route::get('/Edit/{id}',[PostController::class,'edit'])->name('Posts.edit');
+Route::put('/update/{id}', [PostController::class,'update'])->name('Posts.update');
+Route::delete('/destroy/{id}', [PostController::class,'destroy'])->name('Posts.destroy');
 
 Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'sauvegarderModificationProjet'])->name('sauvegarderModificationProjet');
 
