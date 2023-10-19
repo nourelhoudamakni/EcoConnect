@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
@@ -35,8 +36,8 @@ Route::middleware([
 
 /////route pour le login admin
 Route::middleware('admin:admin')->group(function () {
-    Route::get('admin/login',[AdminController::class, 'loginForm']);
-    Route::post('admin/login',[AdminController::class, 'store'])->name('admin.login');
+    Route::get('admin/login', [AdminController::class, 'loginForm']);
+    Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
 ///////////route après le login admin
@@ -46,24 +47,20 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('admin/dashboard', function () {
-        return view('dashboard');
+        return view('backOffice/dashboardAdmin');
     })->name('dashboard')->middleware('auth:admin');
 });
 
+///////quelques routes
 Route::get('/menuDashboard', function () {
     return view('backOffice/menuDashboard');
 });
-
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
 });
 
 Route::get('/dashboardAdmin', function () {
     return view('backOffice/dashboardAdmin');
-});
-
-Route::get('/Accueil', function () {
-    return view('frontOffice/accueil');
 });
 
 Route::get('/Profile-User', function () {
@@ -126,19 +123,21 @@ Route::get('/Mes-Actes-Volontaires', function () {
 
 
 Route::get('/Apprentissage', [EducationController::class, 'showAllContenu'])->name('contenu.index');
-Route::get('/Apprentissage/Ajout-formulaire',[EducationController::class,'formContenuEducative'])->name('contenu.Add');
-Route::post('/Apprentissage/Ajout',[EducationController::class,'store'])->name('Ajout.contenu');
-Route::get('/Apprentissage/Details/{id}',[EducationController::class,'showContenu'])->name('details.contenu');
-Route::get('/Apprentissage/Edit/{id}',[EducationController::class,'editContenu'])->name('edit.contenu');
-Route::put('/Apprentissage/update/{id}', [EducationController::class,'updateContenu'])->name('contenu.update');
-Route::delete('/Apprentissage/destroy/{id}', [EducationController::class,'destroyContenu'])->name('contenu.destroy');
+Route::get('/Apprentissage/Ajout-formulaire', [EducationController::class, 'formContenuEducative'])->name('contenu.Add');
+Route::post('/Apprentissage/Ajout', [EducationController::class, 'store'])->name('Ajout.contenu');
+Route::get('/Apprentissage/Details/{id}', [EducationController::class, 'showContenu'])->name('details.contenu');
+Route::get('/Apprentissage/Edit/{id}', [EducationController::class, 'editContenu'])->name('edit.contenu');
+Route::put('/Apprentissage/update/{id}', [EducationController::class, 'updateContenu'])->name('contenu.update');
+Route::delete('/Apprentissage/destroy/{id}', [EducationController::class, 'destroyContenu'])->name('contenu.destroy');
+
+
 // Route::get('/userprofile', [PostController::class,'showProfile']);
 Route::get('/ListDesPosts', [PostController::class, 'index'])->name('Posts.index');
-Route::get('/PostCreate',[PostController::class,'create'])->name('Posts.create');
+Route::get('/PostCreate', [PostController::class, 'create'])->name('Posts.create');
 Route::post('/newPost', [PostController::class, 'store'])->name('Posts.store');
-Route::get('/Edit/{id}',[PostController::class,'edit'])->name('Posts.edit');
-Route::put('/update/{id}', [PostController::class,'update'])->name('Posts.update');
-Route::delete('/destroy/{id}', [PostController::class,'destroy'])->name('Posts.destroy');
+Route::get('/Edit/{id}', [PostController::class, 'edit'])->name('Posts.edit');
+Route::put('/update/{id}', [PostController::class, 'update'])->name('Posts.update');
+Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.destroy');
 
 Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'sauvegarderModificationProjet'])->name('sauvegarderModificationProjet');
 
@@ -146,15 +145,15 @@ Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
 Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
-Route::get('/Acte-create',[ActeVolontaireController::class,'create'])->name('Acte.create');
-Route::post('/newActe',[ActeVolontaireController::class,'store'])->name('Acte.store');
+Route::get('/Acte-create', [ActeVolontaireController::class, 'create'])->name('Acte.create');
+Route::post('/newActe', [ActeVolontaireController::class, 'store'])->name('Acte.store');
 
 
-Route::get('/Produit-create',[ProductController::class,'create'])->name('Produit.create');
-Route::post('/newProduit',[ProductController::class,'AddProduct'])->name('Produit.store');
+Route::get('/Produit-create', [ProductController::class, 'create'])->name('Produit.create');
+Route::post('/newProduit', [ProductController::class, 'AddProduct'])->name('Produit.store');
 
-Route::get('/Produit-update/{Product}/edit',[ProductController::class,'edit'])->name('Produit.edit');
-Route::put('/UpdateProduit/{Product}',[ProductController::class,'update'])->name('products.update');
+Route::get('/Produit-update/{Product}/edit', [ProductController::class, 'edit'])->name('Produit.edit');
+Route::put('/UpdateProduit/{Product}', [ProductController::class, 'update'])->name('products.update');
 
 Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
 

@@ -1,7 +1,6 @@
-
 @extends('backOffice.menuDashboard')
-@section('dashboard')
-
+@section('dashboardAdmin')
+<x-app-layout>
     <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
       <div class="row">
@@ -537,4 +536,7 @@
       </div>
 
     <!-- / Content -->
-    @endsection
+
+
+</x-app-layout>
+@endsection
