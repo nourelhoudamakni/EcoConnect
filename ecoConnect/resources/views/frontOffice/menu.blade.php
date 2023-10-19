@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sociala - Social Network App HTML Template </title>
+    <title>EcoConnect</title>
 
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/feather.css') }}">
@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/emoji.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/lightbox.css') }}">
+
+
 
 </head>
 
@@ -46,7 +48,7 @@
             <a href="default.html" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i
                     class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i
-                        class="feather-users font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+                    class="feather-users font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i
                     class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
@@ -225,18 +227,20 @@
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
                             <li><a href="default-group.html" class="nav-content-bttn open-font"><i
-                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
+                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets
+                                    </span></a>
                             </li>
                             <li>
                                 <a href="user-page.html" class="nav-content-bttn open-font"><i
-                                        class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes volontaires</span></a>
+                                        class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes
+                                        volontaires</span></a>
                             </li>
                             <li>
                                 <a href="user-page.html" class="nav-content-bttn open-font"><i
                                         class="feather-calendar btn-round-md  bg-primary-gradiant me-3"></i><span>Evenements</span></a>
                             </li>
                             <li>
-                                <a href="user-page.html" class="nav-content-bttn open-font"><i
+                                <a href="{{ route('contenu.index')}}" class="nav-content-bttn open-font"><i
                                         class="feather-book-open btn-round-md bg-primary-gradiant me-3"></i><span>Apprentissage</span></a>
                             </li>
                         </ul>
@@ -290,6 +294,11 @@
         @yield('profileUser')
         @yield('accountInformation')
         @yield('mesActeVolontaire')
+        {{-- ////////////////////// --}}
+        @yield('listApprentissages')
+        @yield('formContenuEducative')
+        @yield('contenuDetails')
+        @yield('meslistApprentissages')
         <!-- main content -->
 
 
@@ -321,8 +330,7 @@
 
     </div>
 
-    <div class="modal bottom side fade" id="Modalstory" tabindex="-1" role="dialog"
-        style=" overflow-y: auto;">
+    <div class="modal bottom side fade" id="Modalstory" tabindex="-1" role="dialog" style=" overflow-y: auto;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content border-0 bg-transparent">
                 <button type="button" class="close mt-0 position-absolute top--30 right--10" data-dismiss="modal"
@@ -381,8 +389,7 @@
                     <div class="message-content font-xssss lh-24 fw-500">I want those files for you. I want you to
                         send 1 PDF and 1 image file.</div>
                 </div>
-                <div class="snippet pt-3 ps-4 pb-2 pe-3 mt-2 bg-grey rounded-xl float-right"
-                    data-title=".dot-typing">
+                <div class="snippet pt-3 ps-4 pb-2 pe-3 mt-2 bg-grey rounded-xl float-right" data-title=".dot-typing">
                     <div class="stage">
                         <div class="dot-typing"></div>
                     </div>
@@ -406,7 +413,7 @@
     <script src="{{ Vite::asset('resources/assetsFront/js/countdown.js') }}"></script>
     <script src="{{ Vite::asset('resources/assetsFront/js/jquery.easypiechart.min.js') }}"></script>
 
-    <script>
+    {{-- <script>
         $('.chart').easyPieChart({
             easing: 'easeOutElastic',
             delay: 3000,
@@ -421,7 +428,9 @@
                 this.el.children[0].innerHTML = Math.round(percent);
             }
         });
-    </script>
+    </script> --}}
+
+
 </body>
 
 </html>

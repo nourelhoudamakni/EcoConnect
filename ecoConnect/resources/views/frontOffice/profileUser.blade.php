@@ -93,23 +93,7 @@
                         </div>
                         <div class="col-xl-4 col-xxl-3 col-lg-4 pe-0">
                             <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3 mt-3">
-                                <div class="card-body p-3 border-0">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="chart-container w50 h50">
-                                                <div class="chart position-relative" data-percent="78"
-                                                    data-bar-color="#a7d212">
-                                                    <span class="percent fw-700 font-xsss" data-after="%">78</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-8 ps-1">
-                                            <h4 class="font-xsss d-block fw-700 mt-2 mb-0">Advanced Python Sass <span
-                                                    class="float-right mt-2 font-xsssss text-grey-500">87%</span></h4>
-                                            <p class="font-xssss fw-600 text-grey-500 lh-26 mb-0">Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
+                        
                             </div>
                             <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3">
                                 <div class="card-body d-block p-4">
