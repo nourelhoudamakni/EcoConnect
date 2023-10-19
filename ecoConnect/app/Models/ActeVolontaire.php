@@ -9,10 +9,21 @@ use App\Enums\CategorieActeEnum;
 class ActeVolontaire extends Model
 {
     use HasFactory;
-    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure','lieu'];
+    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure', 'image', 'lieu'];
     protected $casts = [
 
         'categorie' => CategorieActeEnum::class
 
     ];
+    protected $appends = ['date_formated'];
+//---
+public function getdateFormatedAttribute()
+{
+    return date("d-m-Y", strtotime($this->date));
+}
+public function Don()
+    {
+        return $this->hasMany(Demande_De_Don::class);
+    }
+
 }

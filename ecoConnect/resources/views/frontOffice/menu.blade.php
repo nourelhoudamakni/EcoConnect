@@ -13,14 +13,13 @@
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/emoji.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/bootstrap-datetimepicker.css') }}">
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/lightbox.css') }}">
+    
 
 </head>
 
 <body class="color-theme-blue mont-font">
 
-    <div class="preloader">
-    </div>
-
+    <div class="preloader"></div>
     <div class="main-wrapper">
 
         <!-- navigation top-->
@@ -48,7 +47,7 @@
             <a href="default.html" class="p-2 text-center ms-3 menu-icon center-menu-icon"><i
                     class="feather-home font-lg alert-primary btn-round-lg theme-dark-bg text-current "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i
-                    class="feather-users font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
+                        class="feather-users font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
             <a href="default-group.html" class="p-2 text-center ms-0 menu-icon center-menu-icon"><i
                     class="feather-user font-lg bg-greylight btn-round-lg theme-dark-bg text-grey-500 "></i></a>
 
@@ -226,14 +225,13 @@
                                 <a href="default-badge.html" class="nav-content-bttn open-font"><i
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
-                            <li><a href="default-group.html" class="nav-content-bttn open-font"><i
-                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets
-                                    </span></a>
+                            <li>
+                                <a href="{{ route('projetEnv') }}" class="nav-content-bttn open-font"><i
+                                        class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
                             </li>
                             <li>
                                 <a href="user-page.html" class="nav-content-bttn open-font"><i
-                                        class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes
-                                        volontaires</span></a>
+                                        class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes volontaires</span></a>
                             </li>
                             <li>
                                 <a href="user-page.html" class="nav-content-bttn open-font"><i
@@ -288,7 +286,6 @@
         <!-- main content -->
         @yield('accueil')
         @yield('acteVolontaire')
-
         @yield('groupes')
         @yield('marketPlace')
         @yield('produitDetails')
@@ -299,6 +296,10 @@
         @yield('Post')
         @yield('Edit')
         @yield('index')
+        @yield('AddProduit')
+        @yield('UpdateProduit')
+        @yield('accountInformation')
+        @yield('mesActeVolontaire')
         <!-- main content -->
 
 
@@ -330,7 +331,8 @@
 
     </div>
 
-    <div class="modal bottom side fade" id="Modalstory" tabindex="-1" role="dialog" style=" overflow-y: auto;">
+    <div class="modal bottom side fade" id="Modalstory" tabindex="-1" role="dialog"
+        style=" overflow-y: auto;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content border-0 bg-transparent">
                 <button type="button" class="close mt-0 position-absolute top--30 right--10" data-dismiss="modal"
@@ -389,7 +391,8 @@
                     <div class="message-content font-xssss lh-24 fw-500">I want those files for you. I want you to
                         send 1 PDF and 1 image file.</div>
                 </div>
-                <div class="snippet pt-3 ps-4 pb-2 pe-3 mt-2 bg-grey rounded-xl float-right" data-title=".dot-typing">
+                <div class="snippet pt-3 ps-4 pb-2 pe-3 mt-2 bg-grey rounded-xl float-right"
+                    data-title=".dot-typing">
                     <div class="stage">
                         <div class="dot-typing"></div>
                     </div>

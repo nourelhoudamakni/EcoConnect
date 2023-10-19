@@ -192,12 +192,12 @@
 
 
 
-                                   
-                                    <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3" >
+                                    <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3">
                                         <div class="card-body p-0">
-                                            <a href="/PostCreate"
+                                            <a href="#"
                                                 class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i
-                                                    class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight" data-bs-toggle="modal" data-bs-target="/PostCreate"></i>Create Post</a>
+                                                    class="btn-round-sm font-xs text-primary feather-edit-3 me-2 bg-greylight"></i>Create
+                                                Post</a>
                                         </div>
                                         <div class="card-body p-0 mt-3 position-relative">
                                             <figure class="avatar position-absolute ms-2 mt-1 top-5"><img
@@ -211,12 +211,15 @@
                                             <a href="#"
                                                 class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
                                                     class="font-md text-danger feather-video me-2"></i><span
-                                                    class="d-none-xs"> Video</span></a>
+                                                    class="d-none-xs">Live Video</span></a>
                                             <a href="#"
                                                 class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
                                                     class="font-md text-success feather-image me-2"></i><span
-                                                    class="d-none-xs">Photo</span></a>
-                                        
+                                                    class="d-none-xs">Photo/Video</span></a>
+                                            <a href="#"
+                                                class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+                                                    class="font-md text-warning feather-camera me-2"></i><span
+                                                    class="d-none-xs">Feeling/Activity</span></a>
                                             <a href="#" class="ms-auto" id="dropdownMenu4"
                                                 data-bs-toggle="dropdown" aria-expanded="false"><i
                                                     class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
@@ -269,16 +272,33 @@
                                             <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg"
                                                 aria-labelledby="dropdownMenu2">
                                                 <div class="card-body p-0 d-flex">
-                                                   
-                                                {{-- <a href="{{ route('Posts.edit', ['id' => $educ->id]) }} class="position-absolute bottom-15 mb-2  "><i class="btn-round-sm bg-primary text-white font-sm feather-edit"></i></a> --}}
-
-                                                       
+                                                    <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
+                                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link
+                                                        <span
+                                                            class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add
+                                                            this to your saved items</span></h4>
                                                 </div>
                                                 <div class="card-body p-0 d-flex mt-2">
-                                                    <i class="feather-trash-2 text-grey-500 me-3 font-lg"></i>
-                                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Delete</h4>
+                                                    <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
+                                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post
+                                                        <span
+                                                            class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
+                                                            to your saved items</span></h4>
                                                 </div>
-                                                
+                                                <div class="card-body p-0 d-flex mt-2">
+                                                    <i class="feather-alert-octagon text-grey-500 me-3 font-lg"></i>
+                                                    <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide all from
+                                                        Group <span
+                                                            class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
+                                                            to your saved items</span></h4>
+                                                </div>
+                                                <div class="card-body p-0 d-flex mt-2">
+                                                    <i class="feather-lock text-grey-500 me-3 font-lg"></i>
+                                                    <h4 class="fw-600 mb-0 text-grey-900 font-xssss mt-0 me-4">Unfollow
+                                                        Group <span
+                                                            class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
+                                                            to your saved items</span></h4>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="card-body p-0 me-lg-5">
