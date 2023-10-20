@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('acte_volontaires', function (Blueprint $table) {
             $table->id();
+
             $table->string('categorie');
             $table->string('titre');
             $table->longtext('description');
@@ -22,6 +23,9 @@ return new class extends Migration
             $table->time('heure');
             $table->string('image');
             $table->string('lieu');
+
+            $table->foreignIdFor(\App\Models\User::class ,'organizer_id')->nullable()->constrainted()->cascadeOnDelete();
+
 
             $table->timestamps();
         });
@@ -35,5 +39,9 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('acte_volontaires');
+        Schema::table('users',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\User::class);
+        });
+
     }
 };
