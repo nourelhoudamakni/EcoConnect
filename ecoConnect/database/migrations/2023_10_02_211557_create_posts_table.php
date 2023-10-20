@@ -15,11 +15,18 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
             $table->string('titre');
             $table->longtext('description');
             $table->string('image');
             $table->timestamps();
+           
+                     
+
         });
+
+
+      
     }
 
     /**
@@ -30,5 +37,12 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
+        Schema::table('users',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\User::class);
+        });
     }
+
+  
+
+
 };

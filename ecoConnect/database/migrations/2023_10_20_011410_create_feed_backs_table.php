@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projet__environnementals', function (Blueprint $table) {
+        Schema::create('feed_backs', function (Blueprint $table) {
             $table->id();
             $table->string('titre');
             $table->text('description');
-            $table->text('objectif');
-            $table->text('ressources');
-            $table->string('etat');
-            $table->string('image');
-            $table->timestamps();
+            $table->integer('note');
+            $table->foreignIdFor(\App\Models\Education::class)->nullable()->constrainted()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -33,11 +31,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projet__environnementals');
+        Schema::dropIfExists('feed_backs');
+        Schema::table('education',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\Education::class);
+        });
         Schema::table('users',function(Blueprint $table){
             $table->dropForeignIdFor(\App\Models\User::class);
         });
     }
-
-   
 };

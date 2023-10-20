@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ActeVolontaire;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -64,5 +66,31 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+    public function posts() {
+        return $this->hasMany(Posts::class);
+    }
+    
+    public function commentsUsers() {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function projet__environnementals()
+    {
+        return $this->hasMany(Projet_Environnemental::class);
+    }
+    public function actes()
+    {
+        return $this->hasMany(ActeVolontaire::class);
+    }
+    public function actevolontaires()
+    {
+        return $this->belongsToMany(ActeVolontaire::class);
+    }
+    public function educations(){
+        return $this->hasMany(Education::class);
+    }
+    public function feedbackusers(){
+        return $this->hasMany(FeedBack::class);
     }
 }

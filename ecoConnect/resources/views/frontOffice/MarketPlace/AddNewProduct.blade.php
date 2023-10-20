@@ -1,5 +1,6 @@
 @extends('frontOffice.menu')
 @section('AddProduit')
+<x-app-layout>
     <div class="main-content bg-lightblue theme-dark-bg right-chat-active">
 
         <div class="middle-sidebar-bottom">

@@ -1,5 +1,6 @@
 @extends('frontOffice.menu')
 @section('produitDetails')
+<x-app-layout>
         <div class="main-content bg-white">
             <div class="middle-sidebar-bottom">
                 <div class="container pe-0">
@@ -81,4 +82,5 @@
             </div>
         </div>
         <!-- main content -->
+    </x-app-layout>
  @endsection

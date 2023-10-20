@@ -13,6 +13,17 @@ class Posts extends Model
     protected $fillable = ['titre', 'description', 'image'];
 
 
-   
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+ 
+    
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+    
+
+
+
 }
 
