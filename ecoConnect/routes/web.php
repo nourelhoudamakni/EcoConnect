@@ -143,5 +143,10 @@ Route::put('/UpdateProduit/{Product}', [ProductController::class, 'update'])->na
 Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
 
+Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
+Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
+
+
+
 
 

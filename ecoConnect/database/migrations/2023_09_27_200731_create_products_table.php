@@ -20,6 +20,8 @@ return new class extends Migration
             $table->decimal('prix');
             $table->string('image');
             $table->timestamps();
+            $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Collaborateur::class)->nullable()->constrainted()->cascadeOnDelete();
         });
     }
 
@@ -31,5 +33,12 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('products');
+        Schema::table('users',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\User::class);
+        });
+        Schema::table('collaborateur',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\Collaborateur::class);
+        });
     }
+
 };

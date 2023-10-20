@@ -76,7 +76,80 @@
                                             </div>
                                         </div>
 
-                                <div class="d-flex justify-content-end">
+
+
+
+
+                                        <div class="d-flex justify-content-end">
+    <div class="">
+    <button type="button" id="ajouterCollaborateur" class="bg-green text-white rounded-3 smaller-button"><b>Ajouter Collaborateur</b></button>
+
+<style>
+    .smaller-button {
+        padding: 5px 10px; /* Adjust the padding values as needed */
+        font-size: 12px; /* Adjust the font size as needed */
+    }
+    .bg-green {
+        background-color: green; /* Set the background color to green */
+    }
+</style>
+
+    </div>
+</div>
+
+
+<div id="collaborateurForm" style="display: none;">
+    <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Ajouter Collaborateur</h4>
+    <form method="POST" action="{{ route('collaborateurs.create') }}">
+        @csrf
+        <div class="row">
+            <div class="col-lg-6 mb-3">
+                <div class="form-group">
+                    <label class="mont-font fw-600 font-xsss">Email</label>
+                    <input name="email" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-3">
+                <div class="form-group">
+                    <label class="mont-font fw-600 font-xsss">Adresse</label>
+                    <input name="adresse" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-3">
+                <div class="form-group">
+                    <label class="mont-font fw-600 font-xsss">Nom</label>
+                    <input name="nom" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-3">
+                <div class="form-group">
+                    <label class="mont-font fw-600 font-xsss">Site Web</label>
+                    <input name="siteWeb" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <div class="mx-2">
+            <button type="button" id="annulerCollaborateur" class="bg-secondary text-white rounded-3 smaller-button"><b>Annuler</b></button>
+            </div>
+            <div class="">
+                <button type="submit" class="bg-green text-white rounded-3 smaller-button"><b>Enregistrer Collaborateur</b></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+                                <div class="d-flex justify-content-end pt-4">
                                     <div class="mx-2">
                                         <a href="#"
                                             class="bg-secondary text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Annuler</a>
@@ -86,6 +159,8 @@
                                             class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Enregistrer</button>
                                     </div>
                                 </div>
+
+
 
                             </form>
                         </div>
@@ -124,5 +199,38 @@
             });
         });
     </script>
-</x-app-layout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const imageInput = document.getElementById("image");
+        const imageError = document.getElementById("image-error");
+        const collaborateurForm = document.getElementById("collaborateurForm");
+        const ajouterCollaborateurButton = document.getElementById("ajouterCollaborateur");
+
+        imageInput.addEventListener("change", function() {
+            // Image validation code here...
+        });
+
+        ajouterCollaborateurButton.addEventListener("click", function() {
+            if (collaborateurForm.style.display === "none") {
+                collaborateurForm.style.display = "block";
+            } else {
+                collaborateurForm.style.display = "none";
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const collaborateurForm = document.getElementById("collaborateurForm");
+        const annulerCollaborateurButton = document.getElementById("annulerCollaborateur");
+
+        annulerCollaborateurButton.addEventListener("click", function() {
+            collaborateurForm.style.display = "none";
+        });
+    });
+</script>
+
+
 @endsection
