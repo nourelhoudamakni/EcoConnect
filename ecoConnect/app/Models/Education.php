@@ -16,4 +16,12 @@ class Education extends Model
         'categorie' => CategorieEducationEnum::class
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function feedBacks(){
+        return $this->hasMany(FeedBack::class);
+    }
 }

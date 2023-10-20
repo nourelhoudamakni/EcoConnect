@@ -1,5 +1,6 @@
 @extends('frontOffice.menu')
 @section('acteVolontaire')
+<x-app-layout>
    <!-- main content -->
      <div class="main-content bg-white">
         <div class="middle-sidebar-bottom">
@@ -112,4 +113,5 @@
         </div>
     </div>
     <!-- main content -->
+</x-app-layout>
     @endsection
