@@ -15,8 +15,6 @@
     <link rel="stylesheet" href="{{ Vite::asset('resources/assetsFront/css/lightbox.css') }}">
 
 
-
-
 </head>
 
 <body class="color-theme-blue mont-font">
@@ -36,11 +34,11 @@
                             <li class="logo d-none d-xl-block d-lg-block"></li>
 
 
-                            <li><a href="default.html" class="nav-content-bttn open-font"><i
+                            <li><a href="{{ route('dashboard') }}" class="nav-content-bttn open-font"><i
                                         class="feather-tv btn-round-md bg-primary-gradiant me-3"></i><span>Accueil</span></a>
                             </li>
                             <li>
-                                <a href="default-badge.html" class="nav-content-bttn open-font"><i
+                                <a  class="nav-content-bttn open-font"><i
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
                             <li>
@@ -48,7 +46,7 @@
                                         class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
                             </li>
                             <li>
-                                <a href="user-page.html" class="nav-content-bttn open-font"><i
+                                <a  class="nav-content-bttn open-font"><i
                                         class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes
                                         volontaires</span></a>
                             </li>
@@ -124,6 +122,10 @@
         @yield('UpdateProduit')
         @yield('accountInformation')
         @yield('mesActeVolontaire')
+        {{-- //////////////////////// --}}
+        @yield('profileUpdate')
+        @yield('settingsProfile')
+        @yield('updatePassword')
         <!-- main content -->
 
 

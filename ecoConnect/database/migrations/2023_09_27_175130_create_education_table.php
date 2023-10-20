@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('description');
             $table->string('image');
             $table->timestamps();
+            $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
         });
     }
 
@@ -32,5 +33,11 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('education');
+        Schema::table('users',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\User::class);
+        });
     }
+
+
+
 };

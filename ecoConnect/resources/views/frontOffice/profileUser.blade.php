@@ -1,8 +1,9 @@
 @extends('frontOffice.menu')
 @section('profileUser')
+<x-app-layout>
     <!-- main content -->
-    <div class="main-content ">
-        <div class="middle-sidebar-bottom">
+    <div class="main-content " style=" padding-top: 20px!important;">
+        <div class="middle-sidebar-bottom" >
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -19,43 +20,32 @@
                                 </h4>
                                 <div
                                     class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
-                                    <a href="#"
-                                        class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3">Add
-                                        Friend</a>
-                                    <a href="#"
-                                        class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"><i
-                                            class="feather-mail font-md"></i></a>
-                                    <a href="#" id="dropdownMenu4"
-                                        class="d-none d-lg-block bg-greylight btn-round-lg ms-2 rounded-3 text-grey-700"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                            class="ti-more font-md tetx-dark"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg"
-                                        aria-labelledby="dropdownMenu4">
-                                        <div class="card-body p-0 d-flex">
-                                            <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-0">Save Link <span
-                                                    class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add
-                                                    this to your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-0">Hide Post <span
-                                                    class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
-                                                    to your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-alert-octagon text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-0">Hide all from
-                                                Group <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
-                                                    to your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-lock text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 mb-0 text-grey-900 font-xssss mt-0 me-0">Unfollow
-                                                Group <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
-                                                    to your saved items</span></h4>
-                                        </div>
-                                    </div>
+                                    <a href="{{ route('user.profile.information') }}"
+                                        class="d-none d-lg-block bg-success p-3 z-index-1 rounded-3 text-white font-xsssss text-uppercase fw-700 ls-3">
+                                        UPDATE PROFIL</a>
+
+
+                                    <div class="p-2 text-center ms-3 position-relative dropdown-menu-icon menu-icon cursor-pointer">
+                                                <i class="feather-settings animation-spin d-inline-block font-xl text-current"></i>
+                                                <div class="dropdown-menu-settings " >
+                                                    <h4 class="fw-700 font-sm mb-4">Settings</h4>
+
+                                                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                                                        <a href="{{ route('user.update.password') }}"
+                                                        class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+                                                            class="font-md text-current feather-lock me-2"></i><span class="d-none-xs"></span>Password Settings</a>
+
+                                                    </div>
+                                                    <div class="card bg-transparent-card border-0 d-block mt-3">
+                                                        <a href="{{ route('user.profile.settings') }}"
+                                                        class="d-flex align-items-center font-xssss fw-600 ls-1 text-grey-700 text-dark pe-4"><i
+                                                            class="font-md text-current feather-user me-2"></i><span class="d-none-xs"></span>Profile Settings</a>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
                                 </div>
                             </div>
 
@@ -384,4 +374,5 @@
         </div>
     </div>
     <!-- main content -->
+</x-app-layout>
 @endsection
