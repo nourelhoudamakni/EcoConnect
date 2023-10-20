@@ -154,7 +154,6 @@ Route::post('/newProduit', [ProductController::class, 'AddProduct'])->name('Prod
 
 Route::get('/Produit-update/{Product}/edit', [ProductController::class, 'edit'])->name('Produit.edit');
 Route::put('/UpdateProduit/{Product}', [ProductController::class, 'update'])->name('products.update');
-
 Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
 
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
