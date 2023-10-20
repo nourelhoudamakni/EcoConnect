@@ -13,17 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('education', function (Blueprint $table) {
+        Schema::create('feed_backs', function (Blueprint $table) {
             $table->id();
-            $table->string('categorie');
             $table->string('titre');
-            $table->longText('description');
-            $table->string('image');
-            $table->timestamps();
+            $table->text('description');
+            $table->integer('note');
+            $table->foreignIdFor(\App\Models\Education::class)->nullable()->constrainted()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
+            $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -32,12 +31,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('education');
+        Schema::dropIfExists('feed_backs');
+        Schema::table('education',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\Education::class);
+        });
         Schema::table('users',function(Blueprint $table){
             $table->dropForeignIdFor(\App\Models\User::class);
         });
     }
-
-
-
 };

@@ -51,41 +51,41 @@
 
 
                                     <div>
-                                        <x-label for="lastName" value="{{ __('lastName') }}" />
-                                        <x-input id="lastName" class="block mt-1 w-full" type="text" name="lastName" :value="old('lastName')"
+                                        <x-label for="lastName" value="{{ __('lastName') }}"  class="mont-font fw-600 font-xsss"/>
+                                        <x-input id="lastName" class="block mt-1 w-full form-control" type="text" name="lastName" :value="old('lastName')"
                                             required autofocus autocomplete="lastName" />
                                     </div>
                                     <div>
-                                        <x-label for="firstName" value="{{ __('firstName') }}" />
-                                        <x-input id="firstName" class="block mt-1 w-full" type="text" name="firstName" :value="old('firstName')" required
+                                        <x-label for="firstName" value="{{ __('firstName') }}"  class="mont-font fw-600 font-xsss" />
+                                        <x-input id="firstName" class="block mt-1 w-full form-control" type="text" name="firstName" :value="old('firstName')" required
                                             autofocus autocomplete="firstName" />
                                     </div>
                                     <div>
-                                        <x-label for="username" value="{{ __('Username') }}" />
-                                        <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
+                                        <x-label for="username" value="{{ __('Username') }}"  class="mont-font fw-600 font-xsss"/>
+                                        <x-input id="username" class="block mt-1 w-full form-control" type="text" name="username" :value="old('username')"
                                             required />
                                     </div>
                                     <div class="mt-4">
-                                        <x-label for="email" value="{{ __('Email') }}" />
-                                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                                        <x-label for="email" value="{{ __('Email') }}"  class="mont-font fw-600 font-xsss"/>
+                                        <x-input id="email" class="block mt-1 w-full form-control" type="email" name="email" :value="old('email')"
                                             required autocomplete="username" />
                                     </div>
 
                                     <div class="mt-4">
-                                        <x-label for="password" value="{{ __('Password') }}" />
-                                        <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                                        <x-label for="password" value="{{ __('Password') }}"  class="mont-font fw-600 font-xsss"/>
+                                        <x-input id="password" class="block mt-1 w-full form-control" type="password" name="password" required
                                             autocomplete="new-password" />
                                     </div>
 
                                     <div class="mt-4">
-                                        <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                                        <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" class="mont-font fw-600 font-xsss" />
+                                        <x-input id="password_confirmation" class="block mt-1 w-full form-control" type="password"
                                             name="password_confirmation" required autocomplete="new-password" />
                                     </div>
 
                                     <div class="mt-4">
-                                        <x-label for="phone" value="{{ __('Phone Number') }}" />
-                                        <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
+                                        <x-label for="phone" value="{{ __('Phone Number') }}"  class="mont-font fw-600 font-xsss"/>
+                                        <x-input id="phone" class="block mt-1 w-full form-control" type="text" name="phone" :value="old('phone')"
                                             required />
                                     </div>
                                     @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

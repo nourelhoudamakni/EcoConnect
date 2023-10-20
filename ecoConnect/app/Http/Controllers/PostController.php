@@ -8,21 +8,24 @@ use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
-    
 
-    public function index() {
-        //On récupère tous les Post
-       //$posts = Post::latest()->get();
+
+
+
+    public function profile() {
+        /////cette méthode va recuperer le user connecte avec les post de ce user
         $listPosts = Posts::latest()->get();
-         return view('frontOffice.profileUser',['listPosts' => $listPosts]);
-               
+         return view('frontOffice/profileUser',['listPosts' => $listPosts]);
+
     }
 
-    public function showProfile() {
-        
-        return view('frontOffice.profileUser');
-              
+    public function Accueil() {
+       ///cette methode affiche  l'accueil et retourne toutes les posts de tous les utilisateurs
+         return view('dashboard');
+
     }
+
+
 
 
 
@@ -31,8 +34,8 @@ class PostController extends Controller
     {
         return view('frontOffice.Post.create');
     }
-    
-   
+
+
     //store
     public function store(Request $request)
     {
@@ -46,7 +49,7 @@ class PostController extends Controller
             'description.required' => 'La description est obligatoire',
             'image.required' => 'Image est obligatoire',
         ]);
-    
+
         $data = $request->all(); // Récupérez toutes les données du formulaire
 
         if ($request->hasFile('image')) {
@@ -58,10 +61,10 @@ class PostController extends Controller
         }
         $newPost = Posts::create($data);
 
-        return redirect()->route('Posts.index')->with('success', 'Ajout avec succés');
+        return redirect()->route('user.profile')->with('success', 'Ajout avec succés');
 
     }
-    
+
     public function edit($id)
     {
 
@@ -85,10 +88,10 @@ class PostController extends Controller
            'description.required' => 'La description est obligatoire',
         //    'image.required' => 'Image est obligatoire',
        ]);
-   
+
        $data = $request->all(); // Récupérez toutes les données du formulaire
 
-     
+
     if ($request->hasFile('image')) {
         $image = $request->file('image');
 
@@ -109,14 +112,14 @@ class PostController extends Controller
        $Post = Posts::find($id);
        $Post->update($data);
 
-       return redirect()->route('Posts.index')->with('success', 'Modification avec succés');
+       return redirect()->route('user.profile')->with('success', 'Modification avec succés');
     }
     public function destroy($id)
     {
         $post=Posts::find($id);
         $post->delete();
-        return redirect()->route('Posts.index')->with('success', 'Suppression avec succés');
+        return redirect()->route('user.profile')->with('success', 'Suppression avec succés');
     }
-   
+
 
 }

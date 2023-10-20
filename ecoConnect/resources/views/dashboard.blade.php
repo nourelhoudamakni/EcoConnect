@@ -2,8 +2,8 @@
 @section('accueil')
     <x-app-layout>
     <!-- Content -->
-    <div class="main-content ">
-                <div class="middle-sidebar-bottom">
+    <div class="main-content "  style=" padding-top: 20px!important;">
+                <div class="middle-sidebar-bottom " >
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12 ">
