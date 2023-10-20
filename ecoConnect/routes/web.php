@@ -159,6 +159,11 @@ Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('prod
 
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
 
+Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
+Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
+
+
+
 
 
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
