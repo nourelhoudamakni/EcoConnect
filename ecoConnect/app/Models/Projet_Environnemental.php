@@ -14,4 +14,13 @@ class Projet_Environnemental extends Model
     protected $casts = [
         'etat' => EtatProjetEnum::class
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function sponsors()
+    {
+    return $this->belongsToMany(Sponsor::class);
+    }
 }

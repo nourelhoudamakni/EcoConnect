@@ -64,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function projet__environnementals()
+    {
+        return $this->hasMany(Projet_Environnemental::class);
+    }
     public function actes()
     {
         return $this->hasMany(ActeVolontaire::class);
