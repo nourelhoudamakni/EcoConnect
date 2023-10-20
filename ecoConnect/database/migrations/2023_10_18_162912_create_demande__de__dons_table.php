@@ -21,10 +21,13 @@ return new class extends Migration
             $table->datetime('date de creation');
             $table->datetime('date de fin');
             $table->string('status');
-           
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->nullable();
+
 
             $table->foreignIdFor(\App\Models\ActeVolontaire::class)->nullable()->constrainted()->cascadeOnDelete();
+
+            $table->timestamps();
+
         });
 
 

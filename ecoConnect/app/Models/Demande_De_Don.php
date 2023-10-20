@@ -21,7 +21,7 @@ public function getdateFormatedAttribute()
 {
     return date("d-m-Y", strtotime($this->date));
 }
-public function Acte()
+public function acte()
     {
         return $this->belongsTo(ActeVolontaire::class);
     }

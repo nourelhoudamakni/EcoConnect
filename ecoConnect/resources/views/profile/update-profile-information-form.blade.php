@@ -1,18 +1,15 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
     </x-slot>
-
     <x-slot name="description">
-        {{ __('Update your account\'s profile information and email address.') }}
     </x-slot>
-
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+
+            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4 ">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
+                <input type="file" class="hidden "
                             wire:model="photo"
                             x-ref="photo"
                             x-on:change="
@@ -27,8 +24,8 @@
                 <x-label for="photo" value="{{ __('Photo') }}" />
 
                 <!-- Current Profile Photo -->
-                <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                <div class="mt-2 " x-show="! photoPreview" >
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover ">
                 </div>
 
                 <!-- New Profile Photo Preview -->
@@ -50,30 +47,32 @@
 
                 <x-input-error for="photo" class="mt-2" />
             </div>
+
         @endif
 
         <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="Nom" value="{{ __('lastName') }}" />
-            <x-input id="lastName" type="text" class="mt-1 block w-full" wire:model.defer="state.lastName" autocomplete="lastName" />
+
+        <div class="col-span-6">
+            <x-label for="lastName" value="{{ __('LastName') }}" class="mont-font fw-600 font-xsss" />
+            <x-input id="lastName" type="text" class="mt-1 block w-full form-control" wire:model.defer="state.lastName" autocomplete="lastName" />
             <x-input-error for="lastName" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="Prénom" value="{{ __('firstName') }}" />
-            <x-input id="firstName" type="text" class="mt-1 block w-full" wire:model.defer="state.firstName" autocomplete="firstName" />
+        <div class="col-span-6 ">
+            <x-label for="firstName" value="{{ __('FirstName') }}" class="mont-font fw-600 font-xsss" />
+            <x-input id="firstName" type="text" class="mt-1 block w-full form-control" wire:model.defer="state.firstName" autocomplete="firstName" />
             <x-input-error for="firstName" class="mt-2" />
         </div>
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="Username" value="{{ __('username') }}" />
-            <x-input id="username" type="text" class="mt-1 block w-full" wire:model.defer="state.username" autocomplete="username" />
+        <div class="col-span-6 ">
+            <x-label for="username" value="{{ __('Username') }}" class="mont-font fw-600 font-xsss"/>
+            <x-input id="username" type="text" class="mt-1 block w-full form-control" wire:model.defer="state.username" autocomplete="username" />
             <x-input-error for="username" class="mt-2" />
         </div>
 
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" autocomplete="username" />
+        <div class="col-span-6 ">
+            <x-label for="email" value="{{ __('Email') }}" class="mont-font fw-600 font-xsss" />
+            <x-input id="email" type="email" class="mt-1 block w-full form-control" wire:model.defer="state.email" autocomplete="username" />
             <x-input-error for="email" class="mt-2" />
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
@@ -93,9 +92,9 @@
             @endif
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
-            <x-label for="Numéro de télèphone" value="{{ __('phone') }}" />
-            <x-input id="phone" type="text" class="mt-1 block w-full" wire:model.defer="state.phone" autocomplete="phone" />
+        <div class="col-span-6 ">
+            <x-label for="phone" value="{{ __('Phone') }}" class="mont-font fw-600 font-xsss"/>
+            <x-input id="phone" type="text" class="mt-1 block w-full form-control" wire:model.defer="state.phone" autocomplete="phone" />
             <x-input-error for="phone" class="mt-2" />
         </div>
     </x-slot>
@@ -105,7 +104,7 @@
             {{ __('Saved.') }}
         </x-action-message>
 
-        <x-button wire:loading.attr="disabled" wire:target="photo">
+        <x-button wire:loading.attr="disabled" wire:target="photo" class="bg-current text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">
             {{ __('Save') }}
         </x-button>
     </x-slot>
