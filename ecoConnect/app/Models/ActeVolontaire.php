@@ -16,12 +16,12 @@ class ActeVolontaire extends Model
 
     ];
     protected $appends = ['date_formated'];
-//---
-public function getdateFormatedAttribute()
-{
-    return date("d-m-Y", strtotime($this->date));
-}
-public function dons()
+    //---
+    public function getdateFormatedAttribute()
+    {
+        return date("d-m-Y", strtotime($this->date));
+    }
+    public function dons()
     {
         return $this->hasMany(Demande_De_Don::class);
     }
@@ -32,7 +32,5 @@ public function dons()
     public function participants()
     {
         return $this->belongsToMany(User::class);
-
     }
-
 }
