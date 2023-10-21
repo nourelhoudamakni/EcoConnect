@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Enums\CategorieActeEnum;
+use Illuminate\Support\Facades\Auth;
 
 class ActeVolontaireController extends Controller
 {
@@ -47,7 +48,6 @@ class ActeVolontaireController extends Controller
     $date = \DateTime::createFromFormat('d-m-Y', $request->input('date'));
     $formattedDate = $date->format('Y-m-d');
 
-    $data = $request->all(); // Get all form data
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
@@ -62,23 +62,47 @@ class ActeVolontaireController extends Controller
         $image->move($storagePath, $imageName);
 
         // Save the image's filename (or full path, depending on your needs) in your data array
-        $data['image'] = $imageName;
+
     } else {
         // Handle the case where no file was uploaded
     }
 
-    $data['date'] = $formattedDate;
+    $newActe = new ActeVolontaire([
+        'titre' => $request->input('titre'),
+        'categorie' => $request->input('categorie'),
+        'description' => $request->input('description'),
+        'heure' => $request->input('heure'),
+        'lieu' => $request->input('lieu'),
+        'image' => $imageName,
+        'date' => $formattedDate,
+
+    ]);
+
+
     // Create the model with all the data
-    $newActe = ActeVolontaire::create($data);
+    $newActe->organizer_id = auth()->id();
+        $newActe->save();
 
     return back()->with('success', 'Ajout avec succès');
 }
 
 public function show()
     {
-        $actes = ActeVolontaire::all();
-        return view('frontOffice/Acte/show', ['actes' => $actes]);
+        $userId = auth()->id();
+
+    // Retrieve ActeVolontaire records where the organizer_id is NOT the authenticated user's ID
+    $actes = ActeVolontaire::where('organizer_id', '!=', $userId)->get();
+
+    return view('frontOffice/Acte/mesActesVolontaires', ['actes' => $actes]);
     }
+
+public function showMesActes()
+    {
+        $userid=auth()->id();
+        $actes = ActeVolontaire::where('organizer_id', $userid)->get();
+        return view('frontOffice/Acte/mesActesVolontaires', ['actes' => $actes]);
+    }
+
 public function edit(ActeVolontaire $acteVolontaire)
 {
     return view('frontOffice.Acte.edit', compact('acteVolontaire'));
@@ -136,5 +160,10 @@ public function destroy(ActeVolontaire $acteVolontaire)
 
     return back()->with('success', 'Suppression avec succès');
 }
+
+public function detailsActe($id)
+    {
+        $acte = ActeVolontaire::find($id);
+        return view('frontOffice.Acte.detailsActe',['acte' => $acte]);    }
 
 }

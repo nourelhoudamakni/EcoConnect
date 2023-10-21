@@ -54,6 +54,7 @@ Route::middleware([
 Route::get('/menuDashboard', function () {
     return view('backOffice/menuDashboard');
 });
+
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
 });
@@ -71,9 +72,6 @@ Route::get('/Market-Place', function () {
 Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
 });
-Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/acteVolontaire');
-});
 
 Route::get('/My-Market-Place', function () {
     return view('frontOffice/MarketPlace/MyMarketPlace');
@@ -82,12 +80,10 @@ Route::get('/AddProduct', function () {
     return view('frontOffice/MarketPlace/AddNewProduct');
 });
 
-Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/Acte/acteVolontaire');
-});
-Route::get('/Mes-Actes-Volontaires', function () {
+Route::get('/Mes-actes-Volontaires', function () {
     return view('frontOffice/Acte/mesActesVolontaires');
 });
+
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
@@ -127,12 +123,15 @@ Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.
 
 
 ////////////////////////route actes volontaires
+Route::get('/Mes-Actes-Volontaires',  [ActeVolontaireController::class, 'showMesActes'])->name('MesActe.show');
 Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create', [ActeVolontaireController::class, 'create'])->name('Acte.create');
 Route::post('/newActe', [ActeVolontaireController::class, 'store'])->name('Acte.store');
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
 Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
 Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
+Route::get('/acteVolontaire/Details/{acteVolontaire}',  [ActeVolontaireController::class, 'detailsActe'])->name('Acte.details');
+
 Route::resource('acte-volontaires', ActeVolontaireController::class);
 
 ////////////////////////route produits
