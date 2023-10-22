@@ -1,5 +1,5 @@
 @extends('frontOffice.menu')
-@section('acteVolontaireà')
+@section('MesacteVolontaire')
 <x-app-layout>
     <div class="main-content bg-white">
         <div class="middle-sidebar-bottom">
@@ -46,6 +46,7 @@
                             @endif
                             @foreach ($actes as $acte)
                                 <div class="col-lg-4 col-md-6 pe-2 ps-2">
+                                    <a href="{{ route('Acte.details', $acte->id) }}">
                                     <div class="card p-3 bg-white w-100 hover-card border-0 shadow-xss rounded-xxl border-0 mb-3 overflow-hidden ">
                                         <div class="card-image w-100">
                                             <img src="public/images/{{ $acte->image }}" alt="event"
@@ -96,6 +97,7 @@
 
 
                                     </div>
+                                    </a>
                                 </div>
                             @endforeach
                             {{-- @foreach ($actes as $acte)

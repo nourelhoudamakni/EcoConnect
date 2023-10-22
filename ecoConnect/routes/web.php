@@ -4,7 +4,7 @@ use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\DonController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
@@ -123,16 +123,21 @@ Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.
 
 
 ////////////////////////route actes volontaires
-Route::get('/Mes-Actes-Volontaires',  [ActeVolontaireController::class, 'showMesActes'])->name('MesActe.show');
-Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
+Route::get('/Mes-Actes',  [ActeVolontaireController::class, 'showMesActes'])->name('MesActe.show');
+Route::get('/Actes',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create', [ActeVolontaireController::class, 'create'])->name('Acte.create');
 Route::post('/newActe', [ActeVolontaireController::class, 'store'])->name('Acte.store');
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
 Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
 Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
-Route::get('/acteVolontaire/Details/{acteVolontaire}',  [ActeVolontaireController::class, 'detailsActe'])->name('Acte.details');
+Route::get('/acteVolontaire/Details/{id}',  [ActeVolontaireController::class, 'detailsActe'])->name('Acte.details');
 
 Route::resource('acte-volontaires', ActeVolontaireController::class);
+
+////////////////////////route Don
+Route::get('/Don/new', [DonController::class, 'create'])->name('Don.show');
+Route::post('/Don/create/{idActe}', [DonController::class, 'storeDon'])->name('Don.store');
+
 
 ////////////////////////route produits
 Route::get('/Produit-create', [ProductController::class, 'create'])->name('Produit.create');

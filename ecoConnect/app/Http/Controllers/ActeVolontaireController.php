@@ -11,10 +11,26 @@ use Illuminate\Support\Facades\Auth;
 
 class ActeVolontaireController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $acteVolontaires = ActeVolontaire::all();
+    //     return view('frontOffice.Acte.show', compact('acteVolontaires'));
+    // }
+    public function show()
     {
-        $acteVolontaires = ActeVolontaire::all();
-        return view('frontOffice.Acte.acteVolontaire', compact('acteVolontaires'));
+        $userId = auth()->id();
+
+    // Retrieve ActeVolontaire records where the organizer_id is NOT the authenticated user's ID
+    $actes = ActeVolontaire::where('organizer_id', '!=', $userId)->get();
+
+    return view('frontOffice/Acte/show', ['actes' => $actes]);
+    }
+
+    public function showMesActes()
+    {
+        $userid=auth()->id();
+        $actes = ActeVolontaire::where('organizer_id', $userid)->get();
+        return view('frontOffice/Acte/mesActes', ['actes' => $actes]);
     }
 
     public function create()
@@ -86,22 +102,6 @@ class ActeVolontaireController extends Controller
     return back()->with('success', 'Ajout avec succès');
 }
 
-public function show()
-    {
-        $userId = auth()->id();
-
-    // Retrieve ActeVolontaire records where the organizer_id is NOT the authenticated user's ID
-    $actes = ActeVolontaire::where('organizer_id', '!=', $userId)->get();
-
-    return view('frontOffice/Acte/mesActesVolontaires', ['actes' => $actes]);
-    }
-
-public function showMesActes()
-    {
-        $userid=auth()->id();
-        $actes = ActeVolontaire::where('organizer_id', $userid)->get();
-        return view('frontOffice/Acte/mesActesVolontaires', ['actes' => $actes]);
-    }
 
 public function edit(ActeVolontaire $acteVolontaire)
 {
@@ -164,6 +164,7 @@ public function destroy(ActeVolontaire $acteVolontaire)
 public function detailsActe($id)
     {
         $acte = ActeVolontaire::find($id);
-        return view('frontOffice.Acte.detailsActe',['acte' => $acte]);    }
+        $dons=$acte->dons;
+        return view('frontOffice.Acte.detailsActe',['acte' => $acte,'dons' => $dons]);    }
 
 }
