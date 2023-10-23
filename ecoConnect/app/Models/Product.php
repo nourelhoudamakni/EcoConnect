@@ -17,6 +17,6 @@ class Product extends Model
 
     public function collaborateur()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Collaborateur::class);
     }
 }
