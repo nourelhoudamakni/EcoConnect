@@ -429,6 +429,12 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 @yield('dashboardAdmin')
+                
+               
+                @yield('listPosts')
+                @yield('detailsPost')
+                
+
             </div>
               <!-- / Content -->
 

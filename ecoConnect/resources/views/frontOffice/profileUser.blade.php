@@ -10,14 +10,16 @@
                         <div class="card w-100 border-0 p-0 bg-white shadow-xss rounded-xxl">
                             <div class="card-body h250 p-0 rounded-xxl overflow-hidden m-3"><img
                                     src="{{ Vite::asset('resources/assetsFront/images/u-bg.jpg') }}" alt="image"></div>
+                                    @php
+                                    $user =auth()->user();
+                                    @endphp
                             <div class="card-body p-0 position-relative">
                                 <figure class="avatar position-absolute w100 z-index-1" style="top:-40px; left: 30px;"><img
-                                        src="{{ Vite::asset('resources/assetsFront/images/user-12.png') }}" alt="image"
+                                    src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="image"
                                         class="float-right p-1 bg-white rounded-circle w-100">
                                 </figure>
-                                <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">Mohannad Zitoun <span
-                                        class="fw-500 font-xssss text-grey-500 mt-1 mb-3 d-block">support@gmail.com</span>
-                                </h4>
+                              
+                                <h4 class="fw-700 font-sm mt-2 mb-lg-5 mb-4 pl-15">{{$user->firstName}} {{$user->lastName}}   </h4>       
                                 <div
                                     class="d-flex align-items-center justify-content-center position-absolute-md right-15 top-0 me-2">
                                     <a href="{{ route('user.profile.information') }}"
@@ -197,6 +199,7 @@
 
                         </div>
                     </div>
+
                     <div class="col-xl-8 col-xxl-9 col-lg-8">
                         @if (Session::has('success'))
                             <div class="alert alert-success">
@@ -207,7 +210,8 @@
                             </div>
                         @endif
 
-                        <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3 mt-3">
+
+                        {{-- <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3 mt-3">
                             <div class="card-body p-0">
                                 <a href="#"
                                     class=" font-xssss fw-600 text-grey-500 card-body p-0 d-flex align-items-center"><i
@@ -268,61 +272,143 @@
                                     </div>
                                 </div>
                             </div>
+                        </div> --}}
+                        <br> <br>
+                        <div class="card w-100 shadow-xss rounded-xxl border-0 ps-4 pt-4 pe-4 pb-3 mb-3">
+                            <form method="POST" action="{{ route('Posts.store') }}"
+                                enctype="multipart/form-data">
+                                @csrf
+                                @method('post')
+
+                                <div class="card-body p-0">
+                                    <a href="#"
+                                        class="font-xsss fw-600 text-grey-900 card-body p-0 d-flex align-items-center">
+                                        <i
+                                            class="btn-round-sm font-xsss text-primary feather-edit-3 me-2 bg-greylight"></i>Nouvelle
+                                        Publication
+                                    </a>
+                                </div> <br>
+
+                                <div class="col-lg-6 mb-3">
+                                    <div class="form-group">
+                                        <input type="text" name="titre"
+                                            class="small-input form-control rounded-xxl p-2 ps-5 font-xsss text-grey-900 fw-500 border-light-md theme-dark-bg"
+                                            style="vertical-align: top;" placeholder="Titre de la publication"
+                                            id="titre">
+                                        @if ($errors->has('titre'))
+                                            <span class="text-danger">{{ $errors->first('titre') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="card-body p-0 mt-3 position-relative">
+                                    <figure class="avatar position-absolute ms-2 mt-1 top-5"><img
+                                            {{-- src="{{ Vite::asset('resources/assetsFront/images/user-8.png') }}" --}}
+                                            src="{{ asset('storage/' . $user->profile_photo_path) }}"  alt="image"
+                                            class="shadow-sm rounded-circle w30"></figure>
+                                    <textarea name="description"
+                                        class="h100 bor-0 w-100 rounded-xxl p-2 ps-5 font-xsss text-grey-900 fw-500 border-light-md theme-dark-bg"
+                                        style="vertical-align: top;" cols="30" rows="10" placeholder="What's on your mind?">
+                                                                                                  
+                                        </textarea>
+                                    @if ($errors->has('description'))
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    @endif
+                                </div>
+
+                                <style>
+                                    /* Style CSS pour changer la couleur du texte */
+                                    textarea::placeholder {
+                                        color: #313030;
+                                        /* Couleur du texte du placeholder */
+                                    }
+                                </style>
+
+                                <br>
+                            
+
+                                <div class="col-lg-12 mb-3">
+                                    <div class="form-group">
+                                        <label for="image"
+                                            class="custom-file-upload d-flex align-items-center font-xss fw-600 ls-1 text-grey-900 text-dark pe-4"
+                                            style="cursor: pointer;">
+                                            <i class="font-md text-success feather-image me-2"></i><span
+                                                class="d-none-xs">Photo</span>
+                                            <input type="file" name="image" style="display: none;"
+                                                id="image"
+                                                accept="image/jpeg, image/png, image/jpg, image/gif, image/svg+xml">
+                                        </label>
+                                        <div id="image-error" class="text-danger"></div>
+                                        <span id="selected-file"></span>
+                                        @if ($errors->has('image'))
+                                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.getElementById('image').addEventListener('change', function() {
+                                        const selectedFile = document.getElementById('image').files[0];
+                                        const selectedFileName = selectedFile ? selectedFile.name : '';
+                                        document.getElementById('selected-file').textContent = selectedFileName;
+                                    });
+                                </script>
+
+
+
+
+
+                                <div class="card-body p-0 mt-0">
+                                    <div class="d-flex justify-content-end mx-auto">
+                                        <button type="submit"
+                                            class="bg-current text-center text-white font-xsss fw-600 p-2 w100 rounded-full d-inline-block">Publier</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+
 
 
                         @foreach ($listPosts as $post)
                             <div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-0">
                                 <div class="card-body p-0 d-flex">
                                     <figure class="avatar me-3"><img
-                                            src="{{ Vite::asset('resources/assetsFront/images/user-8.png') }}"alt="image"
+                                        src="{{ asset('storage/' . $user->profile_photo_path) }}"alt="image"
                                             class="shadow-sm rounded-circle w45"></figure>
-                                    <h4 class="fw-700 text-grey-900 font-xssss mt-1">{{ $post->titre }} <span
-                                            class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">2 hour ago</span>
-                                    </h4>
-                                    <a href="#" class="ms-auto" id="dropdownMenu2" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"><i
-                                            class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end p-4 rounded-xxl border-0 shadow-lg"
-                                        aria-labelledby="dropdownMenu2">
-                                        <div class="card-body p-0 d-flex">
-                                            <i class="feather-bookmark text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Save Link <span
-                                                    class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Add this
-                                                    to your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-alert-circle text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide Post <span
-                                                    class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save to
-                                                    your saved items</span></h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-alert-octagon text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4">Hide all from Group
-                                                <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
-                                                    to your saved items</span>
-                                            </h4>
-                                        </div>
-                                        <div class="card-body p-0 d-flex mt-2">
-                                            <i class="feather-lock text-grey-500 me-3 font-lg"></i>
-                                            <h4 class="fw-600 mb-0 text-grey-900 font-xssss mt-0 me-4">Unfollow Group
-                                                <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Save
-                                                    to your saved items</span>
-                                            </h4>
-                                        </div>
-                                    </div>
+                                            
+                                           
+                                            <h5 class="mt-4 mb-4 d-inline-block font-xss fw-600 text-grey-900 me-2">
+                                                {{ $user->lastName }}</h5>
+                                            <h5 class="mt-4 mb-4 d-inline-block font-xss fw-600 text-grey-900 me-2">
+                                                {{ $user->firstName }} </h5><br><br>
+                                   
+                                   
+                                    <a href="{{ route('single-post', $post->id) }}" class="ms-auto">
+
+                                        <i
+                                            class="feather-eye text-dark text-grey-900 btn-round-sm font-lg"></i>
+                                    </a>
+                                    
                                 </div>
                                 <div class="card-body p-0 me-lg-5">
-                                    <p class="fw-500 text-grey-500 lh-26 font-xssss w-100">{{ $post->description }}
+
+                                    <h4 class="fw-700 text-grey-900 font-xss mt-1">{{ $post->titre }} <span
+                                        class="d-block font-xssss fw-500 mt-1 lh-3 text-grey-500">{{ $post->created_at->diffForHumans() }}</span>
+                                </h4>
+                                    <p class="fw-500 text-grey-800 lh-26 font-xsss w-100">{{ $post->description }}
                                     </p>
                                 </div>
-                                <div class="card-body d-block p-0">
+                                <div class="card-body d-block p-0 mb-3">
                                     <div class="row ps-2 pe-2">
-                                        <div class="col-xs-4 col-sm-4 p-1"><a href="images/t-10.jpg"
-                                                data-lightbox="roadtrip"><img src="/images/{{ $post->image }}"
-                                                    class="rounded-3 w-100" alt="image"></a></div>
+                                        <div class="col-sm-12 p-1"><a href="images/t-30.jpg"
+                                                data-lightbox="roadtr"><img src="/images/{{ $post->image }}"
+                                                    class="rounded-3 w-100"
+                                                    alt="image"style="max-width: 400px;">
 
+                                            </a></div>
                                     </div>
                                 </div>
                                 <div class="card-body d-flex p-0">
@@ -338,7 +424,7 @@
                                         Comment</a>
 
 
-                                    <a href="{{ route('Posts.edit', ['id' => $post->id]) }}
+                                    <a href="{{ route('Posts.edit', ['id' => $post->id]) }}"
                                         class="d-flex
                                         align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss">
                                         <i class="feather-edit text-dark text-grey-900 btn-round-sm font-lg">
