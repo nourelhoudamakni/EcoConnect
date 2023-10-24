@@ -105,45 +105,46 @@ public function update(Request $request, Product $Product)
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        
+
         // Define the storage path (you can customize this as needed)
         $storagePath = 'public/images';
-    
+
         // Generate a unique filename for the uploaded image
         $imageName = time() . rand(1, 99) . '.' . $image->getClientOriginalExtension();
-    
+
         // Move the uploaded image to the specified storage path with the unique filename
         $image->move($storagePath, $imageName);
-    
+
         // Save the image's filename (or full path, depending on your needs) in your data array
         $data['image'] = $imageName;
     } else {
         // Handle the case where no file was uploaded
     }
-    
 
-// Get the selected collaborateur_id from the form
-$collaborateurId = $request->input('collaborateur_id');
+    // Get the selected collaborateur_id from the form
+    $collaborateurId = $request->input('collaborateur_id');
 
-if (!empty($collaborateurId)) {
-    // Find the collaborateur by the selected collaborateur_id
-    $collaborateur = Collaborateur::find($collaborateurId);
+    if (!empty($collaborateurId)) {
+        // Find the collaborateur by the selected collaborateur_id
+        $collaborateur = Collaborateur::find($collaborateurId);
 
-    if ($collaborateur) {
-        // Associate the product with the selected collaborateur
-        $Product->collaborateur()->associate($collaborateur);
+        if ($collaborateur) {
+            // Associate the product with the selected collaborateur
+            $Product->collaborateur()->associate($collaborateur);
+        } else {
+            // Handle the case where the collaborateur doesn't exist
+        }
     } else {
-        // Handle the case where the collaborateur doesn't exist
+        // If "None" is selected, disassociate the product from any collaborateur
+        $Product->collaborateur()->dissociate();
     }
-} else {
-    // If "None" is selected, disassociate the product from any collaborateur
-    $Product->collaborateur()->dissociate();
+
+    // Update all fields in the Product model
+    $Product->update($data);
+
+    return back()->with('success', 'Mise à jour avec succès');
 }
 
-$Product->save();
-
-return back()->with('success', 'Mise à jour avec succès');
-}
 
 
 //show products

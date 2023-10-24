@@ -162,7 +162,7 @@ Route::delete('/deleteCollaborateur/{Collaborateur}',  [CollaborateurController:
 
 Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showAllProductsAdmin'])->name('showProducts');
 Route::get('/dashboardAdmin/ListCollaborateurs', [CollaborateurController::class, 'showAllCollaborateurs'])->name('showAllCollaborateurs');
-Route::put('/dashboardAdmin/validate', [ProductController::class, 'validateProduct'])->name('validateProduct');
+Route::put('/dashboardAdmin/validate/{product}', [ProductController::class, 'validateProduct'])->name('validateProduct');
 
 Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
 

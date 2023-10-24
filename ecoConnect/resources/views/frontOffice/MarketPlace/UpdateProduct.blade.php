@@ -121,7 +121,8 @@
                 // Vérification du format de l'image
                 const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif", "image/svg+xml"];
                 if (file && !allowedTypes.includes(file.type)) {
-                    imageError.textContent = "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
+                    imageError.textContent =
+                        "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
                     imageInput.value = ""; // Effacer le champ de fichier
                     return;
                 }
