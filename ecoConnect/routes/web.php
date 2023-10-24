@@ -9,6 +9,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
 use App\Http\Controllers\ProfilesettingsController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AdminProjetController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,16 +97,22 @@ Route::get('/profile/information', [ProfilesettingsController::class, 'profileIn
 Route::get('/profile/settings', [ProfilesettingsController::class, 'profileSettings'])->name('user.profile.settings');
 Route::get('/profile/update/password', [ProfilesettingsController::class, 'updatePassword'])->name('user.update.password');
 
+
 ////////////////////////route projets env
 Route::post('/addProjetsEnvironnementales', [ProjetEnvController::class, 'store'])->name('projets.store');
 Route::get('/Projets-Environnementales',  [ProjetEnvController::class, 'showProjects'])->name('projetEnv');
+Route::get('/My-Projets-Environnementales',  [ProjetEnvController::class, 'showMyproject'])->name('MyprojetEnv');
 Route::get('/Projets-Environnementales/AddProjetEnvironnementales', function () {return view('frontOffice/projetEnv/formAddProject');})->name('addProjetEnv');
+Route::get('/projects/{project}/tasks/create',  [TaskController::class, 'create'])->name('tasks.create');
+Route::post('/project/{project}/task', [TaskController::class,'store'])->name('tasks.store');
+Route::delete('/tasks/{taskId}', [TaskController::class, 'deleteTask'])->name('tasks.delete');
+Route::get('/projets/{id}', [ProjetEnvController::class, 'showDetails'])->name('projet.details');
 Route::get('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'modifierProjet'])->name('modifierProjetEnv');
 Route::Delete('/projets-environnementaux/{id}', [ProjetEnvController::class, 'supprimerProjet'])->name('supprimerProjet');
 Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'sauvegarderModificationProjet'])->name('sauvegarderModificationProjet');
-
-
+Route::put('/tasks/{taskId}', [TaskController::class, 'updateTask'])->name('tasks.update');
 ////////////////////////route education env
+Route::get('/tasks/{taskId}/edit', [TaskController::class, 'editTask'])->name('tasks.edit');
 Route::get('/Apprentissage', [EducationController::class, 'showAllContenu'])->name('contenu.index');
 Route::get('/Apprentissage/Ajout-formulaire', [EducationController::class, 'formContenuEducative'])->name('contenu.Add');
 Route::post('/Apprentissage/Ajout', [EducationController::class, 'store'])->name('Ajout.contenu');
@@ -163,7 +172,11 @@ Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy']
 Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
 Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
 
-
+///////////////////////////////AdminProjetEnv
+Route::get('/admin/projetEnvironnemental', [AdminProjetController::class, 'showAllProject'])->name('Admin.show.ProjetEnv');
+Route::delete('/Adminprojects/{project}', [AdminProjetController::class, 'destroy'])->name('Admin.projects.destroy');
+Route::get('/AdminProjet/{id}', [AdminProjetController::class, 'showDetails'])->name('Admin.projet.details');
+Route::post('/projets/search', [AdminProjetController::class, 'search'])->name('Admin.projets.search');
 
 
 
