@@ -158,15 +158,16 @@ Route::get('/collaborateurs',  [CollaborateurController::class, 'showCollaborate
 Route::get('/Collaborateur-update/{Collaborateur}/edit', [CollaborateurController::class, 'edit'])->name('Collaborateur.edit');
 Route::put('/UpdateCollaborateur/{Collaborateur}', [CollaborateurController::class, 'update'])->name('collaborateurs.update');
 Route::delete('/deleteCollaborateur/{Collaborateur}',  [CollaborateurController::class, 'destroy'])->name('destroyCollaborateur');
+Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
 
-
+////////////////////////////////admin-hamza
 Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showAllProductsAdmin'])->name('showProducts');
 Route::get('/dashboardAdmin/ListCollaborateurs', [CollaborateurController::class, 'showAllCollaborateurs'])->name('showAllCollaborateurs');
 Route::put('/dashboardAdmin/validate/{product}', [ProductController::class, 'validateProduct'])->name('validateProduct');
 
 Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
 
-Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
+
 
 
 

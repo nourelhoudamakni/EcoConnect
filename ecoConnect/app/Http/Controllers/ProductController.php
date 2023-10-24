@@ -9,6 +9,7 @@ use App\Models\Collaborateur;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\LikesThresholdEmail;
+use App\Mail\ProductValidated;
 
 
 class ProductController extends Controller
@@ -225,12 +226,17 @@ public function detailsProd($id)
     }
     
 
-public function validateProduct(Product $product)
-{
-    // Set the product as validated
-    $product->update(['validated' => true]);
-    return back()->with('success', 'Produit validé avec succée');
-}
+    public function validateProduct(Product $product)
+    {
+        // Set the product as validated
+        $product->update(['validated' => true]);
+        
+        // Send the email to inform the user
+        Mail::to($product->user->email)->send(new ProductValidated($product));
+        
+        return back()->with('success', 'Produit validé avec succès');
+    }
+    
 
 
 public function showAllProductsAdmin()

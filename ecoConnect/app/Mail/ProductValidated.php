@@ -9,25 +9,20 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
-class LikesThresholdEmail extends Mailable
+class ProductValidated extends Mailable
 {
     use Queueable, SerializesModels;
-
-
-    protected $user;
-protected $product;
+    protected $product;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct($product)
     {
-        $this->data = $data;
+        $this->product = $product;
     }
-    
 
     /**
      * Get the message envelope.
@@ -37,7 +32,7 @@ protected $product;
     public function envelope()
     {
         return new Envelope(
-            subject: 'Likes Threshold Email',
+            subject: 'Product Validated',
         );
     }
 
@@ -49,7 +44,7 @@ protected $product;
     public function content()
     {
         return new Content(
-            view: 'emails.likes-threshold-email',
+            view: 'emails.product_validated',
         );
     }
 
@@ -63,16 +58,12 @@ protected $product;
         return [];
     }
 
-    // app/Mail/LikesThresholdEmail.php
-
     public function build()
     {
-        return $this->view('emails.likes-threshold-email')
-                    ->with([
-                        'product' => $this->product,
-                    ])
-                    ->subject('Congratulations! Your product has reached 10 likes');
+        return $this->view('emails.product_validated')
+            ->with([
+                'product' => $this->product,
+            ])
+            ->subject('Your Product Has Been Validated');
     }
-    
-
 }
