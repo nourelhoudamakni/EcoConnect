@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBlogFeedbackController;
 use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CollaborateurController;
 use App\Http\Controllers\ActeVolontaireController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfilesettingsController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AdminProjetController;
@@ -36,23 +38,26 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [PostController::class, 'Accueil'])->name('dashboard');
+
 });
 
 /////route pour le login admin
 Route::middleware('admin:admin')->group(function () {
-    Route::get('admin/login', [AdminController::class, 'loginForm']);
+    Route::get('admin/login', [AdminController::class, 'loginForm'])->name('admin.login.form');
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
 ///////////route après le login admin
 Route::middleware([
-    'auth:sanctum,admin',
+    'auth.admin:sanctum,admin',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('admin/dashboard', function () {
         return view('backOffice/dashboardAdmin');
     })->name('dashboard')->middleware('auth:admin');
+
+
 });
 
 ///////quelques routes
@@ -61,7 +66,7 @@ Route::get('/menuDashboard', function () {
 });
 Route::get('/listPost', function () {
     return view('backOffice.Post.listPosts');
-
+});
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
 });
@@ -116,6 +121,29 @@ Route::Delete('/projets-environnementaux/{id}', [ProjetEnvController::class, 'su
 Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::class, 'sauvegarderModificationProjet'])->name('sauvegarderModificationProjet');
 Route::put('/tasks/{taskId}', [TaskController::class, 'updateTask'])->name('tasks.update');
 ////////////////////////route education env
+Route::get('/Apprentissage', [EducationController::class, 'showAllBlogs'])->name('AllBlogs');
+Route::get('/MesApprentissage', [EducationController::class, 'showMyBlogs'])->name('MyBlogs');
+Route::get('/Apprentissage/form', [EducationController::class, 'createBlog'])->name('Blog.Form');
+Route::post('/Apprentissage/Add', [EducationController::class, 'storeBlog'])->name('store.blog');
+Route::get('/Apprentissage/Details/{id}', [EducationController::class, 'showBlog'])->name('details.blog');
+Route::get('/Apprentissage/Edit/{id}', [EducationController::class, 'editForm'])->name('edit.blog');
+Route::put('/Apprentissage/update/{id}', [EducationController::class, 'updateBlog'])->name('blog.update');
+Route::delete('/Apprentissage/destroy/{id}', [EducationController::class, 'destroyBlog'])->name('Blog.destroy');
+Route::get('/blog/searchByCategorie', [EducationController::class, 'searchByCategorie'])->name('blog.searchByCategorie');;
+
+//////////////////////////////////routes commentaires
+Route::post('/feedback/Add/{idBlog}', [FeedbackController::class, 'storeFeedback'])->name('store.feedBack');
+Route::get('/get-feedback/{id}', [FeedbackController::class, 'getFeedback']);
+Route::post('/update-feedback/{id}', [FeedbackController::class, 'update'])->name('feedback.update');
+Route::delete('/delete/destroy/{id}', [FeedbackController::class, 'destroyFeedback'])->name('feedback.destroy');
+//////////////////////////////////////routes dashboard admin
+Route::get('/List-Articles', [AdminBlogFeedbackController::class, 'showAllBlogsAdmin'])->name('AllBlogsAdmin');
+Route::post('/validate-blog/{blogId}', [AdminBlogFeedbackController::class, 'validateBlog'])->name('validate.blog');
+Route::post('/nonvalidate-blog/{blogId}', [AdminBlogFeedbackController::class, 'nonValidateBlog'])->name('nonvalidate.blog');
+Route::delete('/destroy/{blogId}', [AdminBlogFeedbackController::class, 'destroyBlogbyAdmin'])->name('destroy.blog.admin');
+Route::get('/details/article/{blogId}', [AdminBlogFeedbackController::class, 'detailsArticleAdmin'])->name('details.blog.admin');
+Route::delete('/destroy/feedback/admin/{feedbackId}', [AdminBlogFeedbackController::class, 'destroyFeedbackadmin'])->name('destroy.feedback.admin');
+Route::delete('/get-feedback-admin/{feedbackId}', [AdminBlogFeedbackController::class, 'getFeedbackAdmin'])->name('get.feedback.admin');
 Route::get('/tasks/{taskId}/edit', [TaskController::class, 'editTask'])->name('tasks.edit');
 Route::get('/Apprentissage', [EducationController::class, 'showAllContenu'])->name('contenu.index');
 Route::get('/Apprentissage/Ajout-formulaire', [EducationController::class, 'formContenuEducative'])->name('contenu.Add');
@@ -145,7 +173,6 @@ Route::get('/dash/listPosts', [PostController::class, 'affiche'])->name('Posts.a
 Route::delete('/destroy/{id}', [PostController::class, 'destroyPost'])->name('Posts.destroyPost');
 Route::get('/detailPost/{posts_id}', [PostController::class,'detailsPost'])->name("detailsPost");
 Route::delete('/comment/destroyComment/{id}', [CommentController::class, 'destroyComment'])->name('destroyComment');
-
 
 
 
@@ -197,6 +224,9 @@ Route::put('/products/{product}/like', [ProductController::class, 'like'])->name
 
 
 
+///////////routes collaborateurs
+Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
+Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
 Route::get('/collaborateurs-create', [CollaborateurController::class, 'create'])->name('collaborateurs.create');
 Route::get('/NewCollaborateur', [CollaborateurController::class, 'createCollab'])->name('collaborateurs.createCollab');
 
@@ -225,6 +255,3 @@ Route::get('/admin/projetEnvironnemental', [AdminProjetController::class, 'showA
 Route::delete('/Adminprojects/{project}', [AdminProjetController::class, 'destroy'])->name('Admin.projects.destroy');
 Route::get('/AdminProjet/{id}', [AdminProjetController::class, 'showDetails'])->name('Admin.projet.details');
 Route::post('/projets/search', [AdminProjetController::class, 'search'])->name('Admin.projets.search');
-
-
-

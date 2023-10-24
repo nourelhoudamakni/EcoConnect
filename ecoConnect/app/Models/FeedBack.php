@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FeedBack extends Model
 {
     use HasFactory;
-    protected $fillable = ['titre', 'description', 'note'];
+    protected $fillable = [ 'description','note'];
     public function education()
     {
         return $this->belongsTo(Education::class);
