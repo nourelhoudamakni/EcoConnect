@@ -6,7 +6,7 @@
                 <div class="middle-wrap">
                     <div class="card w-100 border-0 bg-white shadow-xs p-0 mb-4">
                         <div class="card-body p-4 w-100 bg-current border-0 d-flex rounded-3">
-                            <a href="default-settings.html" class="d-inline-block mt-2"><i
+                            <a href="{{ route('MesProduits') }}" class="d-inline-block mt-2"><i
                                     class="ti-arrow-left font-sm text-white"></i></a>
                             <h4 class="font-xs text-white fw-600 ms-4 mb-0 mt-2">Edit Product</h4>
                         </div>
@@ -77,9 +77,25 @@
 </div>
 
 
+<div class="form-group">
+    <label for="collaborateur_id" class="mont-font fw-600 font-xsss">Sélectionner un Collaborateur</label>
+    <select name="collaborateur_id" id="collaborateur_id" class="form-control">
+        <option value="">None</option>
+        @foreach ($collaborateurs as $collaborateur)
+            <option value="{{ $collaborateur->id }}" @if($Product->collaborateur_id == $collaborateur->id) selected @endif>
+                {{ $collaborateur->nom }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+
+
+
+
                                 <div class="d-flex justify-content-end">
                                     <div class="mx-2">
-                                        <a href="#"
+                                        <a href="{{ route('MesProduits') }}"
                                             class="bg-secondary text-center text-white font-xsss fw-600 p-3 w175 rounded-3 d-inline-block">Annuler</a>
                                     </div>
                                     <div class="">
@@ -105,7 +121,8 @@
                 // Vérification du format de l'image
                 const allowedTypes = ["image/jpeg", "image/png", "image/jpg", "image/gif", "image/svg+xml"];
                 if (file && !allowedTypes.includes(file.type)) {
-                    imageError.textContent = "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
+                    imageError.textContent =
+                        "Le format de l'image n'est pas pris en charge, utiliser les formats: jpg, png, jpeg, gif, svg";
                     imageInput.value = ""; // Effacer le champ de fichier
                     return;
                 }

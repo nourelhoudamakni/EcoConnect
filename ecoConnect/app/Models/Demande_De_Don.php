@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\StatusEnum;
+use App\Enums\TypeDonEnum;
 
 class Demande_De_Don extends Model
 {
     use HasFactory;
-    protected $fillable = ['titre', 'typeDon', 'description', 'date de creation', 'date de fin', 'status'];
+    protected $fillable = ['titre', 'typeDon', 'description', 'dateCreation', 'dateFin', 'status'];
     protected $casts = [
 
         'typeDon' => TypeDonEnum::class,

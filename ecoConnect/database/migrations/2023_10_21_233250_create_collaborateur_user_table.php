@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sponsors', function (Blueprint $table) {
+        Schema::create('collaborateur_user', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->nullable();
-            $table->string('description')->nullable();
-            $table->datetime('dateDebut');
-            $table->datetime('dateFin');
+            $table->unsignedBigInteger('collaborateur_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+        
+            $table->foreign('collaborateur_id')->references('id')->on('collaborateurs');
+            $table->foreign('user_id')->references('id')->on('users');
         });
+        
     }
 
     /**
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsors');
+        Schema::dropIfExists('collaborateur_user');
     }
 };

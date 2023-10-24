@@ -1,290 +1,101 @@
 @extends('frontOffice.menu')
+
 @section('marketPlace')
-        <!-- main content -->
-        <div class="main-content bg-white">
-            <div class="middle-sidebar-bottom">
-                <div class="container pe-0">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="banner-wrapper bg-greylight overflow-hidden rounded-3">
-                                        <div class="banner-slider owl-carousel owl-theme dot-style2 owl-nav-link link-style3 overflow-hidden">
-                                             <div class="owl-items style1 d-flex align-items-center bg-lightblue" >
-                                                <div class="row">
-                                                    <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-22.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
+    <div class="main-content bg-white">
+        <div class="middle-sidebar-bottom">
+            <div class="container pe-0">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                        <div class="col-lg-12" >
+                                    <div class="card " >
+                                        <img  src="{{ Vite::asset('resources/assetsFront/images/Products.jpg') }}" class="card-img" alt="Stony Beach" style="opacity: 0.9;blur:20px" >
+                                                <div class="card-img-overlay text-center" >
+                                                    <h2 class="fw-700 display2-size display2-md-size lh-2  mt-5 " style="color: white;font-family: Montserrat,sans-serif;">EcoConnect MarketPlace</h2>
+
                                                 </div>
-                                            </div>
-                                            <div class="owl-items style1 d-flex align-items-center bg-cyan" >
-                                                <div class="row">
-                                                    <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-white ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-23.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
-                                                </div>
-                                            </div>
+                                    </div>
+                                </div>
+                            <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs mt-1">
+                                <ul class="nav nav-tabs h55 d-flex product-info-tab border-0 ps-4" id="pills-tab" role="tablist">
+                                    <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active" href="/Produits" data-toggle="tab">Liste des produits</a></li>
+                                    <li class="active list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="/MesProduits" data-toggle="tab">Mes produits</a></li>
+                                    <li class="list-inline-item me-5"><a class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block" href="/collaborateurs" data-toggle="tab">Mes collaborateurs</a></li>
+                                </ul>
+                            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs mt-1">
-                                    <ul class="nav nav-tabs h55 d-flex product-info-tab border-0 ps-4"
-                                        id="pills-tab" role="tablist">
-                                        <li class=" list-inline-item me-5"><a
-                                                class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block "
-                                                href="/Produits" data-toggle="tab">Liste des produits</a></li>
-                                        <li class="active list-inline-item me-5"><a
-                                                class="fw-700 font-xssss text-grey-500 pt-3 pb-3 ls-1 d-inline-block active"
-                                                href="/My-Market-Place" data-toggle="tab">Mes produits</a></li>
 
-                                    </ul>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img src="{{ Vite::asset('resources/assetsFront/images/pp-9.png') }}"  alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Textured Sleeveless Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-10.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Adjustable Shoulder Straps</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-13.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Neck Strappy Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
+                            <div class="mt-3 text-center"> <!-- Centered the search bar -->
+                                <form action="{{ route('products.search') }}" method="POST">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Rechercher par titre" aria-label="Rechercher par titre">
+                                        <button type="submit" class="btn btn-primary btn-sm">Rechercher</button>
                                     </div>
-                                </div>
+                                </form>
+                            </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img src="{{ Vite::asset('resources/assetsFront/images/pp-14.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Scoop-Neck Strappy</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-8.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img   src="{{ Vite::asset('resources/assetsFront/images/pp-22.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-23.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-8.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Butler Stool Ladder</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-9.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Textured Sleeveless Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                            @foreach ($products->sortByDesc('likes') as $product)
+    <div class="col-lg-4 col-md-6 mt-3">
+        <div class="card d-block w-100 h-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4 @if ($loop->first) highlight-product @endif">
+            <div class="d-flex flex-column "> <!-- Adjusted to align text to the left and picture in the middle -->
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img  src="{{ Vite::asset('resources/assetsFront/images/pp-10.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Adjustable Shoulder Straps</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="text-center mb-3"> <!-- Center the image -->
+                    <img src="../public/images/{{ $product->image }}" width="100px" alt="Projet Image">
+                </div>
+                <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4 pt-4">
+                    <a href="{{ route('Prod.details', $product->id) }}">{{ $product->titre }}</a>
+                </h4>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
+                </h5>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
+                </h5>
+                @if ($product->collaborateur)
+                    <h5 class="font-xssss mb-2 text-success fw-600">
+                        <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
+                    </h5>
+                @endif
+                <h5 class="font-xssss mb-2 text-success fw-600">
+                    <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes }}
+                </h5>
+                <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-success btn-icon me-2">
+                        <i class="feather feather-thumbs-up font-md text-white"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="best-seller-badge @if (!$loop->first) text-center @endif mb-3 pt-4">
+                    @if ($loop->first) <!-- Check if it's the most liked product -->
+                    <div style="background-color: red; color: white; border-radius: 4px; padding: 5px; display: flex; justify-content: center; align-items: center;">
+    <span class="font-md fw-700">Best-Seller</span>
+</div>
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img src="{{ Vite::asset('resources/assetsFront/images/pp-11.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Neck Strappy Camisole</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
+                    @endif
+                </div>
+        </div>
+        
+    </div>
+@endforeach
 
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="card w-100 border-0 mt-4">
-                                        <div class="card-image w-100 p-0 text-center bg-greylight rounded-3 mb-2">
-                                            <a href="single-product.html"><img src="{{ Vite::asset('resources/assetsFront/images/pp-4.png') }}" alt="product-image" class="w-100 mt-0 mb-0 p-5 mt-4 mb-4"></a>
-                                        </div>
-                                        <div class="card-body w-100 p-0 text-center">
-                                            <div class="star w-100 d-block text-left mt-0 text-center">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}"  alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star.png') }}" alt="star" class="w15">
-                                                <img src="{{ Vite::asset('resources/assetsFront/images/star-disable.png') }}" alt="star" class="w15 me-1 me-2">
-                                            </div>
-                                            <h2 class="mt-1 mb-1"><a href="single-product.html" class="text-black fw-700 font-xsss lh-26">Scoop-Neck Strappy</a></h2>
-                                            <h6 class="font-xsss fw-600 text-grey-500 ls-2">$449</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 mt-3 mb-5 text-center"><a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">Go back to top</a></div>
+
+
+                            <div class="col-lg-12 mt-3 mb-5 text-center">
+                                <a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">back to top</a>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-        <!-- main content -->
-         @endsection
+    </div>
+@endsection

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['titre', 'prix', 'description', 'image'];    
+    protected $fillable = ['titre', 'prix', 'description', 'image', 'likes', 'validated'];    
 
     public function user()
     {
@@ -17,6 +17,6 @@ class Product extends Model
 
     public function collaborateur()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Collaborateur::class);
     }
 }

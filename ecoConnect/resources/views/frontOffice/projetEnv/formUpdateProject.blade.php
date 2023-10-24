@@ -36,24 +36,40 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="titre">Titre</label>
-                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ $projet->titre }}" required>
+                                    <input type="text" class="form-control" id="titre" name="titre" value="{{ $projet->titre }}" >
+                                    @if ($errors->has('titre'))
+                                            <span
+                                                class="text-danger">{{ $errors->first('titre') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description" rows="3"
-                                        required>{{ $projet->description }}</textarea>
+                                        >{{ $projet->description }}</textarea>
+                                        @if ($errors->has('description'))
+                                            <span
+                                                class="text-danger">{{ $errors->first('description') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="objectif">Objectif</label>
-                                    <input type="text" class="form-control" id="objectif" name="objectif" value="{{ $projet->objectif }}" required>
+                                    <input type="text" class="form-control" id="objectif" name="objectif" value="{{ $projet->objectif }}" >
+                                    @if ($errors->has('objectif'))
+                                            <span   
+                                                class="text-danger">{{ $errors->first('objectif') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="ressources">Ressources</label>
-                                    <input type="text" class="form-control" id="ressources" name="ressources" value="{{ $projet->ressources }}" required>
+                                    <input type="text" class="form-control" id="ressources" name="ressources" value="{{ $projet->ressources }}" >
+                                    @if ($errors->has('ressources'))
+                                            <span
+                                                class="text-danger">{{ $errors->first('ressources') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="etat">État</label>
-                                    <select class="form-control" id="etat" name="etat" required>
+                                    <select class="form-control" id="etat" name="etat" >
                                         <option value="planifie" >Planifié</option>
                                         <option value="en cours">En cours</option>
                                         <option value="termine" >Terminé</option>
@@ -71,7 +87,7 @@
                                                         class="text-danger">{{ $errors->first('image') }}</span>
                                                     @endif
                                 </div>
-                                <button type="submit" class="btn btn-primary text-white mt-4">Update Project</button>
+                                <button type="submit" class="btn btn-primary text-white mt-4">modifier Project</button>
                             </form>
                         </div>
                     </div>

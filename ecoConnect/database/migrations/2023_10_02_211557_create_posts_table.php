@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('titre');
             $table->longtext('description');
             $table->string('image');
+            $table->unsignedBigInteger("likes")->default(0);
             $table->timestamps();
            
                      

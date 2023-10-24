@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('titre');
             $table->text('description');
             $table->decimal('prix');
+            $table->integer('likes')->default(0);
             $table->string('image');
+            $table->boolean('validated')->default(false);
             $table->timestamps();
             $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
             $table->foreignIdFor(\App\Models\Collaborateur::class)->nullable()->constrainted()->cascadeOnDelete();
