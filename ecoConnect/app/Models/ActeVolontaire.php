@@ -9,12 +9,13 @@ use App\Enums\CategorieActeEnum;
 class ActeVolontaire extends Model
 {
     use HasFactory;
-    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure', 'image', 'lieu'];
+    protected $fillable = ['categorie', 'titre', 'description', 'date', 'heure', 'image', 'lieu','validated'];
     protected $casts = [
-
+        'date' => 'datetime',
         'categorie' => CategorieActeEnum::class
 
     ];
+
     protected $appends = ['date_formated'];
     //---
     public function getdateFormatedAttribute()
@@ -31,6 +32,6 @@ class ActeVolontaire extends Model
     }
     public function participants()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'acte_volontaire_user');
     }
 }
