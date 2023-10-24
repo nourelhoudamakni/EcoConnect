@@ -1,6 +1,6 @@
-# Econnete
+# EcoConnect
 
-connete is a social media platform built with Laravel, dedicated to environmental initiatives and sustainability. It provides a space for users to collaborate on environmental projects, create and sell eco-friendly products, share posts, publish blogs, and organize/participate in events aimed at preserving the planet.
+EcoConnect is a social media platform built with Laravel, dedicated to environmental initiatives and sustainability. It provides a space for users to collaborate on environmental projects, create and sell eco-friendly products, share posts, publish blogs, and organize/participate in events aimed at preserving the planet.
 
 ## Features
 
