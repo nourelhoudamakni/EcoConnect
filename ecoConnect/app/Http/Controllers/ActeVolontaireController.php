@@ -10,6 +10,9 @@ use App\Enums\CategorieActeEnum;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Demande_De_Don;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ActeValidated;
+
 class ActeVolontaireController extends Controller
 {
     public function index()
@@ -214,7 +217,7 @@ class ActeVolontaireController extends Controller
 
         // Perform a database search based on the "lieu" attribute
         $results = ActeVolontaire::where('lieu', $lieu)->get();
-        
+
         // You can return the results as a JSON response or in any other format you prefer
         return view('frontOffice.Acte.show', ['actes' => $results]);
     }
@@ -239,10 +242,32 @@ class ActeVolontaireController extends Controller
 
         return view('backOffice.Acte.index', compact('unvalidatedActes', 'validatedActes'));
     }
+    // public function validateActe(ActeVolontaire $acte)
+    // {
+    //     // Set the product as validated
+    //     $acte->update(['validated' => true]);
+    //     return back()->with('success', 'Acte validé avec succée');
+    // }
     public function validateActe(ActeVolontaire $acte)
     {
         // Set the product as validated
         $acte->update(['validated' => true]);
-        return back()->with('success', 'Acte validé avec succée');
+
+        // Send the email to inform the user
+        Mail::to($acte->organizer->email)->send(new ActeValidated($acte));
+
+        return back()->with('success', 'Acte validé avec succès');
     }
+
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    // Perform the full-text search
+    $actes = ActeVolontaire::whereRaw("MATCH(titre, description) AGAINST(? IN BOOLEAN MODE)", [$query])
+                          ->get();
+
+    return view('frontOffice.Acte.search-results', compact('actes'));
+}
 }

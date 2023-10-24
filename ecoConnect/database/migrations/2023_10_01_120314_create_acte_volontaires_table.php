@@ -24,10 +24,13 @@ return new class extends Migration
             $table->string('image');
             $table->string('lieu');
             $table->boolean('validated')->default(false);
-            $table->foreignIdFor(\App\Models\User::class ,'organizer_id')->nullable()->constrainted()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\User::class, 'organizer_id')->nullable()->constrainted()->cascadeOnDelete();
 
 
             $table->timestamps();
+            $table->engine = 'InnoDB'; 
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_unicode_ci';
         });
     }
 
@@ -39,9 +42,8 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('acte_volontaires');
-        Schema::table('users',function(Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->dropForeignIdFor(\App\Models\User::class);
         });
-
     }
 };

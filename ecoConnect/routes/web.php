@@ -138,6 +138,7 @@ Route::post('/acteParticipate/{id}', [ActeVolontaireController::class,'participa
 
 Route::get('/Acte/searchByCategorie', [ActeVolontaireController::class, 'searchByCategorie'])->name('Acte.searchByCategorie');;
 Route::get('/Acte/searchByLocation', [ActeVolontaireController::class, 'searchByLieu'])->name('Acte.searchByLocation');
+Route::get('/acte-volontaire/search', [ActeVolontaireController::class, 'search'])->name('acte-volontaire.search');
 
 Route::put('/Acte/validate/{acte}', [ActeVolontaireController::class, 'validateActe'])->name('validateActe');
 Route::get('/dashboardAdmin/Listactes', [ActeVolontaireController::class, 'showAllActesAdmin'])->name('showActes');

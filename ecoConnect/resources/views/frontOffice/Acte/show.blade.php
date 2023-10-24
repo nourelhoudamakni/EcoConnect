@@ -38,22 +38,22 @@
                             <div class="col-lg-3 mt-3">
                                 <a href="{{ route('Acte.create') }}" class="btn btn-primary text-white">Ajouter acte volontaire</a>
                             </div>
-                            <div class="col-lg-9 mt-3">
+                            <div class="col-xl-6 col-xxl-6 col-lg-6">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <h1>Search Acte Volontaire by Lieu</h1>
+                                        <h1>Recherche Acte Volontaire par Lieu</h1>
 
                                         <form method="GET" action="{{ route('Acte.searchByLocation') }}">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="lieu">Lieu:</label>
-                                                <input type="text" name="lieu" class="form-control" id="lieu" placeholder="Enter lieu">
+                                                <input  type="text" name="lieu" class="form-control" id="lieu" placeholder="Enter lieu">
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Search</button>
+                                            <button  class="btn btn-primary"><i class="ti-search font-md text-white"></i></button>
                                         </form>
 
                                         @if (isset($results))
-                                            <h2>Search Results:</h2>
+                                            <h2>Recherche Resultats:</h2>
                                             <ul>
                                                 @foreach ($results as $acte)
                                                     <li>{{ $acte->titre }} - {{ $acte->description }}</li>
@@ -62,7 +62,7 @@
                                         @endif
                                     </div>
                                     <div class="col-lg-6">
-                                        <h1>Filter Acte Volontaire by Categorie</h1>
+                                        <h1>Filtrer Acte Volontaire par Categorie</h1>
 
                                         <form method="GET" action="{{ route('Acte.searchByCategorie') }}">
                                             @csrf
@@ -74,7 +74,8 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <button type="submit" class="btn btn-primary">Filter</button>
+
+                                            <button class=" btn btn-secondary btn-icon "><i class="ti-filter font-md text-white"></i></button>
                                         </form>
 
                                         @if (isset($results))
@@ -86,6 +87,10 @@
                                             </ul>
                                         @endif
                                     </div>
+                                    {{-- <form action="{{ route('acte-volontaire.search') }}" method="GET">
+                                        <input type="text" name="query" placeholder="Search ActeVolontaire...">
+                                        <button type="submit">Search</button>
+                                    </form> --}}
                                 </div>
                             </div>
 
@@ -98,7 +103,7 @@
                                 </div>
                             @endif
 
-                            
+
                             @foreach ($actes as $acte)
                                 <div class="col-lg-4 col-md-6 pe-2 ps-2">
                                     <a href="{{ route('Acte.details', $acte->id) }}">
