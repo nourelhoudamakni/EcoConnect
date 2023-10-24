@@ -429,14 +429,15 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 @yield('dashboardAdmin')
+                @yield('BlogsAdmin')
                 @yield('ListProduits')
                 @yield('AddCollabAdmin')
                 @yield('showAllCollaborateurs')
-                
-               
+
+
                 @yield('listPosts')
                 @yield('detailsPost')
-                
+
 
             </div>
               <!-- / Content -->

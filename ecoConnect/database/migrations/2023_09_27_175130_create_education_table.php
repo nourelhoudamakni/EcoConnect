@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('titre');
             $table->longText('description');
             $table->string('image');
+            $table->boolean('validate')->default(false);
+            $table->decimal('moyenne', 5, 2)->nullable();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
         });

@@ -10,7 +10,7 @@ class Education extends Model
 {
     use HasFactory;
     use \Conner\Tagging\Taggable;
-    protected $fillable = ['categorie', 'titre', 'description', 'image'];
+    protected $fillable = ['categorie', 'titre', 'description', 'image','validate','moyenne'];
     protected $casts = [
 
         'categorie' => CategorieEducationEnum::class

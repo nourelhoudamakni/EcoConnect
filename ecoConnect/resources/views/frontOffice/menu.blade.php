@@ -55,7 +55,7 @@
                                         class="feather-calendar btn-round-md  bg-primary-gradiant me-3"></i><span>Evenements</span></a>
                             </li>
                             <li>
-                                <a href="{{ route('contenu.index')}}" class="nav-content-bttn open-font"><i
+                                <a href="{{ route('AllBlogs')}}" class="nav-content-bttn open-font"><i
                                         class="feather-book-open btn-round-md bg-primary-gradiant me-3"></i><span>Apprentissage</span></a>
                             </li>
                         </ul>
@@ -111,6 +111,8 @@
 
         {{-- ////////////////////// --}}
         @yield('listApprentissages')
+        @yield('addBlog')
+        @yield('EditBlog')
         @yield('formContenuEducative')
         @yield('contenuDetails')
         @yield('meslistApprentissages')
