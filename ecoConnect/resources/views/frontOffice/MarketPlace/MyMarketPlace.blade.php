@@ -45,45 +45,68 @@
                                 </ul>
                             </div>
 
-                            @foreach ($products->sortByDesc('likes') as $product)
-                                <div class="col-lg-4 col-md-6 mt-3">
-                                    <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4 @if ($loop->first) highlight-product @endif">
-                                        <div class="d-flex flex-column align-items-center">
-                                            <div class="best-seller-badge @if (!$loop->first) text-center @endif mb-3">
-                                                @if ($loop->first) <!-- Check if it's the most liked product -->
-                                                    <span class="text-danger font-lg fw-700">Best-Seller</span>
-                                                @endif
-                                                
-                                            </div>
-                                            <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
-                                            <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4">
-                                                <a href="{{ route('Prod.details', $product->id) }}">{{ $product->titre }}</a>
-                                            </h4>
-                                            <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-                                                <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
-                                            </h5>
-                                            <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-                                                <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
-                                            </h5>
-                                            @if ($product->collaborateur)
-                                                <h5 class="font-xssss mb-2 text-success fw-600">
-                                                    <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
-                                                </h5>
-                                            @endif
-                                            <h5 class="font-xssss mb-2 text-success fw-600">
-                                                <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes }}
-                                            </h5>
-                                            <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <button type="submit" class="btn btn-success btn-icon me-2">
-                                                    <i class="feather feather-thumbs-up font-md text-white"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+
+
+
+                            <div class="mt-3 text-center"> <!-- Centered the search bar -->
+                                <form action="{{ route('products.search') }}" method="POST">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="search" class="form-control form-control-sm" placeholder="Rechercher par titre" aria-label="Rechercher par titre">
+                                        <button type="submit" class="btn btn-primary btn-sm">Rechercher</button>
                                     </div>
-                                </div>
-                            @endforeach
+                                </form>
+                            </div>
+
+
+
+
+
+                            @foreach ($products->sortByDesc('likes') as $product)
+    <div class="col-lg-4 col-md-6 mt-3">
+        <div class="card d-block w-100 h-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4 @if ($loop->first) highlight-product @endif">
+            <div class="d-flex flex-column "> <!-- Adjusted to align text to the left and picture in the middle -->
+                <div class="best-seller-badge @if (!$loop->first) text-center @endif mb-3">
+                    @if ($loop->first) <!-- Check if it's the most liked product -->
+                    <div style="background-color: red; color: white; border-radius: 4px; padding: 5px; display: flex; justify-content: center; align-items: center;">
+    <span class="font-md fw-700">Best-Seller</span>
+</div>
+
+                    @endif
+                </div>
+                <div class="text-center mb-3"> <!-- Center the image -->
+                    <img src="../public/images/{{ $product->image }}" width="100px" alt="Projet Image">
+                </div>
+                <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4 pt-4">
+                    <a href="{{ route('Prod.details', $product->id) }}">{{ $product->titre }}</a>
+                </h4>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
+                </h5>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
+                </h5>
+                @if ($product->collaborateur)
+                    <h5 class="font-xssss mb-2 text-success fw-600">
+                        <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
+                    </h5>
+                @endif
+                <h5 class="font-xssss mb-2 text-success fw-600">
+                    <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes }}
+                </h5>
+                <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-success btn-icon me-2">
+                        <i class="feather feather-thumbs-up font-md text-white"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
+
 
                             <div class="col-lg-12 mt-3 mb-5 text-center">
                                 <a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">back to top</a>

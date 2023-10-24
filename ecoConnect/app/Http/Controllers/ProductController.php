@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\Collaborateur; 
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LikesThresholdEmail;
+
 
 class ProductController extends Controller
 {
@@ -207,12 +211,19 @@ public function detailsProd($id)
 
 
     public function like(Product $product)
-{
-    $product->increment('likes');
-    $product->save();
-
-    return back()->with('success', 'Product liked successfully!');
-}
+    {
+        $product->increment('likes');
+        $product->save();
+    
+        $user = Auth::user();
+    
+        if ($product->likes == 10) {
+            $this->sendLikesThresholdEmail($user, $product);
+        }
+    
+        return back()->with('success', 'Product liked successfully!');
+    }
+    
 
 public function validateProduct(Product $product)
 {
@@ -232,6 +243,29 @@ public function showAllProductsAdmin()
 
     return view('backOffice.ListProduits', compact('unvalidatedProducts', 'validatedProducts'));
 }
+
+
+public function search(Request $request)
+{
+    $search = $request->input('search');
+    $user = auth()->user();
+
+    $products = Product::where('titre', 'like', '%' . $search . '%')
+        ->where('user_id', '!=', $user->id) // Exclure les produits de l'utilisateur connecté
+        ->get();
+
+    return view('frontOffice/MarketPlace/MyMarketPlace', compact('products'));
+}
+
+
+public function sendLikesThresholdEmail(User $user, Product $product)
+{
+    if ($product->likes == 10) {
+        Mail::to($user->email)->send(new LikesThresholdEmail(['user' => $user, 'product' => $product]));
+    }
+}
+
+
 
 
 

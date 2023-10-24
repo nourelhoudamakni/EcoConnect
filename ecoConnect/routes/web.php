@@ -166,6 +166,9 @@ Route::put('/dashboardAdmin/validate/{product}', [ProductController::class, 'val
 
 Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
 
+Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
+
+
 
 
 

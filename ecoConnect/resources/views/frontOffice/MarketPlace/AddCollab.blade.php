@@ -32,6 +32,16 @@
                                 </div>
                             @endif
 
+                            @if (Session::has('error'))
+    <div class="alert alert-danger">
+        {{ Session::get('error') }}
+        @php
+            Session::forget('error');
+        @endphp
+    </div>
+@endif
+
+
                             <form method="POST" action="{{ route('collaborateurs.store') }}">
                                 @csrf
 

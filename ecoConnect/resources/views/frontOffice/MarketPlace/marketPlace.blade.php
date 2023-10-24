@@ -65,45 +65,52 @@
                                 
 
                                 @foreach($products as $product)
-<div class="col-lg-4 col-md-6 mt-3">
-    <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4" style="padding-left: 120px !important;">
-        <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
-        <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4"><a href="{{ route('Prod.details',$product->id) }}">{{ $product->titre }}</a></h4>
-        <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-            <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
-        </h5>
-        <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-            <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
-        </h5>
+    <div class="col-lg-4 col-md-6 mt-3">
+        <div class="card d-block w-100 h-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4">
+            <div class="d-flex flex-column ">
+                <div class="text-center mb-3">
+                    <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
+                </div>
+                <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4 pt-4">
+                    <a href="{{ route('Prod.details',$product->id) }}">{{ $product->titre }}</a>
+                </h4>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
+                </h5>
+                <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+                    <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
+                </h5>
 
-        @if ($product->collaborateur)
-            <h5 class="font-xssss mb-2 text-success fw-600">
-                <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
-            </h5>
-        @endif
+                @if ($product->collaborateur)
+                    <h5 class="font-xssss mb-2 text-success fw-600">
+                        <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
+                    </h5>
+                @endif
 
-        <h5 class="font-xssss mb-2 text-success fw-600">
-                <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes}}
-            </h5>
+                <h5 class="font-xssss mb-2 text-success fw-600">
+                    <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes}}
+                </h5>
 
-            <h5 class="font-xssss mb-2 {{ $product->validated ? 'text-success' : 'text-danger' }} fw-600">
-    <span class="text-grey-900 font-xssss">Validation status : </span> {{ $product->validated ? 'Accepted' : 'Pending' }}
-</h5>
+                <h5 class="font-xssss mb-2 {{ $product->validated ? 'text-success' : 'text-danger' }} fw-600">
+                    <span class="text-grey-900 font-xssss">Validation status : </span> {{ $product->validated ? 'Accepted' : 'Pending' }}
+                </h5>
 
+                <div class="d-flex">
+                    <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon me-2">
+                        <i class="feather-edit-2 font-md text-white"></i>
+                    </a>
 
-        <div class="d-flex">
-    <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon me-2"><i class="feather-edit-2 font-md text-white"></i></a>
-
-    <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger btn-icon me-2"><i class="feather-trash-2 font-md text-white"></i></button>
-    </form>
-</div>
-
-
+                    <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-icon me-2">
+                            <i class="feather-trash-2 font-md text-white"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 @endforeach
 
 
