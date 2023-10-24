@@ -8,36 +8,12 @@
                         <div class="col-xl-12">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="banner-wrapper bg-greylight overflow-hidden rounded-3">
-                                        <div class="banner-slider owl-carousel owl-theme dot-style2 owl-nav-link link-style3 overflow-hidden">
-                                             <div class="owl-items style1 d-flex align-items-center bg-lightblue" >
-                                                <div class="row">
-                                                    <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-22.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-items style1 d-flex align-items-center bg-cyan" >
-                                                <div class="row">
-                                                    <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-white ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival Buds <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nulla dolor, ornare at commodo non, feugiat non nisi. Phasellus faucibus mollis pharetra.</p>
-                                                            <a href="" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6"><img  src="{{ Vite::asset('resources/assetsFront/images/pl-23.png') }}" alt="image" class="img-fluid p-md-5 p-4"></div>
-                                                </div>
-                                            </div>
+                                <div class="card " >
+                                        <img  src="{{ Vite::asset('resources/assetsFront/images/Products.jpg') }}" class="card-img" alt="Stony Beach" style="opacity: 0.9;blur:20px" >
+                                                <div class="card-img-overlay text-center" >
+                                                    <h2 class="fw-700 display2-size display2-md-size lh-2  mt-5 " style="color: white;font-family: Montserrat,sans-serif;">EcoConnect MarketPlace</h2>
 
-                                        </div>
+                                                </div>
                                     </div>
                                 </div>
                                 <div class="card-body d-block w-100 shadow-none mb-0 p-0 border-top-xs mt-1">
