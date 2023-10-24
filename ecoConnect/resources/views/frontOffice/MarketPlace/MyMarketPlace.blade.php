@@ -80,6 +80,17 @@
                     <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
                 </h5>
             @endif
+
+            <h5 class="font-xssss mb-2 text-success fw-600">
+                    <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes}}
+                </h5>
+            <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <button type="submit" class="btn btn-success btn-icon me-2">
+            <i class="feather feather-thumbs-up font-md text-white"></i>
+        </button>
+    </form>
         </div>
     </div>
 @endforeach

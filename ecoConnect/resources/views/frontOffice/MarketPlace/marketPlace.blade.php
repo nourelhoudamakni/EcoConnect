@@ -82,25 +82,26 @@
             </h5>
         @endif
 
-        <p>Likes: {{ $product->likes }}</p>
+        <h5 class="font-xssss mb-2 text-success fw-600">
+                <span class="text-grey-900 font-xssss">Likes : </span> {{ $product->likes}}
+            </h5>
 
-        <div class="d-flex justify-content-start">
-            <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon"><i class="feather-edit-2 font-md text-white"></i></a>
+            <h5 class="font-xssss mb-2 {{ $product->validated ? 'text-success' : 'text-danger' }} fw-600">
+    <span class="text-grey-900 font-xssss">Validation status : </span> {{ $product->validated ? 'Accepted' : 'Pending' }}
+</h5>
 
-            <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <button type="submit" class="btn btn-primary btn-icon">
-                    <i class="feather feather-thumbs-up font-md text-white"></i>
-                </button>
-            </form>
 
-            <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-icon"><i class="feather-trash-2 font-md text-white"></i></button>
-            </form>
-        </div>
+        <div class="d-flex">
+    <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon me-2"><i class="feather-edit-2 font-md text-white"></i></a>
+
+    <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger btn-icon me-2"><i class="feather-trash-2 font-md text-white"></i></button>
+    </form>
+</div>
+
+
     </div>
 </div>
 @endforeach

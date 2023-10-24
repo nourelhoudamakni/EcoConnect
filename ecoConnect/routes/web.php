@@ -160,8 +160,9 @@ Route::put('/UpdateCollaborateur/{Collaborateur}', [CollaborateurController::cla
 Route::delete('/deleteCollaborateur/{Collaborateur}',  [CollaborateurController::class, 'destroy'])->name('destroyCollaborateur');
 
 
-Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showProductsAdmin'])->name('showProducts');
+Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showAllProductsAdmin'])->name('showProducts');
 Route::get('/dashboardAdmin/ListCollaborateurs', [CollaborateurController::class, 'showAllCollaborateurs'])->name('showAllCollaborateurs');
+Route::put('/dashboardAdmin/validate', [ProductController::class, 'validateProduct'])->name('validateProduct');
 
 Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
 

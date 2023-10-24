@@ -18,11 +18,12 @@
                                     <th>titre</th>
                                     <th>description</th>
                                     <th>prix</th>
-                                    <th></th>
+                                    <th>Action</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $Product)
+                                @foreach ($unvalidatedProducts as $Product)
                                     <tr>
                                         <th>#{{ $Product->id }}</th>
                                         <th>
@@ -63,6 +64,13 @@
 
                 </form>
                                         </th>
+                                        <th>
+                                            <form action="{{ route('validateProduct', ['Product' => $Product->id]) }}" method="POST">
+                                            @method('PUT')
+    @csrf
+                                                <button type="submit" class="btn btn-success">Valider</button>
+                                            </form>
+                                        </th>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -102,7 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $Product)
+                                @foreach ($validatedProducts as $Product)
                                     <tr>
                                         <th>#{{ $Product->id }}</th>
                                         <th>

@@ -152,18 +152,14 @@ public function showProducts()
     // Get the currently authenticated user
     $user = Auth::user();
 
-    // Fetch all products except those belonging to the current user
-    $products = Product::where('user_id', '!=', $user->id)->get();
-
-    // if ($products->isNotEmpty()) {
-    //     $randomProduct = $products->random();
-    // } else {
-    //     // Use the default image if there are no products
-    //     $randomProduct = $randomProduct ?? (object)[];
-    // }
+    // Fetch products that are validated and not belonging to the current user
+    $products = Product::where('user_id', '!=', $user->id)
+                       ->where('validated', true)
+                       ->get();
 
     return view('frontOffice/MarketPlace/MyMarketPlace', ['products' => $products]);
 }
+
 
 
 
@@ -216,6 +212,26 @@ public function detailsProd($id)
 
     return back()->with('success', 'Product liked successfully!');
 }
+
+public function validateProduct(Product $product)
+{
+    // Set the product as validated
+    $product->update(['validated' => true]);
+    return back()->with('success', 'Produit validé avec succée');
+}
+
+
+public function showAllProductsAdmin()
+{
+    // Fetch unvalidated products
+    $unvalidatedProducts = Product::where('validated', false)->get();
+
+    // Fetch validated products
+    $validatedProducts = Product::where('validated', true)->get();
+
+    return view('backOffice.ListProduits', compact('unvalidatedProducts', 'validatedProducts'));
+}
+
 
 
 }
