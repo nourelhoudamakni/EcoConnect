@@ -1,9 +1,11 @@
 @extends('frontOffice.menu')
+
 @section('produitDetails')
+<x-app-layout>
         <!-- main content -->
         <div class="main-content bg-white">
             <div class="middle-sidebar-bottom">
-                <div class="container pe-0">
+                <div class="container ">
                     <div class="row">
                         <div class="col-xl-12 col-xxl-12 col-lg-12">
                             <div class="row">
@@ -103,7 +105,7 @@
                                                     @endif
                                 </div>
 
-                                <button type="submit" class="btn btn-primary text-white mt-4">Ajouter Projet</button>
+                                <button type="submit" class="btn bg-blue-600 text-white mt-4">Ajouter Projet</button>
                             </div>
                         </form>
                     </div>
@@ -142,4 +144,5 @@
         });
         </script>
         <!-- main content -->
+    </x-app-layout>
  @endsection

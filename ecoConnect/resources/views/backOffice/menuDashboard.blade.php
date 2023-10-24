@@ -425,13 +425,19 @@
                 </ul>
             </aside>
             <div class="layout-page">
-                
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 @yield('dashboardAdmin')
                 @yield('ListProduits')
                 @yield('AddCollabAdmin')
                 @yield('showAllCollaborateurs')
+                
+               
+                @yield('listPosts')
+                @yield('detailsPost')
+                
+
             </div>
               <!-- / Content -->
 

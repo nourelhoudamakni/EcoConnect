@@ -12,7 +12,7 @@ enum EtatProjetEnum:string {
 
     case Encours = 'en cours';
 
-    case Termine = 'termine';
+    case Termine = 'termine';   
     
     public static function valuesEtat(): array
 {

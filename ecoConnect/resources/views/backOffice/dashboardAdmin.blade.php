@@ -538,5 +538,5 @@
     <!-- / Content -->
 
 
-</x-app-layout>
+
 @endsection
