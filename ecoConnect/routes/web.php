@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
 use App\Http\Controllers\ProfilesettingsController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AdminProjetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,7 @@ Route::get('/profile/information', [ProfilesettingsController::class, 'profileIn
 Route::get('/profile/settings', [ProfilesettingsController::class, 'profileSettings'])->name('user.profile.settings');
 Route::get('/profile/update/password', [ProfilesettingsController::class, 'updatePassword'])->name('user.update.password');
 
+
 ////////////////////////route projets env
 Route::post('/addProjetsEnvironnementales', [ProjetEnvController::class, 'store'])->name('projets.store');
 Route::get('/Projets-Environnementales',  [ProjetEnvController::class, 'showProjects'])->name('projetEnv');
@@ -153,7 +155,11 @@ Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy']
 Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
 Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
 
-
+///////////////////////////////AdminProjetEnv
+Route::get('/admin/projetEnvironnemental', [AdminProjetController::class, 'showAllProject'])->name('Admin.show.ProjetEnv');
+Route::delete('/Adminprojects/{project}', [AdminProjetController::class, 'destroy'])->name('Admin.projects.destroy');
+Route::get('/AdminProjet/{id}', [AdminProjetController::class, 'showDetails'])->name('Admin.projet.details');
+Route::post('/projets/search', [AdminProjetController::class, 'search'])->name('Admin.projets.search');
 
 
 

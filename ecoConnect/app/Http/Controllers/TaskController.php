@@ -17,16 +17,24 @@ class TaskController extends Controller
     }
 
     public function store(Request $request, $projectId)
-    {
-        $task = new Tache;
-        $task->titre = $request->input('titre');
-        $task->description = $request->input('description');
-        $task->date_debut = $request->input('start_date');
-        $task->date_fin = $request->input('date_fin');
-        $task->projet__environnemental_id = $projectId;
-        $task->save();
-        return redirect()->route('projetEnv')->with('success', 'La tache a été ajoutée avec succès.');
-    }
+{
+    $validatedData = $request->validate([
+        'titre' => 'required',
+        'description' => 'required',
+        'date_debut' => 'required|date',
+        'date_fin' => 'required|date|after:date_debut',
+    ]);
+
+    $task = new Tache;
+    $task->titre = $validatedData['titre'];
+    $task->description =$validatedData['description'];
+    $task->date_debut = $validatedData['date_debut'];
+    $task->date_fin =$validatedData['date_fin'];
+    $task->projet__environnemental_id = $projectId;
+    $task->save();
+
+    return redirect()->route('projet.details', ['id' => $task->projet__environnemental_id])->with('success', 'Le task environnemental a été ajoutée avec succès.');
+}
 
     public function deleteTask($taskId)
     {
@@ -37,14 +45,23 @@ class TaskController extends Controller
 
     public function updateTask(Request $request, $taskId)
     {
+        $request->validate([
+            'titre' => 'required',
+            'description' => 'required',
+            'date_debut' => 'required|date',
+            'date_fin' => 'required|date|after:date_debut',
+        ]);
+    
         $task = Tache::findOrFail($taskId);
         $task->titre = $request->input('titre');
         $task->description = $request->input('description');
-        $task->date_debut = $request->input('start_date');
+        $task->date_debut = $request->input('date_debut');
         $task->date_fin = $request->input('date_fin');
         $task->save();
-        return redirect()->back()->with('success', 'Task updated successfully');
+    
+        return redirect()->route('projet.details', ['id' => $task->projet__environnemental_id])->with('success', 'Le task environnemental a été modifié avec succès.');
     }
+
 
     public function editTask($taskId)
     {

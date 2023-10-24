@@ -1,9 +1,9 @@
 @extends('frontOffice.menu')
 @section('produitDetails')
 <x-app-layout>
-        <div class="main-content bg-white">
+        <div class="main-content bg-white" style=" padding-top: 20px!important;">>
             <div class="middle-sidebar-bottom">
-                <div class="container pe-0">
+                <div class="container">
                     <div class="row">
                         <div class="col-xl-12 col-xxl-12 col-lg-12">
                             <div class="row">

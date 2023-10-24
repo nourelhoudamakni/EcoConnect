@@ -47,7 +47,7 @@ class ProjetEnvController extends Controller
         // Création du projet environnemental
         $newProjet->user_id = auth()->id();
         $newProjet->save();
-        return redirect()->route('projetEnv')->with('success', 'Le projet environnemental a été créé avec succès.');
+        return redirect()->route('MyprojetEnv')->with('success', 'Le projet environnemental a été créé avec succès.');
     }
 
     //ShowProjectDetails
@@ -61,7 +61,7 @@ class ProjetEnvController extends Controller
     //show projects
     public function showProjects()
     {
-        $projets = Projet_Environnemental::all();
+        $projets = Projet_Environnemental::with('user')->get();
         return view('frontOffice/projetsEnv', ['projets' => $projets]);
     }
  
@@ -72,7 +72,7 @@ class ProjetEnvController extends Controller
         if ($projet) {
             $projet->delete();
         }
-        return redirect()->route('projetEnv');
+        return redirect()->route('MyprojetEnv');
     }
 
     public function  showMyproject()
@@ -127,7 +127,7 @@ class ProjetEnvController extends Controller
             // Enregistrer les modifications
             $projet->save();
             // Rediriger vers la page des projets environnementaux après la modification
-            return redirect()->route('projetEnv')->with('success', 'Le projet environnemental a été modifier avec succès.');
+            return redirect()->route('MyprojetEnv')->with('success', 'Le projet environnemental a été modifier avec succès.');
         }
 
         // Rediriger vers une page d'erreur si le projet n'est pas trouvé
@@ -141,5 +141,9 @@ class ProjetEnvController extends Controller
 
         return view('frontOffice/projetEnv/formUpdateProject', ['projet' => $projet]);
     }
+
+    //search
+  
+
 
 }

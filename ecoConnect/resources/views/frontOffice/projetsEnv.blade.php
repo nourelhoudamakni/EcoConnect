@@ -1,9 +1,9 @@
 @extends('frontOffice.menu')
 @section('produitDetails')
 <x-app-layout>
-        <div class="main-content bg-white">
+        <div class="main-content bg-white" style=" padding-top: 20px!important;">
             <div class="middle-sidebar-bottom">
-                <div class="container pe-0">
+                <div class="container ">
                     <div class="row">
                         <div class="col-xl-12 col-xxl-12 col-lg-12">
                             <div class="row">
@@ -41,17 +41,26 @@
                                             @endphp
                                         </div>
                                     @endif
-
-                                @foreach($projets as $projet)
-                                    <div class="col-lg-4 col-md-6 mt-3">
-                                        <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4">
-
-                                        <a href="{{ route('projet.details', ['id' => $projet->id]) }}">  <img src="/upload/{{ $projet->image }}" width="300px" height="300px" class="card-img" alt="Stony Beach" style="opacity: 0.9;blur:20px"></a>    
-                                            <a href="{{ route('projet.details', ['id' => $projet->id]) }}"> <h1 class="font-lg fw-700 mt-2 text-grey-900 mb-3 pe-4">{{ $projet->titre }}</h1></a>    
-                                        </div>
+                               @foreach($projets as $projet)
+                                    <div class="col-md-3 col-xss-6 pe-2 ps-4 mt-5">
+                                        <a href="{{ route('projet.details', ['id' => $projet->id]) }}" class="text-decoration-none">
+                                            <div class="card  border-0 shadow">
+                                                <div class="position-relative">
+                                                    <div class="image-overlay">
+                                                    <img src="/upload/{{ $projet->image }}" class="card-img-top" alt="Projet Image" width="200px" height="200px">
+                                                    </div>
+                                                    <div class="avatar-group position-absolute top-0 start-0 mt-3 ms-3">
+                                                        <img src="{{ asset('storage/' . $projet->user->profile_photo_path) }}" alt="User Avatar" class="avatar  rounded-circle border border-white h-20">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title fw-bold text-dark">{{ $projet->titre }}</h5>
+                                                    <p class="card-text text-muted">{{ $projet->user->firstName }} {{ $projet->user->lastName }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
                                 @endforeach
-
                                 <div class="col-lg-12 mt-3 mb-5 text-center"><a href="#" class="fw-700 text-white font-xssss text-uppercase ls-3 lh-32 rounded-3 mt-3 text-center d-inline-block p-2 bg-current w150">Load More</a></div>
                             </div>
                         </div>

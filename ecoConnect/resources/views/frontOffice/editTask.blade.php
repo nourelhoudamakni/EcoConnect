@@ -22,7 +22,7 @@
                                             <label for="titre">Titre</label>
                                             <input type="text" class="form-control" id="titre" name="titre" value="{{ $task->titre }}">
                                             @if ($errors->has('titre'))
-                                                <span class="text-danger">{{ $errors->first('nom') }}</span>
+                                                <span class="text-danger">{{ $errors->first('titre') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -39,24 +39,27 @@
 
                                     <div class="col-lg-6 mb-3">
                                         <div class="form-group">
-                                            <label for="start_date">Start Date</label>
-                                            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $task->start_date }}">
-                                            @if ($errors->has('start_date'))
-                                                <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                                            <label for="date_debut">Date Debut</label>
+                                            <input type="date" class="form-control" id="date_debut" name="date_debut" value="{{ $task->date_debut }}">
+                                            @if ($errors->has('date_debut'))
+                                                <span class="text-danger">{{ $errors->first('date_debut') }}</span>
                                             @endif
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6 mb-3">
                                         <div class="form-group">
-                                            <label for="date_fin">End Date</label>
+                                            <label for="date_fin">Date Fin</label>
                                             <input type="date" class="form-control" id="date_fin" name="date_fin" value="{{ $task->date_fin }}">
                                             @if ($errors->has('date_fin'))
                                                 <span class="text-danger">{{ $errors->first('date_fin') }}</span>
                                             @endif
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary text-white mt-4">Update Task</button>
+                                    <div>
+                                    <button type="submit" class="btn text-white  btn-primary mt-4">modifier Tache</button>
+                                    </div>
+                                   
                                 </div>
                             </form>
                         </div>
