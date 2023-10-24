@@ -3,38 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Collaborateur; 
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LikesThresholdEmail;
+use App\Mail\ProductValidated;
+
 
 class ProductController extends Controller
 {
 
     public function create()
-    {
-        return view('frontOffice.MarketPlace.AddNewProduct');
-    }
+{
+    $collaborateurs = Collaborateur::all(); // Retrieve all collaborators
+    return view('frontOffice.MarketPlace.AddNewProduct', compact('collaborateurs'));
+}
 
-    public function AddProduct(Request $request)
-    {
+public function AddProduct(Request $request)
+{
     $request->validate([
         'titre' => 'required|string',
         'prix' => 'required',
         'description' => 'required|string|max:255',
-        'image' => 'required',
-        'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Make sure 'images' is an array
-    ]
-    ,[
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ], [
         'titre.required' => 'Titre obligatoire',
-
         'description.required' => 'Description est obligatoire',
-
-        'prix.required' => 'prix est obligatoire',
-
+        'prix.required' => 'Prix est obligatoire',
         'image.required' => 'Image est obligatoire',
-
     ]);
-
-
-    $data = $request->all(); // Get all form data
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
@@ -49,19 +48,50 @@ class ProductController extends Controller
         $image->move($storagePath, $imageName);
     
         // Save the image's filename (or full path, depending on your needs) in your data array
-        $data['image'] = $imageName;
+        
     } else {
         // Handle the case where no file was uploaded
     }
-    // Create the model with all the data
-    $newProduct = Product::create($data);
+
+    $newProduct = new Product([
+        'titre' => $request->input('titre'),
+        'prix' => $request->input('prix'),
+        'description' => $request->input('description'),
+        'image' => $imageName,
+    ]);
+
+    // Set the user_id to the ID of the currently logged-in user
+    $newProduct->user_id = auth()->id();
+
+    // Check if a collaborateur is selected
+    if ($request->filled('collaborateur_id')) {
+        // Get the selected collaborateur from the form
+        $collaborateur = Collaborateur::find($request->input('collaborateur_id'));
+
+        if ($collaborateur) {
+            // Associate the product with the collaborateur
+            $collaborateur->products()->save($newProduct);
+        } else {
+            // Handle the case where the collaborateur doesn't exist
+        }
+    } else {
+        // If no collaborateur is selected, save the product without associating it with any collaborateur
+        $newProduct->save();
+    }
 
     return back()->with('success', 'Ajout avec succès');
 }
 
+
+
+
+
+
+
 public function edit(Product $Product)
 {
-    return view('frontOffice.MarketPlace.UpdateProduct', compact('Product'));
+    $collaborateurs = Collaborateur::all(); // Fetch the collaborateurs
+    return view('frontOffice.MarketPlace.UpdateProduct', compact('Product', 'collaborateurs'));
 }
 
 public function update(Request $request, Product $Product)
@@ -73,42 +103,71 @@ public function update(Request $request, Product $Product)
     ], [
         'titre.required' => 'Titre obligatoire',
         'description.required' => 'Description est obligatoire',
-        'prix' => 'required',
+        'prix.required' => 'Prix est obligatoire',
     ]);
 
     $data = $request->all();
 
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        
+
         // Define the storage path (you can customize this as needed)
         $storagePath = 'public/images';
-    
+
         // Generate a unique filename for the uploaded image
         $imageName = time() . rand(1, 99) . '.' . $image->getClientOriginalExtension();
-    
+
         // Move the uploaded image to the specified storage path with the unique filename
         $image->move($storagePath, $imageName);
-    
+
         // Save the image's filename (or full path, depending on your needs) in your data array
         $data['image'] = $imageName;
     } else {
         // Handle the case where no file was uploaded
     }
-    
 
+    // Get the selected collaborateur_id from the form
+    $collaborateurId = $request->input('collaborateur_id');
+
+    if (!empty($collaborateurId)) {
+        // Find the collaborateur by the selected collaborateur_id
+        $collaborateur = Collaborateur::find($collaborateurId);
+
+        if ($collaborateur) {
+            // Associate the product with the selected collaborateur
+            $Product->collaborateur()->associate($collaborateur);
+        } else {
+            // Handle the case where the collaborateur doesn't exist
+        }
+    } else {
+        // If "None" is selected, disassociate the product from any collaborateur
+        $Product->collaborateur()->dissociate();
+    }
+
+    // Update all fields in the Product model
     $Product->update($data);
 
     return back()->with('success', 'Mise à jour avec succès');
 }
 
 
+
 //show products
 public function showProducts()
 {
-    $products = Product::all();
-    return view('frontOffice/MarketPlace/marketPlace', ['products' => $products]);
+    // Get the currently authenticated user
+    $user = Auth::user();
+
+    // Fetch products that are validated and not belonging to the current user
+    $products = Product::where('user_id', '!=', $user->id)
+                       ->where('validated', true)
+                       ->get();
+
+    return view('frontOffice/MarketPlace/MyMarketPlace', ['products' => $products]);
 }
+
+
+
 
 public function destroy(Product $Product)
 {
@@ -116,5 +175,104 @@ public function destroy(Product $Product)
 
     return back()->with('success', 'Suppression avec succès');
 }
+
+
+public function showMyProducts()
+{
+    // Get the currently authenticated user
+    $user = Auth::user();
+
+    // Retrieve the products associated with the user
+    $products = $user->products;
+    $products1 = Product::where('user_id', '!=', $user->id)->get();
+    // $randomProduct = $products1->random();
+
+    return view('frontOffice/MarketPlace/marketPlace', ['products' => $products]);
+}
+
+
+
+public function detailsProd($id)
+    {
+        $prod = Product::find($id);
+        return view('frontOffice/MarketPlace/ProduitDetails', ['prod' => $prod]);
+    }
+
+
+
+
+
+    public function showProductsAdmin()
+    {
+        // Fetch all products
+        $products = Product::all();
+    
+        return view('backOffice/ListProduits', ['products' => $products]);
+    }
+
+
+    public function like(Product $product)
+    {
+        $product->increment('likes');
+        $product->save();
+    
+        $user = Auth::user();
+    
+        if ($product->likes == 10) {
+            $this->sendLikesThresholdEmail($user, $product);
+        }
+    
+        return back()->with('success', 'Product liked successfully!');
+    }
+    
+
+    public function validateProduct(Product $product)
+    {
+        // Set the product as validated
+        $product->update(['validated' => true]);
+        
+        // Send the email to inform the user
+        Mail::to($product->user->email)->send(new ProductValidated($product));
+        
+        return back()->with('success', 'Produit validé avec succès');
+    }
+    
+
+
+public function showAllProductsAdmin()
+{
+    // Fetch unvalidated products
+    $unvalidatedProducts = Product::where('validated', false)->get();
+
+    // Fetch validated products
+    $validatedProducts = Product::where('validated', true)->get();
+
+    return view('backOffice.ListProduits', compact('unvalidatedProducts', 'validatedProducts'));
+}
+
+
+public function search(Request $request)
+{
+    $search = $request->input('search');
+    $user = auth()->user();
+
+    $products = Product::where('titre', 'like', '%' . $search . '%')
+        ->where('user_id', '!=', $user->id) // Exclure les produits de l'utilisateur connecté
+        ->get();
+
+    return view('frontOffice/MarketPlace/MyMarketPlace', compact('products'));
+}
+
+
+public function sendLikesThresholdEmail(User $user, Product $product)
+{
+    if ($product->likes == 10) {
+        Mail::to($user->email)->send(new LikesThresholdEmail(['user' => $user, 'product' => $product]));
+    }
+}
+
+
+
+
 
 }

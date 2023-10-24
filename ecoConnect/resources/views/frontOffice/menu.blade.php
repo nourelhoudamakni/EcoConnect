@@ -38,7 +38,7 @@
                                         class="feather-tv btn-round-md bg-primary-gradiant me-3"></i><span>Accueil</span></a>
                             </li>
                             <li>
-                                <a  class="nav-content-bttn open-font"><i
+                            <a href="{{ route('products') }}" class="nav-content-bttn open-font"><i
                                         class="feather-shopping-cart btn-round-md bg-primary-gradiant me-3"></i><span>Boutique</span></a>
                             </li>
                             <li>
@@ -119,7 +119,13 @@
         @yield('Edit')
         @yield('index')
         @yield('AddProduit')
+        @yield('AddCollaborateur')
+        @yield('collaborateurs')
         @yield('UpdateProduit')
+        @yield('UpdateCollaborateur')
+        @yield('AddCollab')
+        @yield('MesProduits')
+        @yield('ProduitDetails')
         @yield('accountInformation')
         @yield('MesacteVolontaire')
         {{-- //////////////////////// --}}

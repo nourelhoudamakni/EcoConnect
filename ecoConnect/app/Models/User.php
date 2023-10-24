@@ -93,4 +93,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function feedbackusers(){
         return $this->hasMany(FeedBack::class);
     }
+
+    public function collaborateurs()
+{
+    return $this->belongsToMany(Collaborateur::class);
+}
+
 }

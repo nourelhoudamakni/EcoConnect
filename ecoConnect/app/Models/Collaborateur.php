@@ -10,7 +10,13 @@ class Collaborateur extends Model
     use HasFactory;
     protected $fillable = ['email', 'adresse', 'nom', 'siteWeb'];
 
-    public function collaborateurProduits(){
+    public function products(){
         return $this->hasMany(Product::class);
     }
+
+    public function users()
+{
+    return $this->belongsToMany(User::class);
+}
+
 }

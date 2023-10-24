@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CollaborateurController;
 use App\Http\Controllers\ActeVolontaireController;
 use App\Http\Controllers\ProfilesettingsController;
 use App\Http\Controllers\TaskController;
@@ -189,10 +190,35 @@ Route::post('/newProduit', [ProductController::class, 'AddProduct'])->name('Prod
 Route::get('/Produit-update/{Product}/edit', [ProductController::class, 'edit'])->name('Produit.edit');
 Route::put('/UpdateProduit/{Product}', [ProductController::class, 'update'])->name('products.update');
 Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
+Route::get('/MesProduits',  [ProductController::class, 'showMyProducts'])->name('MesProduits');
+Route::get('/Produit/Details/{id}',  [ProductController::class, 'detailsProd'])->name('Prod.details');
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
+Route::put('/products/{product}/like', [ProductController::class, 'like'])->name('products.like');
 
-Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
-Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
+
+
+Route::get('/collaborateurs-create', [CollaborateurController::class, 'create'])->name('collaborateurs.create');
+Route::get('/NewCollaborateur', [CollaborateurController::class, 'createCollab'])->name('collaborateurs.createCollab');
+
+Route::post('/collaborateurs', [CollaborateurController::class, 'store'])->name('collaborateurs.store');
+
+Route::get('/collaborateurs',  [CollaborateurController::class, 'showCollaborateurs'])->name('collaborateurs');
+Route::get('/Collaborateur-update/{Collaborateur}/edit', [CollaborateurController::class, 'edit'])->name('Collaborateur.edit');
+Route::put('/UpdateCollaborateur/{Collaborateur}', [CollaborateurController::class, 'update'])->name('collaborateurs.update');
+Route::delete('/deleteCollaborateur/{Collaborateur}',  [CollaborateurController::class, 'destroy'])->name('destroyCollaborateur');
+Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
+
+////////////////////////////////admin-hamza
+Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showAllProductsAdmin'])->name('showProducts');
+Route::get('/dashboardAdmin/ListCollaborateurs', [CollaborateurController::class, 'showAllCollaborateurs'])->name('showAllCollaborateurs');
+Route::put('/dashboardAdmin/validate/{product}', [ProductController::class, 'validateProduct'])->name('validateProduct');
+
+Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
+
+
+
+
+
 
 ///////////////////////////////AdminProjetEnv
 Route::get('/admin/projetEnvironnemental', [AdminProjetController::class, 'showAllProject'])->name('Admin.show.ProjetEnv');

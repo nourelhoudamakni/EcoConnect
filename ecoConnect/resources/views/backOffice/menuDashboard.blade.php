@@ -429,6 +429,9 @@
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 @yield('dashboardAdmin')
+                @yield('ListProduits')
+                @yield('AddCollabAdmin')
+                @yield('showAllCollaborateurs')
                 
                
                 @yield('listPosts')

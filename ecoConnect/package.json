@@ -28,6 +28,7 @@
         "vite": "^4.4.9"
     },
     "dependencies": {
+        "feather-icons": "^4.29.1",
         "summernote": "^0.8.20"
     }
 }
