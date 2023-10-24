@@ -67,6 +67,7 @@ Route::get('/menuDashboard', function () {
 Route::get('/listPost', function () {
     return view('backOffice.Post.listPosts');
 });
+
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
 });
