@@ -13,32 +13,30 @@
                                              <div class="owl-items style1 d-flex align-items-center bg-lightblue" >
                                                 <div class="row">
                                                     <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival {{$randomProduct->titre}} <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">{{$randomProduct->description}}</p>
-                                                            <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-    <img src="{{ asset('public/images/' . $randomProduct->image) }}" alt="Random Product Image" class="img-fluid p-md-5 p-4">
+                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card text-center">
+    <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
+    <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Products <br> <b class="fw-700">Collections</b></h2>
+    <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Check it now</p>
+    <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
 </div>
+
+                                                    </div>
+                                                  
 
                                                      </div>
                                             </div>
                                             <div class="owl-items style1 d-flex align-items-center bg-cyan" >
                                                 <div class="row">
                                                     <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
-                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
-                                                            <h4 class="font-xssss text-white ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival {{ $randomProduct->titre }}<br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">{{$randomProduct->description}}</p>
-                                                            <a href="" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-    <img src="{{ asset('public/images/' . $randomProduct->image) }}" alt="Random Product Image" class="img-fluid p-md-5 p-4">
+                                                        <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card text-center">
+    <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
+    <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Products <br> <b class="fw-700">Collections</b></h2>
+    <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Check it now</p>
+    <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
 </div>
+
+                                                    </div>
+                                                  
 
                                                     </div>
                                             </div>
@@ -66,37 +64,47 @@
                                 </div>
                                 
 
-
                                 @foreach($products as $product)
-    <div class="col-lg-4 col-md-6 mt-3">
-        <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4" style="padding-left: 120px !important;">
-            <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
-            <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4"><a href="{{ route('Prod.details',$product->id) }}">{{ $product->titre }}</a></h4>
-            <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-                <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
-            </h5>
-            <h5 class="font-xssss mb-2 text-grey-500 fw-600">
-                <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
-            </h5>
+<div class="col-lg-4 col-md-6 mt-3">
+    <div class="card d-block w-100 border-0 mb-3 shadow-xss bg-white rounded-3 p-4" style="padding-left: 120px !important;">
+        <img src="public/images/{{ $product->image }}" width="100px" alt="Projet Image">
+        <h4 class="font-xss fw-700 text-grey-900 mb-3 pe-4"><a href="{{ route('Prod.details',$product->id) }}">{{ $product->titre }}</a></h4>
+        <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+            <span class="text-grey-900 font-xssss">Prix : </span> {{ $product->prix }}
+        </h5>
+        <h5 class="font-xssss mb-2 text-grey-500 fw-600">
+            <span class="text-grey-900 font-xssss">Description : </span> {{ $product->description }}
+        </h5>
 
-            @if ($product->collaborateur)
-                <h5 class="font-xssss mb-2 text-success fw-600">
-                    <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
-                </h5>
-            @endif
+        @if ($product->collaborateur)
+            <h5 class="font-xssss mb-2 text-success fw-600">
+                <span class="text-grey-900 font-xssss">Collaborateur : </span> {{ $product->collaborateur->nom }}
+            </h5>
+        @endif
 
-            <div class="flex flex-row">
-                <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon"><i class="feather-edit-2 font-md text-white"></i></a>
-                
-                <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-icon"><i class="feather-trash-2 font-md text-white"></i></button>
-                </form>
-            </div>
+        <p>Likes: {{ $product->likes }}</p>
+
+        <div class="d-flex justify-content-start">
+            <a href="{{ route('Produit.edit', ['Product' => $product->id]) }}" class="btn btn-primary btn-icon"><i class="feather-edit-2 font-md text-white"></i></a>
+
+            <form action="{{ route('products.like', ['product' => $product->id]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <button type="submit" class="btn btn-primary btn-icon">
+                    <i class="feather feather-thumbs-up font-md text-white"></i>
+                </button>
+            </form>
+
+            <form action="{{ route('destroyProduct', ['Product' => $product->id]) }}" method="POST" class="d-inline-block">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger btn-icon"><i class="feather-trash-2 font-md text-white"></i></button>
+            </form>
         </div>
     </div>
+</div>
 @endforeach
+
 
 
 

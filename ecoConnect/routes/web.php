@@ -145,6 +145,9 @@ Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('prod
 Route::get('/MesProduits',  [ProductController::class, 'showMyProducts'])->name('MesProduits');
 Route::get('/Produit/Details/{id}',  [ProductController::class, 'detailsProd'])->name('Prod.details');
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
+Route::put('/products/{product}/like', [ProductController::class, 'like'])->name('products.like');
+
+
 
 Route::get('/collaborateurs-create', [CollaborateurController::class, 'create'])->name('collaborateurs.create');
 Route::get('/NewCollaborateur', [CollaborateurController::class, 'createCollab'])->name('collaborateurs.createCollab');
@@ -155,6 +158,12 @@ Route::get('/collaborateurs',  [CollaborateurController::class, 'showCollaborate
 Route::get('/Collaborateur-update/{Collaborateur}/edit', [CollaborateurController::class, 'edit'])->name('Collaborateur.edit');
 Route::put('/UpdateCollaborateur/{Collaborateur}', [CollaborateurController::class, 'update'])->name('collaborateurs.update');
 Route::delete('/deleteCollaborateur/{Collaborateur}',  [CollaborateurController::class, 'destroy'])->name('destroyCollaborateur');
+
+
+Route::get('/dashboardAdmin/ListProduits', [ProductController::class, 'showProductsAdmin'])->name('showProducts');
+Route::get('/dashboardAdmin/ListCollaborateurs', [CollaborateurController::class, 'showAllCollaborateurs'])->name('showAllCollaborateurs');
+
+Route::get('/dashboardAdmin/createCollabAdmin', [CollaborateurController::class, 'createCollabAdmin'])->name('createCollabAdmin');
 
 
 

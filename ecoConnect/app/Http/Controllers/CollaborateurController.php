@@ -106,6 +106,17 @@ public function update(Request $request, Collaborateur $Collaborateur)
 }
 
 
+public function showAllCollaborateurs()
+{
+    $collaborateurs = Collaborateur::all();
+    return view('backOffice/AdminCollab', ['collaborateurs' => $collaborateurs]);
+}
+
+
+public function createCollabAdmin()
+{
+    return view('backOffice/CreateCollabAdmin');
+}
 
 
 

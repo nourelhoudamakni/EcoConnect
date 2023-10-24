@@ -154,10 +154,17 @@ public function showProducts()
 
     // Fetch all products except those belonging to the current user
     $products = Product::where('user_id', '!=', $user->id)->get();
-    $randomProduct = $products->random();
 
-    return view('frontOffice/MarketPlace/MyMarketPlace', ['products' => $products, 'randomProduct' => $randomProduct]);
+    // if ($products->isNotEmpty()) {
+    //     $randomProduct = $products->random();
+    // } else {
+    //     // Use the default image if there are no products
+    //     $randomProduct = $randomProduct ?? (object)[];
+    // }
+
+    return view('frontOffice/MarketPlace/MyMarketPlace', ['products' => $products]);
 }
+
 
 
 public function destroy(Product $Product)
@@ -176,9 +183,9 @@ public function showMyProducts()
     // Retrieve the products associated with the user
     $products = $user->products;
     $products1 = Product::where('user_id', '!=', $user->id)->get();
-    $randomProduct = $products1->random();
+    // $randomProduct = $products1->random();
 
-    return view('frontOffice/MarketPlace/marketPlace', ['products' => $products, 'randomProduct' => $randomProduct]);
+    return view('frontOffice/MarketPlace/marketPlace', ['products' => $products]);
 }
 
 
@@ -188,6 +195,27 @@ public function detailsProd($id)
         $prod = Product::find($id);
         return view('frontOffice/MarketPlace/ProduitDetails', ['prod' => $prod]);
     }
+
+
+
+
+
+    public function showProductsAdmin()
+    {
+        // Fetch all products
+        $products = Product::all();
+    
+        return view('backOffice/ListProduits', ['products' => $products]);
+    }
+
+
+    public function like(Product $product)
+{
+    $product->increment('likes');
+    $product->save();
+
+    return back()->with('success', 'Product liked successfully!');
+}
 
 
 }

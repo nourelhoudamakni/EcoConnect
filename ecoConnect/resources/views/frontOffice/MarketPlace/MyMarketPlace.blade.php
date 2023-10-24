@@ -15,14 +15,12 @@
                                                     <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
                                                         <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
                                                             <h4 class="font-xssss text-danger ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival {{$randomProduct->titre}} <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">{{$randomProduct->description}}</p>
+                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-grey-900">New Arrival Products<br> <b class="fw-700">Collection</b></h2>
+                                                            <p class="fw-500 text-grey-500 lh-26 font-xssss pe-lg-5">Check it now</p>
                                                             <a href="{{ route('Produit.create') }}" class="fw-700 text-white rounded-xl bg-primary-gradiant font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-    <img src="{{ asset('public/images/' . $randomProduct->image) }}" alt="Random Product Image" class="img-fluid p-md-5 p-4">
-</div>
+                                                    
 
                                                 </div>
                                             </div>
@@ -31,14 +29,12 @@
                                                     <div class="col-lg-6 p-lg-5 ps-5 pe-5 pt-4" style="padding-right: 20px !important;">
                                                         <div class="card w-100 border-0 ps-lg-5 ps-0 bg-transparent bg-transparent-card">
                                                             <h4 class="font-xssss text-white ls-3 fw-700 ms-0 mt-4 mb-3">TRENDING</h4>
-                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival {{$randomProduct->titre}} <br> <b class="fw-700">Collection</b></h2>
-                                                            <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">{{$randomProduct->description}}</p>
+                                                            <h2 class="fw-300 display2-size display2-md-size lh-2 text-white">New Arrival Products<br> <b class="fw-700">Collection</b></h2>
+                                                            <p class="fw-500 text-grey-100 lh-26 font-xssss pe-lg-5">Check it now</p>
                                                             <a href="" class="fw-700 text-grey-900 rounded-xl bg-white font-xsssss text-uppercase ls-3 lh-30 mt-0 text-center d-inline-block p-2 w150">Add new product</a>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-    <img src="{{ asset('public/images/' . $randomProduct->image) }}" alt="Random Product Image" class="img-fluid p-md-5 p-4">
-</div>
+                                                   
 
                                                     </div>
                                             </div>
