@@ -60,9 +60,8 @@
 
                                         <div class="card-body d-flex ps-0 pe-0 pb-0">
 
-                                            <div class="bg-greylight me-3 p-3 border-light-md rounded-xxl theme-dark-bg">
-                                                <h4 class="fw-700 font-lg ls-3 text-grey-900 mb-0"><span
-                                                        class="ls-3 d-block font-xsss text-grey-500 fw-500">FEB</span>22
+                                            <div class="bg-greylight me-3 p-4 border-light-md rounded-xl theme-dark-bg">
+                                                <h4 class="fw-700 font-lg ls-3 text-grey-900 mb-0"><i class="ti-calendar">{{ $acte->date->format('m-d-y') }}</i>
                                                 </h4>
                                             </div>
                                             <h2 class="fw-700 lh-3 font-xss">{{ $acte->titre }}
@@ -73,7 +72,10 @@
                                                         class="ti-time me-1"></i>{{ $acte->heure }} </span>
                                                 <span
                                                     class="d-flex font-xssss fw-500 mt-2 lh-3 text-grey-500  text-truncate">
-                                                    <i class="ti-pencil me-1"></i>{{ $acte->description }} </span>
+                                                    <i class="ti-pencil-alt"></i>{{ $acte->description }} </span>
+                                                    <sapn class="font-xssss mb-2 {{ $acte->validated ? 'text-success' : 'text-danger' }} fw-600">
+                                                        <span class="text-grey-900 font-xssss">Validation status : </span> {{ $acte->validated ? 'Accepted' : 'Pending' }}
+                                                    </sapn>
 
                                             </h2>
                                         </div>
@@ -82,17 +84,16 @@
 
                                             <div class="d-flex justify-content-end">
                                                 <a href="{{ route('Acte.edit', ['acteVolontaire' => $acte->id]) }}"
-                                                    class="btn btn-primary btn-icon">ajouter don</a>
-                                                <a href="{{ route('Acte.edit', ['acteVolontaire' => $acte->id]) }}"
                                                     class="btn btn-primary btn-icon mx-1"><i
                                                         class="feather-edit-2 font-md text-white"></i></a>
-                                                <form action="{{ route('Acte.destroy', ['acteVolontaire' => $acte->id]) }}"
-                                                    method="POST" class="d-inline-block">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-icon mx-2"><i
-                                                            class="feather-trash-2 font-md text-white"></i></button>
-                                                </form>
+                                                        <form action="{{ route('Acte.destroy', ['acteVolontaire' => $acte->id]) }}" method="POST" class="d-inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button  class="btn btn-danger btn-icon mx-1">
+                                                                <i class="ti-trash font-md text-white"></i>
+                                                            </button>
+                                                        </form>
+
                                             </div>
 
 

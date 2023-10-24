@@ -123,6 +123,8 @@ Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.
 
 
 ////////////////////////route actes volontaires
+Route::get('/Acteadmin-create', [ActeVolontaireController::class, 'createAdActe'])->name('Acte.Admin.create');
+Route::get('/AllActes',  [ActeVolontaireController::class, 'index'])->name('Acte.index');
 Route::get('/Mes-Actes',  [ActeVolontaireController::class, 'showMesActes'])->name('MesActe.show');
 Route::get('/Actes',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create', [ActeVolontaireController::class, 'create'])->name('Acte.create');
@@ -132,11 +134,22 @@ Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class,
 Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
 Route::get('/acteVolontaire/Details/{id}',  [ActeVolontaireController::class, 'detailsActe'])->name('Acte.details');
 
+Route::post('/acteParticipate/{id}', [ActeVolontaireController::class,'participate'])->name('Acte.participate');
+
+Route::get('/Acte/searchByCategorie', [ActeVolontaireController::class, 'searchByCategorie'])->name('Acte.searchByCategorie');;
+Route::get('/Acte/searchByLocation', [ActeVolontaireController::class, 'searchByLieu'])->name('Acte.searchByLocation');
+
+Route::put('/Acte/validate/{acte}', [ActeVolontaireController::class, 'validateActe'])->name('validateActe');
+Route::get('/dashboardAdmin/Listactes', [ActeVolontaireController::class, 'showAllActesAdmin'])->name('showActes');
 Route::resource('acte-volontaires', ActeVolontaireController::class);
 
 ////////////////////////route Don
 Route::get('/Don/new', [DonController::class, 'create'])->name('Don.show');
 Route::post('/Don/create/{idActe}', [DonController::class, 'storeDon'])->name('Don.store');
+Route::delete('/Don/{don}', [DonController::class, 'destroy'])->name('Don.destroy');
+Route::get('/Don/{don}/edit', [DonController::class, 'edit'])->name('Don.edit');
+
+Route::put('/don/update/{don}', [DonController::class ,'updateDon'])->name('Don.updateDon');
 
 
 ////////////////////////route produits

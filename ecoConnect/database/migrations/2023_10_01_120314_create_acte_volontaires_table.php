@@ -23,7 +23,7 @@ return new class extends Migration
             $table->time('heure');
             $table->string('image');
             $table->string('lieu');
-
+            $table->boolean('validated')->default(false);
             $table->foreignIdFor(\App\Models\User::class ,'organizer_id')->nullable()->constrainted()->cascadeOnDelete();
 
 
