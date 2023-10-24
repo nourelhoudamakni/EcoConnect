@@ -1,6 +1,6 @@
 # Econnete
 
-Econnete is a social media platform dedicated to environmental initiatives and sustainability. It provides a space for users to collaborate on environmental projects, create and sell eco-friendly products, share posts, publish blogs, and organize/participate in events aimed at preserving the planet.
+connete is a social media platform built with Laravel, dedicated to environmental initiatives and sustainability. It provides a space for users to collaborate on environmental projects, create and sell eco-friendly products, share posts, publish blogs, and organize/participate in events aimed at preserving the planet.
 
 ## Features
 
@@ -22,15 +22,29 @@ Econnete is a social media platform dedicated to environmental initiatives and s
 ```
 2. Install the required dependencies:
 ```
-npm install
-```
-3. Configure the application by updating the necessary environment variables
+composer install
+npm install && npm run dev
 
-4. Start the server:
 ```
-npm start
+3. Create a copy of the .env.example file and rename it to .env. Update the necessary environment variables, such as the database connection details and other configuration settings.
+
+4. Generate an application key:
 ```
-5. Access the application by visiting http://localhost:3000 in your web browser.
+php artisan key:generate
+```
+5. Migrate the database:
+```
+php artisan migrate
+```
+6. Seed the database (optional):
+```
+php artisan db:seed
+```
+7. Start the development server:
+```
+php artisan serve
+```
+8. Access the application by visiting http://localhost:8000 in your web browser.
 
 ## Contributing
 Contributions are welcome! If you'd like to contribute to Econnete, please follow these steps:
