@@ -10,7 +10,7 @@ class Posts extends Model
 
     use HasFactory;
 
-    protected $fillable = ['titre', 'description', 'image'];
+    protected $fillable = ['titre', 'description', 'image','likes'];
 
 
     public function user() {
@@ -21,8 +21,11 @@ class Posts extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
-    
-
+   
+    public function likess() {
+        return $this->hasMany(Like::class);
+    }
+   
 
 
 }

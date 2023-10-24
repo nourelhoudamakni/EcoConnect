@@ -4,6 +4,7 @@ use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DonController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -57,6 +58,8 @@ Route::middleware([
 Route::get('/menuDashboard', function () {
     return view('backOffice/menuDashboard');
 });
+Route::get('/listPost', function () {
+    return view('backOffice.Post.listPosts');
 
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
@@ -124,11 +127,30 @@ Route::delete('/Apprentissage/destroy/{id}', [EducationController::class, 'destr
 
 ////////////////////////////routes post
 Route::get('/profile', [PostController::class, 'profile'])->name('user.profile');
-Route::get('/PostCreate', [PostController::class, 'create'])->name('Posts.create');
+//Route::get('/PostCreate', [PostController::class, 'create'])->name('Posts.create');
 Route::post('/newPost', [PostController::class, 'store'])->name('Posts.store');
 Route::get('/Edit/{id}', [PostController::class, 'edit'])->name('Posts.edit');
 Route::put('/update/{id}', [PostController::class, 'update'])->name('Posts.update');
 Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.destroy');
+Route::get('/post/{posts_id}', [PostController::class,'singlePost'])->name("single-post");
+Route::post('/comment/store/{idPost}', [CommentController::class, 'storeComment'])->name('Comment.store');
+Route::delete('/comment/destroy/{id}', [CommentController::class, 'destroy'])->name('Comment.destroy');
+Route::put('/comment/update/{id}', [CommentController::class, 'update'])->name('Comment.update');
+Route::post('/like/{idPost}', [PostController::class, 'like'])->name('Posts.like');
+Route::post('/dislike/{idPost}', [PostController::class, 'dislike'])->name('Posts.dislike');
+ // Post backOffice
+Route::get('/dash/listPosts', [PostController::class, 'affiche'])->name('Posts.affiche');
+
+Route::delete('/destroy/{id}', [PostController::class, 'destroyPost'])->name('Posts.destroyPost');
+Route::get('/detailPost/{posts_id}', [PostController::class,'detailsPost'])->name("detailsPost");
+Route::delete('/comment/destroyComment/{id}', [CommentController::class, 'destroyComment'])->name('destroyComment');
+
+
+
+
+
+
+
 
 
 ////////////////////////route actes volontaires

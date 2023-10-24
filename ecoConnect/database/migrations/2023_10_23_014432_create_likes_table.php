@@ -13,21 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class)->nullable()->constrainted()->cascadeOnDelete();
-            $table->string('titre');
-            $table->longtext('description');
-            $table->string('image');
-            $table->unsignedBigInteger("likes")->default(0);
+            $table->foreignIdFor(\App\Models\Posts::class)->nullable()->constrainted()->cascadeOnDelete();
             $table->timestamps();
-           
-                     
-
         });
-
-
-      
     }
 
     /**
@@ -37,13 +28,12 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('likes');
+        Schema::table('posts',function(Blueprint $table){
+            $table->dropForeignIdFor(\App\Models\Posts::class);
+        });
         Schema::table('users',function(Blueprint $table){
             $table->dropForeignIdFor(\App\Models\User::class);
         });
     }
-
-  
-
-
 };
