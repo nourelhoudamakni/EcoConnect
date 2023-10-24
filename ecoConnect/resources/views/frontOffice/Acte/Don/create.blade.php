@@ -23,7 +23,7 @@
                                         @endphp
                                     </div>
                                 @endif
-                                <form method="POST" action="{{ route('Don.update', $don->id) }}" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('Don.updateDon', $don->id) }}" enctype="multipart/form-data">
 
                                     @csrf
                                     @method('put')
@@ -87,9 +87,7 @@
                                                 <label class="mont-font fw-600 font-xsss">Date de creation</label>
                                                 <input type="text" name="date de creation"
                                                     value="{{ date('d-m-Y', old('date')) }}" />
-                                                    @error('dateCreation')
-            <div class="text-danger">{{ $message }}</div>
-            @enderror
+                                                    
                                             </div>
                                         </div>
 
@@ -98,9 +96,7 @@
                                                 <label class="mont-font fw-600 font-xsss">Date de fin</label>
                                                 <input type="text" name="date de fin"
                                                     value="{{ date('d-m-Y', old('date')) }}" />
-                                                    @error('dateFin')
-            <div class="text-danger">{{ $message }}</div>
-            @enderror
+
                                             </div>
                                         </div>
                                     </div>

@@ -149,7 +149,6 @@ Route::get('/Don/new', [DonController::class, 'create'])->name('Don.show');
 Route::post('/Don/create/{idActe}', [DonController::class, 'storeDon'])->name('Don.store');
 Route::delete('/Don/{don}', [DonController::class, 'destroy'])->name('Don.destroy');
 Route::get('/Don/{don}/edit', [DonController::class, 'edit'])->name('Don.edit');
-
 Route::put('/don/update/{don}', [DonController::class ,'updateDon'])->name('Don.updateDon');
 
 

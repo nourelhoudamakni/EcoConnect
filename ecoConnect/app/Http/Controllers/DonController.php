@@ -117,9 +117,11 @@ class DonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(DonController $don)
+    public function edit( $donId)
     {
+        $don = Demande_de_Don::find($donId);
         return view('frontOffice.Acte.Don.create', compact('don'));
+
     }
 
     /**
