@@ -9,14 +9,34 @@ use Illuminate\Validation\Rules\Enum;
 
 class EducationController extends Controller
 {
-    public function formContenuEducative()
+
+    public function  showAllBlogs()
+    {
+
+        $blogs =Education::where('validate', true)->get();
+        $blogsrandom = Education::where('validate', true)->inRandomOrder()->limit(3)->get();
+        $bestBlogs = Education::whereIn('moyenne', [4, 5])
+        ->where('validate', true)
+        ->get();
+        return view('frontOffice.Apprentissage.AllBlogs',  ['blogs' => $blogs,'blogsrandom'=> $blogsrandom,'bestBlogs'=> $bestBlogs]);
+
+    }
+
+    public function  showMyBlogs()
+    {
+        $userId = auth()->id();
+        $blogs = Education::where('user_id', $userId)->get();
+        return view('frontOffice.Apprentissage.MyBlogs',  ['Myblogs' => $blogs]);
+
+    }
+    public function createBlog()
 
     {
         $tags = Education::all();
-        return view('frontOffice.Apprentissage.AddContenuEducative',compact('tags'));
+        return view('frontOffice.Apprentissage.AddBlog',compact('tags'));
     }
 
-    public function store(Request $request)
+    public function storeBlog(Request $request)
     {
 
         $this->validate($request, [
@@ -56,8 +76,6 @@ class EducationController extends Controller
         }
         $description = $dom->saveHTML();
 
-        $input = $request->all();
-
         if ($image = $request->file('image')) {
 
             $destinationPath = 'upload/';
@@ -66,42 +84,57 @@ class EducationController extends Controller
 
             $image->move($destinationPath, $profileImage);
 
-            $input['image'] = "$profileImage";
-
         }
 
         $tags = explode(",", $request->tags);
 
-        $post = Education::create($input);
+        $blog = Education::create([
+            'titre' => $request->input('titre'),
+            'description' => $request->input('description'),
+            'tags' => $request->input('tags'),
+            'categorie' => $request->input('categorie'),
+            'image' => $profileImage,
 
-        $post->tag($tags);
+        ]);
 
-        return redirect()->route('contenu.index')->with('success', 'Ajout avec succés');
+        $blog->user_id = auth()->id();
+        $blog->save();
+        $blog->tag($tags);
 
+        return redirect()->route('AllBlogs')->with('success', 'Votre article est ajouté dans votre liste, il sera afficher pour
+        les utilisateurs que si un administrateur verifie et valide le contenu.');
 
     }
-    public function showContenu($id)
+    public function showBlog($id)
     {
-        $education = Education::find($id);
-        return view('frontOffice.Apprentissage.contenuDetails',['education' => $education]);
+        $blog = Education::find($id);
+        $feedBacks=$blog->feedBacks;
+        $latestblogs = Education::orderBy('created_at', 'asc')->take(5)->get();
+        $notes = [];
+        foreach ($feedBacks as $feedBack) {
+            $notes[] = $feedBack->note;
+        }
+        if (count($notes) > 0) {
+            $moyenne = array_sum($notes) / count($notes); // Calcul de la moyenne
+        } else {
+            $moyenne = 0; // Si la liste $notes est vide, la moyenne est de zéro
+        }
+        $blog->moyenne = round($moyenne);
+        $blog->save();
+        return view('frontOffice.Apprentissage.BlogDetails',['blog' => $blog,'feedbacks'=> $feedBacks,'latestblogs'=> $latestblogs]);
 
     }
-    public function  showAllContenu()
-    {
-        $educations = Education::all();
-        return view('frontOffice.Apprentissage.mesContenuesEducatives',  ['educations' => $educations]);
 
-    }
 
-    public function editContenu($id)
+    public function editForm($id)
     {
 
         $education = Education::find($id);
         $tags = $education->tags->pluck('name')->toArray();
-        return view('frontOffice.Apprentissage.EditContenuEducative',['education' => $education,'tags'=>$tags]);
+        return view('frontOffice.Apprentissage.EditBlog',['blog' => $education,'tags'=>$tags]);
 
     }
-    public function updateContenu(Request $request, $id)
+    public function updateBlog(Request $request, $id)
     {
 
         $this->validate($request, [
@@ -163,14 +196,32 @@ class EducationController extends Controller
 
         $education->update($input);
 
-        return redirect()->route('contenu.index')->with('success', 'Modificaton avec succés');
+        return redirect()->route('AllBlogs')->with('success', 'Modificaton avec succés');
 
     }
 
-    public function destroyContenu($id)
+    public function destroyBlog($id)
     {
         $education=Education::find($id);
         $education->delete();
-        return redirect()->route('contenu.index')->with('success', 'Suppression avec succés');
+        return redirect()->route('AllBlogs')->with('success', 'Suppression avec succés');
+    }
+
+
+
+public function searchByCategorie(Request $request)
+    {
+        $categorie = $request->input('categorie'); // Get the "categorie" parameter from the request
+
+        // Perform a database search based on the "categorie" attribute
+        $results = Education::where('categorie', $categorie)->where('validate', true)
+        ->get();
+        $blogsrandom = Education::where('validate', true)->inRandomOrder()->limit(3)->get();
+        $bestBlogs = Education::whereIn('moyenne', [4, 5])
+        ->where('validate', true)
+        ->get();
+
+        // You can return the results as a JSON response or in any other format you prefer
+        return view('frontOffice.Apprentissage.AllBlogs', ['blogs' => $results,'blogsrandom'=> $blogsrandom,'bestBlogs'=> $bestBlogs]);
     }
 }

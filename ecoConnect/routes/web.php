@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBlogFeedbackController;
 use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfilesettingsController;
 /*
 |--------------------------------------------------------------------------
@@ -31,23 +33,26 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [PostController::class, 'Accueil'])->name('dashboard');
+
 });
 
 /////route pour le login admin
 Route::middleware('admin:admin')->group(function () {
-    Route::get('admin/login', [AdminController::class, 'loginForm']);
+    Route::get('admin/login', [AdminController::class, 'loginForm'])->name('admin.login.form');
     Route::post('admin/login', [AdminController::class, 'store'])->name('admin.login');
 });
 
 ///////////route après le login admin
 Route::middleware([
-    'auth:sanctum,admin',
+    'auth.admin:sanctum,admin',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('admin/dashboard', function () {
         return view('backOffice/dashboardAdmin');
     })->name('dashboard')->middleware('auth:admin');
+
+
 });
 
 ///////quelques routes
@@ -108,13 +113,29 @@ Route::post('/projets-environnementaux/{id}/modifier', [ProjetEnvController::cla
 
 
 ////////////////////////route education env
-Route::get('/Apprentissage', [EducationController::class, 'showAllContenu'])->name('contenu.index');
-Route::get('/Apprentissage/Ajout-formulaire', [EducationController::class, 'formContenuEducative'])->name('contenu.Add');
-Route::post('/Apprentissage/Ajout', [EducationController::class, 'store'])->name('Ajout.contenu');
-Route::get('/Apprentissage/Details/{id}', [EducationController::class, 'showContenu'])->name('details.contenu');
-Route::get('/Apprentissage/Edit/{id}', [EducationController::class, 'editContenu'])->name('edit.contenu');
-Route::put('/Apprentissage/update/{id}', [EducationController::class, 'updateContenu'])->name('contenu.update');
-Route::delete('/Apprentissage/destroy/{id}', [EducationController::class, 'destroyContenu'])->name('contenu.destroy');
+Route::get('/Apprentissage', [EducationController::class, 'showAllBlogs'])->name('AllBlogs');
+Route::get('/MesApprentissage', [EducationController::class, 'showMyBlogs'])->name('MyBlogs');
+Route::get('/Apprentissage/form', [EducationController::class, 'createBlog'])->name('Blog.Form');
+Route::post('/Apprentissage/Add', [EducationController::class, 'storeBlog'])->name('store.blog');
+Route::get('/Apprentissage/Details/{id}', [EducationController::class, 'showBlog'])->name('details.blog');
+Route::get('/Apprentissage/Edit/{id}', [EducationController::class, 'editForm'])->name('edit.blog');
+Route::put('/Apprentissage/update/{id}', [EducationController::class, 'updateBlog'])->name('blog.update');
+Route::delete('/Apprentissage/destroy/{id}', [EducationController::class, 'destroyBlog'])->name('Blog.destroy');
+Route::get('/blog/searchByCategorie', [EducationController::class, 'searchByCategorie'])->name('blog.searchByCategorie');;
+
+//////////////////////////////////routes commentaires
+Route::post('/feedback/Add/{idBlog}', [FeedbackController::class, 'storeFeedback'])->name('store.feedBack');
+Route::get('/get-feedback/{id}', [FeedbackController::class, 'getFeedback']);
+Route::post('/update-feedback/{id}', [FeedbackController::class, 'update'])->name('feedback.update');
+Route::delete('/delete/destroy/{id}', [FeedbackController::class, 'destroyFeedback'])->name('feedback.destroy');
+//////////////////////////////////////routes dashboard admin
+Route::get('/List-Articles', [AdminBlogFeedbackController::class, 'showAllBlogsAdmin'])->name('AllBlogsAdmin');
+Route::post('/validate-blog/{blogId}', [AdminBlogFeedbackController::class, 'validateBlog'])->name('validate.blog');
+Route::post('/nonvalidate-blog/{blogId}', [AdminBlogFeedbackController::class, 'nonValidateBlog'])->name('nonvalidate.blog');
+Route::delete('/destroy/{blogId}', [AdminBlogFeedbackController::class, 'destroyBlogbyAdmin'])->name('destroy.blog.admin');
+Route::get('/details/article/{blogId}', [AdminBlogFeedbackController::class, 'detailsArticleAdmin'])->name('details.blog.admin');
+Route::delete('/destroy/feedback/admin/{feedbackId}', [AdminBlogFeedbackController::class, 'destroyFeedbackadmin'])->name('destroy.feedback.admin');
+Route::delete('/get-feedback-admin/{feedbackId}', [AdminBlogFeedbackController::class, 'getFeedbackAdmin'])->name('get.feedback.admin');
 
 
 ////////////////////////////routes post
@@ -124,7 +145,6 @@ Route::post('/newPost', [PostController::class, 'store'])->name('Posts.store');
 Route::get('/Edit/{id}', [PostController::class, 'edit'])->name('Posts.edit');
 Route::put('/update/{id}', [PostController::class, 'update'])->name('Posts.update');
 Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.destroy');
-
 
 ////////////////////////route actes volontaires
 Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
@@ -143,6 +163,9 @@ Route::put('/UpdateProduit/{Product}', [ProductController::class, 'update'])->na
 Route::get('/Produits',  [ProductController::class, 'showProducts'])->name('products');
 Route::delete('/deleteProduit/{Product}',  [ProductController::class, 'destroy'])->name('destroyProduct');
 
+
+
+///////////routes collaborateurs
 Route::get('/collaborateurs/create', 'CollaborateurController@create')->name('collaborateurs.create');
 Route::post('/collaborateurs', 'CollaborateurController@store')->name('collaborateurs.store');
 

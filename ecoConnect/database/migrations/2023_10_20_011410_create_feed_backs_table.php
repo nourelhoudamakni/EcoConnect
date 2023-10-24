@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('feed_backs', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
             $table->text('description');
             $table->integer('note');
             $table->foreignIdFor(\App\Models\Education::class)->nullable()->constrainted()->cascadeOnDelete();
