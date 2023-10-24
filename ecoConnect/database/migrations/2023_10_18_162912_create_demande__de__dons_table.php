@@ -18,14 +18,11 @@ return new class extends Migration
             $table->string('titre');
             $table->string('typeDon')->nullable();
             $table->longtext('description');
-            $table->datetime('date de creation');
-            $table->datetime('date de fin');
+            $table->datetime('dateCreation');
+            $table->datetime('dateFin');
             $table->string('status');
-            $table->foreignId('user_id')->constrained('users')->nullable();
-
 
             $table->foreignIdFor(\App\Models\ActeVolontaire::class)->nullable()->constrainted()->cascadeOnDelete();
-
             $table->timestamps();
 
         });

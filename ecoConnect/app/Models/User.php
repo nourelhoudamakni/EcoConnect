@@ -70,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts() {
         return $this->hasMany(Posts::class);
     }
-    
+
     public function commentsUsers() {
         return $this->hasMany(Comment::class);
     }
@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function actevolontaires()
     {
-        return $this->belongsToMany(ActeVolontaire::class);
+        return $this->belongsToMany(ActeVolontaire::class,'acte_volontaire_user');
     }
     public function educations(){
         return $this->hasMany(Education::class);

@@ -425,7 +425,7 @@
                 </ul>
             </aside>
             <div class="layout-page">
-                
+
             <!-- Content wrapper -->
             <div class="content-wrapper">
                 @yield('dashboardAdmin')

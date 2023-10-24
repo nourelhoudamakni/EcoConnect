@@ -108,7 +108,7 @@
         @yield('produitDetails')
         @yield('profileUser')
         @yield('accountInformation')
-        @yield('mesActeVolontaire')
+
         {{-- ////////////////////// --}}
         @yield('listApprentissages')
         @yield('formContenuEducative')
@@ -121,7 +121,7 @@
         @yield('AddProduit')
         @yield('UpdateProduit')
         @yield('accountInformation')
-        @yield('mesActeVolontaire')
+        @yield('MesacteVolontaire')
         {{-- //////////////////////// --}}
         @yield('profileUpdate')
         @yield('settingsProfile')
