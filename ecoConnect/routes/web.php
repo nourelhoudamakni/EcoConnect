@@ -4,7 +4,7 @@ use App\Http\Controllers\ProjetEnvController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\DonController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ActeVolontaireController;
@@ -57,6 +57,7 @@ Route::middleware([
 Route::get('/menuDashboard', function () {
     return view('backOffice/menuDashboard');
 });
+
 Route::get('/listUsers', function () {
     return view('backOffice/listUsers');
 });
@@ -74,9 +75,6 @@ Route::get('/Market-Place', function () {
 Route::get('/Projets-Environnementales', function () {
     return view('frontOffice/projetsEnv');
 });
-Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/acteVolontaire');
-});
 
 Route::get('/My-Market-Place', function () {
     return view('frontOffice/MarketPlace/MyMarketPlace');
@@ -85,12 +83,10 @@ Route::get('/AddProduct', function () {
     return view('frontOffice/MarketPlace/AddNewProduct');
 });
 
-Route::get('/Acte-Volontaire', function () {
-    return view('frontOffice/Acte/acteVolontaire');
-});
-Route::get('/Mes-Actes-Volontaires', function () {
+Route::get('/Mes-actes-Volontaires', function () {
     return view('frontOffice/Acte/mesActesVolontaires');
 });
+
 Route::get('/Account-information', function () {
     return view('frontOffice/accountInformation');
 });
@@ -136,13 +132,34 @@ Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('Posts.
 
 
 ////////////////////////route actes volontaires
-Route::get('/Actes-show',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
+Route::get('/Acteadmin-create', [ActeVolontaireController::class, 'createAdActe'])->name('Acte.Admin.create');
+Route::get('/AllActes',  [ActeVolontaireController::class, 'index'])->name('Acte.index');
+Route::get('/Mes-Actes',  [ActeVolontaireController::class, 'showMesActes'])->name('MesActe.show');
+Route::get('/Actes',  [ActeVolontaireController::class, 'show'])->name('Acte.show');
 Route::get('/Acte-create', [ActeVolontaireController::class, 'create'])->name('Acte.create');
 Route::post('/newActe', [ActeVolontaireController::class, 'store'])->name('Acte.store');
 Route::get('/acteVolontaire/{acteVolontaire}/edit', [ActeVolontaireController::class, 'edit'])->name('Acte.edit');
 Route::put('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'update'])->name('Acte.update');
 Route::delete('/acteVolontaire/{acteVolontaire}', [ActeVolontaireController::class, 'destroy'])->name('Acte.destroy');
+Route::get('/acteVolontaire/Details/{id}',  [ActeVolontaireController::class, 'detailsActe'])->name('Acte.details');
+
+Route::post('/acteParticipate/{id}', [ActeVolontaireController::class,'participate'])->name('Acte.participate');
+
+Route::get('/Acte/searchByCategorie', [ActeVolontaireController::class, 'searchByCategorie'])->name('Acte.searchByCategorie');;
+Route::get('/Acte/searchByLocation', [ActeVolontaireController::class, 'searchByLieu'])->name('Acte.searchByLocation');
+Route::get('/acte-volontaire/search', [ActeVolontaireController::class, 'search'])->name('acte-volontaire.search');
+
+Route::put('/Acte/validate/{acte}', [ActeVolontaireController::class, 'validateActe'])->name('validateActe');
+Route::get('/dashboardAdmin/Listactes', [ActeVolontaireController::class, 'showAllActesAdmin'])->name('showActes');
 Route::resource('acte-volontaires', ActeVolontaireController::class);
+
+////////////////////////route Don
+Route::get('/Don/new', [DonController::class, 'create'])->name('Don.show');
+Route::post('/Don/create/{idActe}', [DonController::class, 'storeDon'])->name('Don.store');
+Route::delete('/Don/{don}', [DonController::class, 'destroy'])->name('Don.destroy');
+Route::get('/Don/{don}/edit', [DonController::class, 'edit'])->name('Don.edit');
+Route::put('/don/update/{don}', [DonController::class ,'updateDon'])->name('Don.updateDon');
+
 
 ////////////////////////route produits
 Route::get('/Produit-create', [ProductController::class, 'create'])->name('Produit.create');
