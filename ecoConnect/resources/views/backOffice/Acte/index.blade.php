@@ -1,6 +1,6 @@
 @extends('backOffice.menuDashboard')
 
-@section('dashboardAdmin')
+@section('indexActes')
     <div class="main-content" style="padding-top: 20px;">
         <div class="middle-sidebar-bottom">
             <div class="container">

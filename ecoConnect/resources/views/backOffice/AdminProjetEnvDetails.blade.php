@@ -1,4 +1,4 @@
-@extends('frontOffice.menu')
+@extends('backOffice.menuDashboard')
 @section('contenuDetails')
     <div class="main-content bg-white">
         <div class="container">
@@ -38,7 +38,7 @@
                 <div class="col-md-12 my-5">
                     <div>
                         <h3 class="fw-700 font-lg">Taches:</h3>
-                       
+
                     </div>
                     <table class="table">
                         <thead>
@@ -47,7 +47,7 @@
                                 <th>Description</th>
                                 <th>Date debut</th>
                                 <th>Date fin</th>
-                              
+
                             </tr>
                         </thead>
                         <tbody>
@@ -57,7 +57,7 @@
                                     <td>{{ $task->description }}</td>
                                     <td>{{ $task->date_debut }}</td>
                                     <td>{{ $task->date_fin }}</td>
-                            
+
                                 </tr>
                             @endforeach
                         </tbody>

@@ -46,14 +46,12 @@
                                         class="feather-clipboard btn-round-md bg-primary-gradiant me-3"></i><span>Projets </span></a>
                             </li>
                             <li>
-                                <a  class="nav-content-bttn open-font"><i
+
+                                <a href="{{ route('Acte.show')}}"  class="nav-content-bttn open-font"><i
                                         class="feather-shield btn-round-md bg-primary-gradiant me-3"></i><span>Actes
                                         volontaires</span></a>
                             </li>
-                            <li>
-                                <a href="user-page.html" class="nav-content-bttn open-font"><i
-                                        class="feather-calendar btn-round-md  bg-primary-gradiant me-3"></i><span>Evenements</span></a>
-                            </li>
+
                             <li>
                                 <a href="{{ route('AllBlogs')}}" class="nav-content-bttn open-font"><i
                                         class="feather-book-open btn-round-md bg-primary-gradiant me-3"></i><span>Apprentissage</span></a>

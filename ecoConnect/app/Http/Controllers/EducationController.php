@@ -10,7 +10,7 @@ use Illuminate\Validation\Rules\Enum;
 class EducationController extends Controller
 {
 
-    public function  showAllBlogs()
+    public function  showAllBlogsForAllUsers()
     {
 
         $blogs =Education::where('validate', true)->get();

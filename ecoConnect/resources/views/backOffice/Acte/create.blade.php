@@ -1,6 +1,6 @@
 @extends('backOffice.menuDashboard')
 
-@section('dashboardAdmin')
+@section('createBlade')
 
 <div class="main-content " style=" padding-top: 20px!important;">
     <div class="middle-sidebar-bottom ">
